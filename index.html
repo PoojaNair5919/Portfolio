@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pooja Nair - Data Analyst Portfolio v20</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .data-pattern {
+            background-image: 
+                radial-gradient(circle at 25px 25px, rgba(255,255,255,0.1) 2px, transparent 0),
+                radial-gradient(circle at 75px 75px, rgba(255,255,255,0.1) 2px, transparent 0);
+            background-size: 100px 100px;
+        }
+        
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .skill-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .skill-card:hover::before {
+            left: 100%;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        @media (max-width: 768px) {
+            .skill-card:hover {
+                transform: translateY(-4px) scale(1.01);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            }
+        }
+        
+        .project-card {
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover::after {
+            opacity: 1;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .project-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            }
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #667eea;
+            z-index: 2;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 2rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: linear-gradient(to bottom, #667eea, rgba(102,126,234,0.3));
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-item {
+                padding-left: 2rem;
+            }
+            
+            .timeline-item::before {
+                width: 12px;
+                height: 12px;
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 5px;
+            }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+        }
+        
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: scale(0.7) rotate(5deg);
+            opacity: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 1.5rem;
+                border-radius: 1rem;
+                max-height: 90vh;
+            }
+        }
+        
+        .modal.show .modal-content {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+        
+        .dark-mode {
+            background-color: #000000;
+            color: white;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #0f0f0f !important;
+        }
+        
+        .dark-mode .bg-gray-50 {
+            background-color: #0a0a0a !important;
+        }
+        
+        .dark-mode .text-gray-800 {
+            color: #e5e5e5 !important;
+        }
+        
+        .dark-mode .text-gray-600 {
+            color: #b0b0b0 !important;
+        }
+        
+        .dark-mode .text-gray-700 {
+            color: #c0c0c0 !important;
+        }
+        
+        .dark-mode .border-gray-200 {
+            border-color: #404040 !important;
+        }
+        
+        .dark-mode .border-gray-300 {
+            border-color: #404040 !important;
+        }
+        
+        .dark-mode .skill-card {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;
+            border: 1px solid #222;
+        }
+        
+        .dark-mode .project-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+        
+        .dark-mode .modal-content {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+        
+        .dark-mode input, .dark-mode textarea {
+            background-color: #1a1a1a !important;
+            border-color: #333333 !important;
+            color: #e5e5e5 !important;
+        }
+        
+        .dark-mode input::placeholder, .dark-mode textarea::placeholder {
+            color: #666666 !important;
+        }
+        
+        .dark-mode input:focus, .dark-mode textarea:focus {
+            border-color: #4f46e5 !important;
+            background-color: #1a1a1a !important;
+        }
+        
+        .dark-mode .dark-mode-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+        
+        .dark-mode .contact-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+        
+        .dark-mode .contact-main-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+        
+        .dark-mode .social-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+        
+        .dark-mode .social-card:hover {
+            background-color: #1a1a1a !important;
+        }
+        
+        .dark-mode .cta-card {
+            background-color: #0a0a0a !important;
+            border: 2px dashed #333333 !important;
+        }
+        
+        .dark-mode .cta-card:hover {
+            border-color: #444444 !important;
+        }
+        
+        .navbar-blur {
+            backdrop-filter: blur(15px);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .dark-mode .navbar-blur {
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .dark-mode #mobile-menu {
+            background-color: #0a0a0a !important;
+            border-color: #333333 !important;
+        }
+        
+        .name-animation {
+            display: inline-block;
+        }
+        
+        .name-animation span {
+            display: inline-block;
+            opacity: 0;
+            animation: letterFadeIn 0.6s ease forwards;
+        }
+        
+        @keyframes letterFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) rotateX(90deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+        
+        .social-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .social-tooltip {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon-container:hover .social-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+        
+        .dark-mode .social-tooltip {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .social-tooltip {
+                display: none;
+            }
+        }
+        
+        .project-details {
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+        
+        .project-details.hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+        }
+        
+        .project-details.show {
+            max-height: 600px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+        
+        @media (max-width: 768px) {
+            .floating-element {
+                opacity: 0.05;
+                transform: scale(0.7);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        .stats-counter {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-counter {
+                font-size: 2rem;
+            }
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: width 2s ease;
+            width: 0%;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+            border: 1px solid rgba(102,126,234,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(102,126,234,0.2);
+        }
+        
+        .version-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .version-badge {
+                bottom: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 10px;
+            }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102,126,234,0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(102,126,234,0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(102,126,234,0);
+            }
+        }
+        
+        .typing-animation::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        /* Chart Animation Keyframes */
+        @keyframes float-slow {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-20px) translateX(10px) rotate(5deg); 
+            }
+            50% { 
+                transform: translateY(-10px) translateX(-15px) rotate(-3deg); 
+            }
+            75% { 
+                transform: translateY(-25px) translateX(5px) rotate(2deg); 
+            }
+        }
+        
+        @keyframes float-medium {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg); 
+            }
+            33% { 
+                transform: translateY(-15px) translateX(-10px) rotate(-4deg); 
+            }
+            66% { 
+                transform: translateY(-30px) translateX(12px) rotate(6deg); 
+            }
+        }
+        
+        @keyframes float-fast {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(0deg); 
+            }
+            20% { 
+                transform: translateY(-10px) translateX(8px) rotate(3deg); 
+            }
+            40% { 
+                transform: translateY(-25px) translateX(-5px) rotate(-2deg); 
+            }
+            60% { 
+                transform: translateY(-15px) translateX(15px) rotate(4deg); 
+            }
+            80% { 
+                transform: translateY(-35px) translateX(-8px) rotate(-1deg); 
+            }
+        }
+        
+        .animate-float-slow {
+            animation: float-slow 8s ease-in-out infinite;
+        }
+        
+        .animate-float-medium {
+            animation: float-medium 6s ease-in-out infinite;
+        }
+        
+        .animate-float-fast {
+            animation: float-fast 4s ease-in-out infinite;
+        }
+        
+        /* Mobile-specific improvements */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem !important;
+                line-height: 1.2;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.25rem !important;
+                line-height: 1.4;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .hero-buttons button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .hero-image {
+                width: 250px;
+                height: 250px;
+                margin-top: 2rem;
+            }
+            
+            .hero-image .inner-circle {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .hero-image i {
+                font-size: 4rem;
+            }
+        }
+        
+        /* Tablet improvements */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.5rem !important;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.5rem !important;
+            }
+        }
+        
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .skill-card:hover,
+            .project-card:hover,
+            .testimonial-card:hover {
+                transform: none;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            }
+            
+            .social-icon:hover {
+                transform: scale(1.05);
+            }
+        }
+    </style>
+</head>
+<body class="transition-colors duration-300">
+    <!-- Version Badge -->
+    <div class="version-badge">
+        Version 44.0
+    </div>
+
+    <!-- Floating Background Elements -->
+    <div class="floating-elements">
+        <!-- Animated Bar Chart -->
+        <div class="floating-element" style="left: 10%; animation-delay: 0s;">
+            <svg width="120" height="80" viewBox="0 0 120 80" class="opacity-20">
+                <rect x="10" y="60" width="15" height="20" fill="#667eea" class="animate-bar">
+                    <animate attributeName="height" values="20;40;20" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="60;40;60" dur="2s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="30" y="45" width="15" height="35" fill="#764ba2" class="animate-bar">
+                    <animate attributeName="height" values="35;55;35" dur="2.5s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="45;25;45" dur="2.5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="50" y="50" width="15" height="30" fill="#667eea" class="animate-bar">
+                    <animate attributeName="height" values="30;50;30" dur="1.8s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="50;30;50" dur="1.8s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="70" y="35" width="15" height="45" fill="#764ba2" class="animate-bar">
+                    <animate attributeName="height" values="45;65;45" dur="2.2s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="35;15;35" dur="2.2s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="90" y="55" width="15" height="25" fill="#667eea" class="animate-bar">
+                    <animate attributeName="height" values="25;45;25" dur="1.9s" repeatCount="indefinite"/>
+                    <animate attributeName="y" values="55;35;55" dur="1.9s" repeatCount="indefinite"/>
+                </rect>
+            </svg>
+        </div>
+        
+        <!-- Animated Pie Chart -->
+        <div class="floating-element" style="left: 80%; animation-delay: 5s;">
+            <svg width="100" height="100" viewBox="0 0 100 100" class="opacity-20">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#667eea" stroke-width="8" 
+                        stroke-dasharray="251.2" stroke-dashoffset="0" transform="rotate(-90 50 50)">
+                    <animate attributeName="stroke-dashoffset" values="251.2;125.6;62.8;0;251.2" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#764ba2" stroke-width="8" 
+                        stroke-dasharray="125.6" stroke-dashoffset="125.6" transform="rotate(90 50 50)">
+                    <animate attributeName="stroke-dashoffset" values="125.6;62.8;0;125.6" dur="4s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+        </div>
+        
+        <!-- Animated Line Chart -->
+        <div class="floating-element" style="left: 60%; animation-delay: 10s;">
+            <svg width="140" height="90" viewBox="0 0 140 90" class="opacity-20">
+                <polyline points="10,70 30,50 50,60 70,30 90,40 110,20 130,35" 
+                          fill="none" stroke="#667eea" stroke-width="3" stroke-linecap="round">
+                    <animate attributeName="points" 
+                             values="10,70 30,50 50,60 70,30 90,40 110,20 130,35;10,60 30,40 50,70 70,20 90,50 110,30 130,25;10,70 30,50 50,60 70,30 90,40 110,20 130,35" 
+                             dur="3s" repeatCount="indefinite"/>
+                </polyline>
+                <circle cx="10" cy="70" r="3" fill="#764ba2">
+                    <animate attributeName="cy" values="70;60;70" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="30" cy="50" r="3" fill="#764ba2">
+                    <animate attributeName="cy" values="50;40;50" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="50" cy="60" r="3" fill="#764ba2">
+                    <animate attributeName="cy" values="60;70;60" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="70" cy="30" r="3" fill="#764ba2">
+                    <animate attributeName="cy" values="30;20;30" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="90" cy="40" r="3" fill="#764ba2">
+                    <animate attributeName="cy" values="40;50;40" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="110" cy="20" r="3" fill="#764ba2">
+                    <animate attributeName="cy" values="20;30;20" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="130" cy="35" r="3" fill="#764ba2">
+                    <animate attributeName="cy" values="35;25;35" dur="3s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+        </div>
+        
+        <!-- Animated Donut Chart -->
+        <div class="floating-element" style="left: 30%; animation-delay: 15s;">
+            <svg width="90" height="90" viewBox="0 0 90 90" class="opacity-20">
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#e5e7eb" stroke-width="12"/>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#667eea" stroke-width="12" 
+                        stroke-dasharray="219.8" stroke-dashoffset="0" transform="rotate(-90 45 45)">
+                    <animate attributeName="stroke-dashoffset" values="0;54.95;109.9;164.85;219.8;0" dur="5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="45" cy="45" r="35" fill="none" stroke="#764ba2" stroke-width="12" 
+                        stroke-dasharray="109.9" stroke-dashoffset="109.9" transform="rotate(90 45 45)">
+                    <animate attributeName="stroke-dashoffset" values="109.9;54.95;0;109.9" dur="5s" repeatCount="indefinite"/>
+                </circle>
+                <text x="45" y="50" text-anchor="middle" fill="#667eea" font-size="14" font-weight="bold">
+                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+                    85%
+                </text>
+            </svg>
+        </div>
+        
+        <!-- Animated Area Chart -->
+        <div class="floating-element" style="left: 15%; animation-delay: 8s;">
+            <svg width="130" height="85" viewBox="0 0 130 85" class="opacity-20">
+                <defs>
+                    <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.6" />
+                        <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.1" />
+                    </linearGradient>
+                </defs>
+                <path d="M10,75 L25,55 L40,65 L55,35 L70,45 L85,25 L100,40 L115,30 L120,75 L10,75 Z" 
+                      fill="url(#areaGradient)" stroke="#667eea" stroke-width="2">
+                    <animate attributeName="d" 
+                             values="M10,75 L25,55 L40,65 L55,35 L70,45 L85,25 L100,40 L115,30 L120,75 L10,75 Z;M10,75 L25,45 L40,55 L55,25 L70,55 L85,35 L100,30 L115,40 L120,75 L10,75 Z;M10,75 L25,55 L40,65 L55,35 L70,45 L85,25 L100,40 L115,30 L120,75 L10,75 Z" 
+                             dur="4s" repeatCount="indefinite"/>
+                </path>
+            </svg>
+        </div>
+        
+        <!-- Animated Scatter Plot -->
+        <div class="floating-element" style="left: 75%; animation-delay: 12s;">
+            <svg width="110" height="80" viewBox="0 0 110 80" class="opacity-20">
+                <circle cx="20" cy="60" r="4" fill="#667eea">
+                    <animate attributeName="cy" values="60;50;60" dur="2.5s" repeatCount="indefinite"/>
+                    <animate attributeName="r" values="4;6;4" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="35" cy="45" r="3" fill="#764ba2">
+                    <animate attributeName="cy" values="45;35;45" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="50" cy="55" r="5" fill="#667eea">
+                    <animate attributeName="cy" values="55;65;55" dur="2.8s" repeatCount="indefinite"/>
+                    <animate attributeName="r" values="5;3;5" dur="2.8s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="65" cy="30" r="4" fill="#764ba2">
+                    <animate attributeName="cy" values="30;20;30" dur="2.2s" repeatCount="indefinite"/>
+                    <animate attributeName="r" values="4;6;4" dur="2.2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="80" cy="40" r="3" fill="#667eea">
+                    <animate attributeName="cy" values="40;50;40" dur="2.7s" repeatCount="indefinite"/>
+                    <animate attributeName="r" values="3;5;3" dur="2.7s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="95" cy="25" r="4" fill="#764ba2">
+                    <animate attributeName="cy" values="25;35;25" dur="3.2s" repeatCount="indefinite"/>
+                    <animate attributeName="r" values="4;2;4" dur="3.2s" repeatCount="indefinite"/>
+                </circle>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 navbar-blur transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="font-bold text-lg sm:text-xl text-blue-600 pulse-animation">Pooja Nair</div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-6 lg:space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">About</a>
+                    <a href="#skills" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Skills</a>
+                    <a href="#experience" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Experience</a>
+                    <a href="#projects" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Projects</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Contact</a>
+                </div>
+                
+                <!-- Mobile Navigation Toggle & Theme Toggle -->
+                <div class="flex items-center space-x-2">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300 hover:scale-110">
+                        <i class="fas fa-moon text-gray-600"></i>
+                    </button>
+                    <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">
+                        <i class="fas fa-bars text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
+                <div class="flex flex-col space-y-3 px-4">
+                    <a href="#home" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Home</a>
+                    <a href="#about" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">About</a>
+                    <a href="#skills" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Skills</a>
+                    <a href="#experience" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Experience</a>
+                    <a href="#projects" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Projects</a>
+                    <a href="#contact" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen gradient-bg data-pattern flex items-center relative overflow-hidden">
+        <!-- Animated Charts Background -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <!-- Moving Bar Chart 1 -->
+            <div class="absolute top-20 left-10 animate-float-slow opacity-30">
+                <svg width="120" height="80" viewBox="0 0 120 80">
+                    <rect x="10" y="60" width="12" height="20" fill="#3b82f6" rx="2">
+                        <animate attributeName="height" values="20;35;20" dur="2s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="60;45;60" dur="2s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="25" y="50" width="12" height="30" fill="#10b981" rx="2">
+                        <animate attributeName="height" values="30;45;30" dur="2.5s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="50;35;50" dur="2.5s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="40" y="55" width="12" height="25" fill="#f59e0b" rx="2">
+                        <animate attributeName="height" values="25;40;25" dur="1.8s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="55;40;55" dur="1.8s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="55" y="45" width="12" height="35" fill="#ef4444" rx="2">
+                        <animate attributeName="height" values="35;50;35" dur="2.2s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="45;30;45" dur="2.2s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="70" y="65" width="12" height="15" fill="#8b5cf6" rx="2">
+                        <animate attributeName="height" values="15;30;15" dur="1.9s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="65;50;65" dur="1.9s" repeatCount="indefinite"/>
+                    </rect>
+                </svg>
+            </div>
+
+            <!-- Moving Pie Chart -->
+            <div class="absolute top-32 right-20 animate-float-medium opacity-25">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="#e5e7eb" stroke-width="8"/>
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="#3b82f6" stroke-width="8" 
+                            stroke-dasharray="219.8" stroke-dashoffset="0" transform="rotate(-90 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="0;65.94;131.88;219.8;0" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="#10b981" stroke-width="8" 
+                            stroke-dasharray="109.9" stroke-dashoffset="109.9" transform="rotate(90 50 50)">
+                        <animate attributeName="stroke-dashoffset" values="109.9;54.95;0;109.9" dur="4s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+
+            <!-- Moving Line Chart -->
+            <div class="absolute bottom-40 left-1/4 animate-float-fast opacity-20">
+                <svg width="140" height="90" viewBox="0 0 140 90">
+                    <polyline points="10,70 30,50 50,60 70,30 90,40 110,20 130,35" 
+                              fill="none" stroke="#f59e0b" stroke-width="3" stroke-linecap="round">
+                        <animate attributeName="points" 
+                                 values="10,70 30,50 50,60 70,30 90,40 110,20 130,35;10,60 30,40 50,70 70,20 90,50 110,30 130,25;10,70 30,50 50,60 70,30 90,40 110,20 130,35" 
+                                 dur="3s" repeatCount="indefinite"/>
+                    </polyline>
+                    <circle cx="10" cy="70" r="3" fill="#ef4444">
+                        <animate attributeName="cy" values="70;60;70" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="30" cy="50" r="3" fill="#ef4444">
+                        <animate attributeName="cy" values="50;40;50" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="50" cy="60" r="3" fill="#ef4444">
+                        <animate attributeName="cy" values="60;70;60" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="70" cy="30" r="3" fill="#ef4444">
+                        <animate attributeName="cy" values="30;20;30" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="90" cy="40" r="3" fill="#ef4444">
+                        <animate attributeName="cy" values="40;50;40" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="110" cy="20" r="3" fill="#ef4444">
+                        <animate attributeName="cy" values="20;30;20" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="130" cy="35" r="3" fill="#ef4444">
+                        <animate attributeName="cy" values="35;25;35" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+
+            <!-- Moving Donut Chart -->
+            <div class="absolute top-1/2 right-10 animate-float-slow opacity-30">
+                <svg width="90" height="90" viewBox="0 0 90 90">
+                    <circle cx="45" cy="45" r="30" fill="none" stroke="#e5e7eb" stroke-width="10"/>
+                    <circle cx="45" cy="45" r="30" fill="none" stroke="#8b5cf6" stroke-width="10" 
+                            stroke-dasharray="188.4" stroke-dashoffset="0" transform="rotate(-90 45 45)">
+                        <animate attributeName="stroke-dashoffset" values="0;47.1;94.2;141.3;188.4;0" dur="5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="45" cy="45" r="30" fill="none" stroke="#06b6d4" stroke-width="10" 
+                            stroke-dasharray="94.2" stroke-dashoffset="94.2" transform="rotate(90 45 45)">
+                        <animate attributeName="stroke-dashoffset" values="94.2;47.1;0;94.2" dur="5s" repeatCount="indefinite"/>
+                    </circle>
+                    <text x="45" y="50" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="bold">
+                        <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+                        75%
+                    </text>
+                </svg>
+            </div>
+
+            <!-- Moving Area Chart -->
+            <div class="absolute bottom-20 right-1/3 animate-float-medium opacity-25">
+                <svg width="130" height="85" viewBox="0 0 130 85">
+                    <defs>
+                        <linearGradient id="heroAreaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.6" />
+                            <stop offset="100%" style="stop-color:#10b981;stop-opacity:0.1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M10,75 L25,55 L40,65 L55,35 L70,45 L85,25 L100,40 L115,30 L120,75 L10,75 Z" 
+                          fill="url(#heroAreaGradient)" stroke="#10b981" stroke-width="2">
+                        <animate attributeName="d" 
+                                 values="M10,75 L25,55 L40,65 L55,35 L70,45 L85,25 L100,40 L115,30 L120,75 L10,75 Z;M10,75 L25,45 L40,55 L55,25 L70,55 L85,35 L100,30 L115,40 L120,75 L10,75 Z;M10,75 L25,55 L40,65 L55,35 L70,45 L85,25 L100,40 L115,30 L120,75 L10,75 Z" 
+                                 dur="4s" repeatCount="indefinite"/>
+                    </path>
+                </svg>
+            </div>
+
+            <!-- Moving Scatter Plot -->
+            <div class="absolute top-1/3 left-1/3 animate-float-fast opacity-20">
+                <svg width="110" height="80" viewBox="0 0 110 80">
+                    <circle cx="20" cy="60" r="4" fill="#3b82f6">
+                        <animate attributeName="cy" values="60;50;60" dur="2.5s" repeatCount="indefinite"/>
+                        <animate attributeName="r" values="4;6;4" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="35" cy="45" r="3" fill="#f59e0b">
+                        <animate attributeName="cy" values="45;35;45" dur="3s" repeatCount="indefinite"/>
+                        <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="50" cy="55" r="5" fill="#ef4444">
+                        <animate attributeName="cy" values="55;65;55" dur="2.8s" repeatCount="indefinite"/>
+                        <animate attributeName="r" values="5;3;5" dur="2.8s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="65" cy="30" r="4" fill="#10b981">
+                        <animate attributeName="cy" values="30;20;30" dur="2.2s" repeatCount="indefinite"/>
+                        <animate attributeName="r" values="4;6;4" dur="2.2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="80" cy="40" r="3" fill="#8b5cf6">
+                        <animate attributeName="cy" values="40;50;40" dur="2.7s" repeatCount="indefinite"/>
+                        <animate attributeName="r" values="3;5;3" dur="2.7s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="95" cy="25" r="4" fill="#06b6d4">
+                        <animate attributeName="cy" values="25;35;25" dur="3.2s" repeatCount="indefinite"/>
+                        <animate attributeName="r" values="4;2;4" dur="3.2s" repeatCount="indefinite"/>
+                    </circle>
+                </svg>
+            </div>
+
+            <!-- Moving Bar Chart 2 -->
+            <div class="absolute bottom-1/3 left-20 animate-float-medium opacity-25">
+                <svg width="100" height="70" viewBox="0 0 100 70">
+                    <rect x="5" y="50" width="10" height="20" fill="#06b6d4" rx="2">
+                        <animate attributeName="height" values="20;30;20" dur="2.3s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="50;40;50" dur="2.3s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="20" y="45" width="10" height="25" fill="#f59e0b" rx="2">
+                        <animate attributeName="height" values="25;35;25" dur="2.7s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="45;35;45" dur="2.7s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="35" y="55" width="10" height="15" fill="#ef4444" rx="2">
+                        <animate attributeName="height" values="15;25;15" dur="2.1s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="55;45;55" dur="2.1s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="50" y="40" width="10" height="30" fill="#10b981" rx="2">
+                        <animate attributeName="height" values="30;40;30" dur="2.4s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="40;30;40" dur="2.4s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="65" y="60" width="10" height="10" fill="#8b5cf6" rx="2">
+                        <animate attributeName="height" values="10;20;10" dur="2.6s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="60;50;60" dur="2.6s" repeatCount="indefinite"/>
+                    </rect>
+                    <rect x="80" y="35" width="10" height="35" fill="#3b82f6" rx="2">
+                        <animate attributeName="height" values="35;45;35" dur="2.8s" repeatCount="indefinite"/>
+                        <animate attributeName="y" values="35;25;35" dur="2.8s" repeatCount="indefinite"/>
+                    </rect>
+                </svg>
+            </div>
+
+            <!-- Moving Gauge Chart -->
+            <div class="absolute top-20 right-1/3 animate-float-slow opacity-30">
+                <svg width="80" height="80" viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="30" fill="none" stroke="#e5e7eb" stroke-width="6" stroke-dasharray="94.2 31.4"/>
+                    <circle cx="40" cy="40" r="30" fill="none" stroke="#10b981" stroke-width="6" 
+                            stroke-dasharray="94.2 31.4" stroke-dashoffset="0" transform="rotate(-90 40 40)">
+                        <animate attributeName="stroke-dashoffset" values="0;23.55;47.1;70.65;94.2;0" dur="6s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="40" cy="40" r="3" fill="#10b981"/>
+                    <line x1="40" y1="40" x2="40" y2="15" stroke="#10b981" stroke-width="2" stroke-linecap="round">
+                        <animateTransform attributeName="transform" type="rotate" 
+                                        values="0 40 40;90 40 40;180 40 40;270 40 40;360 40 40" 
+                                        dur="6s" repeatCount="indefinite"/>
+                    </line>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="text-gray-800 text-center md:text-left">
+                    <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold mb-6 lg:mb-8 scroll-animate">
+                        <span class="animated-text"><span class="text-blue-600 name-animation">Pooja Nair</span></span>
+                    </h1>
+                    <p class="hero-subtitle lead text-lg sm:text-xl md:text-2xl mb-6 lg:mb-8 scroll-animate" style="animation-delay: 0.2s">I'm a <span class="typed" data-typed-items="Data Analyst, Data Storyteller, Data Visualization Specialist, Machine Learning Enthusiast"></span></p>
+
+                    <div class="hero-buttons flex flex-col sm:flex-row gap-3 mb-6 lg:mb-8 scroll-animate" style="animation-delay: 0.4s">
+                        <button id="download-resume" class="bg-blue-600 text-white px-5 py-3 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center">
+                            <i class="fas fa-download text-sm mr-2"></i>Download Resume
+                        </button>
+                        <button id="view-projects" class="border-2 border-blue-600 text-blue-600 px-5 py-3 rounded-lg text-sm font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 flex items-center justify-center">
+                            <i class="fas fa-eye text-sm mr-2"></i>View Projects
+                        </button>
+                    </div>
+                    <div class="social-icons flex space-x-4 sm:space-x-6 justify-center md:justify-start scroll-animate" style="animation-delay: 0.6s">
+                        <div class="social-icon-container">
+                            <a href="https://www.linkedin.com/in/pooja-nair" target="_blank" class="social-icon bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                                <i class="fab fa-linkedin text-lg sm:text-xl"></i>
+                            </a>
+                            <span class="social-tooltip">LinkedIn</span>
+                        </div>
+                        <div class="social-icon-container">
+                            <a href="https://public.tableau.com/app/profile/pooja.nair3441/vizzes" target="_blank" class="social-icon bg-orange-500 text-white p-3 rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                                <i class="bi bi-bar-chart text-lg sm:text-xl"></i>
+                            </a>
+                            <span class="social-tooltip">Tableau</span>
+                        </div>
+                        <div class="social-icon-container">
+                            <a href="https://github.com/PoojaNair5919" target="_blank" class="social-icon bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                                <i class="fab fa-github text-lg sm:text-xl"></i>
+                            </a>
+                            <span class="social-tooltip">GitHub</span>
+                        </div>
+                        <div class="social-icon-container">
+                            <a href="https://medium.com/@poojanair5919" target="_blank" class="social-icon bg-green-600 text-white p-3 rounded-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                                <i class="bi bi-medium text-lg sm:text-xl"></i>
+                            </a>
+                            <span class="social-tooltip">Medium</span>
+                        </div>
+                        <div class="social-icon-container">
+                            <a href="https://www.mygreatlearning.com/eportfolio/pooja-nair" target="_blank" class="social-icon bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                                <i class="fas fa-graduation-cap text-lg sm:text-xl"></i>
+                            </a>
+                            <span class="social-tooltip">Great Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-center scroll-animate" style="animation-delay: 0.6s">
+                    <div class="hero-image w-64 sm:w-80 h-64 sm:h-80 bg-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
+                        <img src="Profile Pic.jpg" alt="Pooja Nair - Data Analyst" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="inner-circle w-56 sm:w-72 h-56 sm:h-72 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden" style="display: none;">
+                            <i class="fas fa-user text-white text-6xl sm:text-8xl z-10"></i>
+                            <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-20"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+                <div class="scroll-animate">
+                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed mb-6">
+                        Aspiring Data Analyst with expertise in Python, SQL, and Tableau, leveraging data insights for business optimization. Strong background in analytics, business intelligence, and machine learning applications.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-chart-line text-blue-600 mr-3"></i>
+                                <span class="text-gray-700 text-sm sm:text-base">Data Analysis & Visualization</span>
+                            </div>
+                            <span class="text-blue-600 font-semibold text-sm sm:text-base">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="95"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-database text-blue-600 mr-3"></i>
+                                <span class="text-gray-700 text-sm sm:text-base">SQL & Database Management</span>
+                            </div>
+                            <span class="text-blue-600 font-semibold text-sm sm:text-base">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="90"></div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <i class="fas fa-brain text-blue-600 mr-3"></i>
+                                <span class="text-gray-700 text-sm sm:text-base">Machine Learning</span>
+                            </div>
+                            <span class="text-blue-600 font-semibold text-sm sm:text-base">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-width="85"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-animate">
+                    <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
+                        <h3 class="text-xl sm:text-2xl font-semibold text-gray-800 mb-6">Career Highlights</h3>
+                        <div class="space-y-6">
+                            <div class="timeline-item">
+                                <h4 class="font-semibold text-gray-800 text-sm sm:text-base">Revenue Growth</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Increased revenue by 12% through data-driven merchandising strategies</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-semibold text-gray-800 text-sm sm:text-base">Conversion Optimization</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Boosted conversion rates by 15% across 200+ product categories</p>
+                            </div>
+                            <div class="timeline-item">
+                                <h4 class="font-semibold text-gray-800 text-sm sm:text-base">Analytics Excellence</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Implemented advanced analytics solutions improving decision-making speed by 40%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 sm:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Skills & Technologies</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div class="skill-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl scroll-animate border-2 border-transparent hover:border-blue-200">
+                    <div class="text-blue-600 text-3xl sm:text-4xl mb-4">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Programming & Databases</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm sm:text-base">
+                        <li>• Python</li>
+                        <li>• SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl scroll-animate border-2 border-transparent hover:border-green-200">
+                    <div class="text-green-600 text-3xl sm:text-4xl mb-4">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Visualization</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm sm:text-base">
+                        <li>• Tableau</li>
+                        <li>• Power BI</li>
+                        <li>• Matplotlib</li>
+                    </ul>
+                </div>
+                <div class="skill-card bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl scroll-animate border-2 border-transparent hover:border-purple-200">
+                    <div class="text-purple-600 text-3xl sm:text-4xl mb-4">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Machine Learning & AI</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm sm:text-base">
+                        <li>• Classification</li>
+                        <li>• Regression</li>
+                        <li>• TensorFlow</li>
+                        <li>• PyTorch</li>
+                    </ul>
+                </div>
+                <div class="skill-card bg-gradient-to-br from-orange-50 to-orange-100 p-6 rounded-xl scroll-animate border-2 border-transparent hover:border-orange-200">
+                    <div class="text-orange-600 text-3xl sm:text-4xl mb-4">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-3">Statistics & Analytics</h3>
+                    <ul class="text-gray-600 space-y-2 text-sm sm:text-base">
+                        <li>• Predictive Analytics</li>
+                        <li>• Hypothesis Testing</li>
+                        <li>• Time Series</li>
+                        <li>• KNIME Platform</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-16 sm:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Professional Experience</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-8 sm:space-y-12">
+                    <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
+                        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Senior Executive</h3>
+                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Flipkart Pvt. Ltd.</p>
+                            </div>
+                            <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Dec 2019 - May 2025</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                            Spearheaded merchandising operations across 200+ categories, driving significant business growth through data-driven strategies and analytics.
+                        </p>
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                            <div class="flex items-center bg-gray-200 p-3 rounded-lg">
+                                <i class="fas fa-arrow-up text-green-500 mr-2"></i>
+                                <span class="text-black font-semibold text-xs sm:text-sm">+12% Revenue Growth</span>
+                            </div>
+                            <div class="flex items-center bg-gray-200 p-3 rounded-lg">
+                                <i class="fas fa-chart-line text-blue-500 mr-2"></i>
+                                <span class="text-black font-semibold text-xs sm:text-sm">+15% Conversion Rate</span>
+                            </div>
+                            <div class="flex items-center bg-gray-200 p-3 rounded-lg sm:col-span-2 lg:col-span-1">
+                                <i class="fas fa-users text-purple-500 mr-2"></i>
+                                <span class="text-black font-semibold text-xs sm:text-sm">200+ Categories</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
+                        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Content Development Editor</h3>
+                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Packt Publishing</p>
+                            </div>
+                            <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Jun 2014 - Sep 2015</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                            Managed initial content reviews for 60+ technical publications, improving accuracy by 25% and reducing revision cycles.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                            <div class="flex items-center bg-gray-200 p-3 rounded-lg">
+                                <i class="fas fa-book text-orange-500 mr-2"></i>
+                                <span class="text-black font-semibold text-xs sm:text-sm">60+ Publications</span>
+                            </div>
+                            <div class="flex items-center bg-gray-200 p-3 rounded-lg">
+                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <span class="text-black font-semibold text-xs sm:text-sm">+25% Accuracy</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
+                        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Technical Editor</h3>
+                                <p class="text-blue-600 font-semibold text-sm sm:text-base">Packt Publishing</p>
+                            </div>
+                            <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Aug 2013 - May 2014</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">
+                            Validated code accuracy across 20+ programming books, identifying and reporting 150+ bugs and errors, ensuring technical correctness and enhancing the overall quality of published material for readers.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-3 sm:gap-4">
+                            <div class="flex items-center bg-gray-200 p-3 rounded-lg">
+                                <i class="fas fa-bug text-red-500 mr-2"></i>
+                                <span class="text-black font-semibold text-xs sm:text-sm">150+ Bugs Found</span>
+                            </div>
+                            <div class="flex items-center bg-gray-200 p-3 rounded-lg">
+                                <i class="fas fa-code text-blue-500 mr-2"></i>
+                                <span class="text-black font-semibold text-xs sm:text-sm">20+ Books</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-16 sm:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Featured Projects</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Project 1: Social Media Tourism -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="bg-gradient-to-br from-blue-500 to-purple-600 h-40 sm:h-48 flex items-center justify-center relative">
+                        <i class="fas fa-share-alt text-white text-3xl sm:text-4xl z-10"></i>
+                        <div class="absolute inset-0 bg-black opacity-20"></div>
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Social Media Tourism Capstone</h3>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">Predicted customer purchase intent using machine learning algorithms with 85% accuracy</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex items-center text-green-600 bg-green-50 px-3 py-1 rounded-full mb-3 w-fit">
+                                <i class="fas fa-arrow-up mr-2 text-sm"></i>
+                                <span class="font-semibold text-sm">+20% ROI Boost</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2 text-sm">Technologies:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Python</span>
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Scikit-learn</span>
+                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">K-Means</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://medium.com/@poojanair5919/how-i-used-k-means-boosting-models-to-optimize-airline-ads-by-device-type-908fe89d83d9" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all duration-300 hover:scale-105 text-sm font-semibold w-full justify-center">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Read Full Article
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Real Estate Analysis -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="bg-gradient-to-br from-green-500 to-teal-600 h-40 sm:h-48 flex items-center justify-center relative">
+                        <i class="fas fa-home text-white text-3xl sm:text-4xl z-10"></i>
+                        <div class="absolute inset-0 bg-black opacity-20"></div>
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Real Estate Pricing Analysis</h3>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">Built comprehensive pricing models using Tableau visualization and market psychology insights</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-full mb-3 w-fit">
+                                <i class="fas fa-chart-line mr-2 text-sm"></i>
+                                <span class="font-semibold text-sm">+15% Accuracy</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2 text-sm">Technologies:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Tableau</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Python</span>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">SQL</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://medium.com/@poojanair5919/what-90s-boston-condo-sales-reveal-about-market-psychology-a-data-story-part-1-160028027f3d" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-300 hover:scale-105 text-sm font-semibold w-full justify-center">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Read Full Article
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Spotify Analysis -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="bg-gradient-to-br from-yellow-500 to-orange-600 h-40 sm:h-48 flex items-center justify-center relative">
+                        <i class="fas fa-music text-white text-3xl sm:text-4xl z-10"></i>
+                        <div class="absolute inset-0 bg-black opacity-20"></div>
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Spotify Data Analysis</h3>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">Uncovered music trends and analyzed the greatest songs of all time using Spotify data</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex items-center text-orange-600 bg-orange-50 px-3 py-1 rounded-full mb-3 w-fit">
+                                <i class="fas fa-search mr-2 text-sm"></i>
+                                <span class="font-semibold text-sm">Trend Analysis</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2 text-sm">Technologies:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Python</span>
+                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Spotify API</span>
+                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Visualization</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://medium.com/@poojanair5919/exploring-the-greatest-songs-of-all-time-on-spotify-53a41bab3823" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="inline-flex items-center bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700 transition-all duration-300 hover:scale-105 text-sm font-semibold w-full justify-center">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Read Full Article
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Data Science Career Analysis -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div class="bg-gradient-to-br from-teal-500 to-cyan-600 h-40 sm:h-48 flex items-center justify-center relative">
+                        <i class="fas fa-briefcase text-white text-3xl sm:text-4xl z-10"></i>
+                        <div class="absolute inset-0 bg-black opacity-20"></div>
+                    </div>
+                    <div class="p-4 sm:p-6">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Data Science Career Analysis</h3>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">Analyzed global job trends and salaries in Data Science (2020-2025) with forecasting for 2026</p>
+                        
+                        <div class="mb-4">
+                            <div class="flex items-center text-teal-600 bg-teal-50 px-3 py-1 rounded-full mb-3 w-fit">
+                                <i class="fas fa-chart-line mr-2 text-sm"></i>
+                                <span class="font-semibold text-sm">Career Insights</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div>
+                                <h4 class="font-semibold text-gray-800 mb-2 text-sm">Technologies:</h4>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Tableau</span>
+                                    <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Kaggle Data</span>
+                                    <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Forecasting</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="https://medium.com/@poojanair5919/data-science-careers-in-2025-hype-or-reality-aa9a325710d8" 
+                           target="_blank" 
+                           rel="noopener noreferrer" 
+                           class="inline-flex items-center bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition-all duration-300 hover:scale-105 text-sm font-semibold w-full justify-center">
+                            <i class="fas fa-external-link-alt mr-2"></i>
+                            Read Full Article
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section class="py-16 sm:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Education & Certifications</h2>
+                <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                <div class="scroll-animate">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Education</h3>
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-blue-600">
+                            <h4 class="font-bold text-base sm:text-lg text-gray-800">PG Data Science & Business Analytics</h4>
+                            <div class="flex flex-wrap gap-2 mt-2">
+                                <a href="https://www.mygreatlearning.com/certificate/GQUEWPPF" target="_blank" class="text-blue-600 hover:text-blue-700 transition-colors text-xs sm:text-sm bg-blue-50 px-2 py-1 rounded">Great Learning</a>
+                                <span class="text-gray-500 text-xs sm:text-sm">+</span>
+                                <a href="https://la.utexas.edu/texasexeced/digitalVerification.html?key=bcxvjjjt" target="_blank" class="text-blue-600 hover:text-blue-700 transition-colors text-xs sm:text-sm bg-blue-50 px-2 py-1 rounded">Texas McCombs</a>
+                            </div>
+                            <p class="text-gray-500 mt-2 text-sm">2024</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-green-600">
+                            <h4 class="font-bold text-base sm:text-lg text-gray-800">MBA Marketing</h4>
+                            <p class="text-green-600 text-sm sm:text-base">Manipal University Jaipur</p>
+                            <p class="text-gray-500 text-sm">2023</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-purple-600">
+                            <h4 class="font-bold text-base sm:text-lg text-gray-800">B.E. Chemical Engineering</h4>
+                            <p class="text-purple-600 text-sm sm:text-base">Mumbai University</p>
+                            <p class="text-gray-500 text-sm">2013</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="scroll-animate">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6">Certifications & Awards</h3>
+                    <div class="space-y-6">
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-indigo-600">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-certificate text-indigo-500 mr-2 text-lg sm:text-xl"></i>
+                                <h4 class="font-bold text-base sm:text-lg text-gray-800">Deloitte Analytics Simulation</h4>
+                            </div>
+                            <p class="text-indigo-600 text-sm sm:text-base">Forage Platform</p>
+                            <p class="text-gray-500 text-sm mt-1">Data Analysis & Forensic Technology</p>
+                            <p class="text-gray-400 text-xs mt-1 italic">Certificate completed successfully</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-orange-600">
+                            <h4 class="font-bold text-base sm:text-lg text-gray-800">Excel Skills for Business</h4>
+                            <p class="text-orange-600 text-sm sm:text-base">Macquarie University</p>
+                            <p class="text-gray-500 text-sm">2022</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-yellow-600">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-trophy text-yellow-500 mr-2 text-lg sm:text-xl"></i>
+                                <h4 class="font-bold text-base sm:text-lg text-gray-800">Outstanding Performance Award</h4>
+                            </div>
+                            <p class="text-yellow-600 text-sm sm:text-base">Flipkart Pvt. Ltd.</p>
+                        </div>
+                        <div class="bg-gray-50 p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-pink-600">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-star text-pink-500 mr-2 text-lg sm:text-xl"></i>
+                                <h4 class="font-bold text-base sm:text-lg text-gray-800">Rising Star Award</h4>
+                            </div>
+                            <p class="text-pink-600 text-sm sm:text-base">Packt Publishing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 sm:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16 scroll-animate">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Let's Connect & Collaborate</h2>
+                <p class="text-lg sm:text-xl text-gray-600 mb-6">Ready to turn data into actionable insights? Let's discuss your next project!</p>
+                <div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
+            </div>
+            
+            <!-- Contact Cards Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+                <!-- Phone Card -->
+                <div class="scroll-animate bg-white contact-card p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100">
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 w-12 sm:w-16 h-12 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                            <i class="fas fa-phone text-white text-lg sm:text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Call Me</h3>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">Let's discuss your data challenges</p>
+                        <a href="tel:+918104288688" class="text-blue-600 font-semibold text-base sm:text-lg hover:text-blue-700 transition-colors">+91-8104288688</a>
+                    </div>
+                </div>
+                
+                <!-- Email Card -->
+                <div class="scroll-animate bg-white contact-card p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100">
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-green-500 to-green-600 w-12 sm:w-16 h-12 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                            <i class="fas fa-envelope text-white text-lg sm:text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Email Me</h3>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">Drop me a line anytime</p>
+                        <a href="mailto:poojanair5919@gmail.com" class="text-green-600 font-semibold hover:text-green-700 transition-colors break-all text-sm sm:text-base">poojanair5919@gmail.com</a>
+                    </div>
+                </div>
+                
+                <!-- Location Card -->
+                <div class="scroll-animate bg-white contact-card p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100 sm:col-span-2 lg:col-span-1">
+                    <div class="text-center">
+                        <div class="bg-gradient-to-br from-purple-500 to-purple-600 w-12 sm:w-16 h-12 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                            <i class="fas fa-map-marker-alt text-white text-lg sm:text-2xl"></i>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Location</h3>
+                        <p class="text-gray-600 mb-4 text-sm sm:text-base">Available to work in</p>
+                        <p class="text-purple-600 font-semibold text-sm sm:text-base">Bangalore, Hyderabad, or remotely</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Social Media Section -->
+            <div class="scroll-animate">
+                <div class="bg-white contact-main-card rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-gray-100">
+                    <div class="text-center mb-8 sm:mb-12">
+                        <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">Follow My Data Journey</h3>
+                        <p class="text-base sm:text-lg text-gray-600">Connect with me across platforms to see my latest work and insights</p>
+                    </div>
+                    
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/in/pooja-nair" target="_blank" class="group social-card bg-gradient-to-br from-blue-900 to-blue-800 p-4 sm:p-6 rounded-2xl hover:from-blue-800 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-blue-700">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-blue-600 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fab fa-linkedin text-white text-lg sm:text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm sm:text-base">LinkedIn</h4>
+                                    <p class="text-blue-300 text-xs sm:text-sm">Professional Network</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-xs sm:text-sm">Connect for career opportunities and professional insights</p>
+                        </a>
+                        
+                        <!-- GitHub -->
+                        <a href="https://github.com/PoojaNair5919" target="_blank" class="group social-card bg-gradient-to-br from-gray-900 to-gray-800 p-4 sm:p-6 rounded-2xl hover:from-gray-800 hover:to-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-gray-700 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fab fa-github text-white text-lg sm:text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm sm:text-base">GitHub</h4>
+                                    <p class="text-gray-300 text-xs sm:text-sm">Code Repository</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-xs sm:text-sm">Explore my data science projects and code samples</p>
+                        </a>
+                        
+                        <!-- Tableau -->
+                        <a href="https://public.tableau.com/app/profile/pooja.nair3441/vizzes" target="_blank" class="group social-card bg-gradient-to-br from-orange-900 to-orange-800 p-4 sm:p-6 rounded-2xl hover:from-orange-800 hover:to-orange-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-orange-700">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-orange-600 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="bi bi-bar-chart text-white text-lg sm:text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm sm:text-base">Tableau</h4>
+                                    <p class="text-orange-300 text-xs sm:text-sm">Data Visualizations</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-xs sm:text-sm">Interactive dashboards and data storytelling</p>
+                        </a>
+                        
+                        <!-- Medium -->
+                        <a href="https://medium.com/@poojanair5919" target="_blank" class="group social-card bg-gradient-to-br from-green-900 to-green-800 p-4 sm:p-6 rounded-2xl hover:from-green-800 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-green-700">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-green-600 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="bi bi-medium text-white text-lg sm:text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm sm:text-base">Medium</h4>
+                                    <p class="text-green-300 text-xs sm:text-sm">Data Stories</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-xs sm:text-sm">Read my latest articles on data analysis and insights</p>
+                        </a>
+                        
+                        <!-- Great Learning -->
+                        <a href="https://www.mygreatlearning.com/eportfolio/pooja-nair" target="_blank" class="group social-card bg-gradient-to-br from-purple-900 to-purple-800 p-4 sm:p-6 rounded-2xl hover:from-purple-800 hover:to-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-purple-700">
+                            <div class="flex items-center mb-4">
+                                <div class="bg-purple-600 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-graduation-cap text-white text-lg sm:text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm sm:text-base">Great Learning</h4>
+                                    <p class="text-purple-300 text-xs sm:text-sm">Portfolio</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 text-xs sm:text-sm">View my certifications and learning journey</p>
+                        </a>
+                        
+                        <!-- CTA Card -->
+                        <div class="group cta-card bg-gradient-to-br from-indigo-900 to-indigo-800 p-4 sm:p-6 rounded-2xl border-2 border-dashed border-indigo-600 hover:border-indigo-500 transition-all duration-300 hover:scale-105">
+                            <div class="text-center">
+                                <div class="bg-indigo-600 p-2 sm:p-3 rounded-xl mx-auto mb-4 w-fit group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-handshake text-white text-lg sm:text-xl"></i>
+                                </div>
+                                <h4 class="font-bold text-white mb-2 text-sm sm:text-base">Let's Collaborate!</h4>
+                                <p class="text-gray-300 text-xs sm:text-sm mb-4">Have a data project in mind?</p>
+                                <button onclick="window.location.href='mailto:poojanair5919@gmail.com'" class="bg-indigo-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors text-xs sm:text-sm font-semibold">
+                                    Get In Touch
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 sm:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-gray-400 text-sm sm:text-base">Turning information into insight, and insight into action.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = mobileMenuToggle.querySelector('i');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenuIcon.className = 'fas fa-bars text-gray-600';
+            } else {
+                mobileMenuIcon.className = 'fas fa-times text-gray-600';
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.className = 'fas fa-bars text-gray-600';
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate progress bars
+                    if (entry.target.querySelector('.progress-fill')) {
+                        const progressBars = entry.target.querySelectorAll('.progress-fill');
+                        progressBars.forEach(bar => {
+                            const width = bar.getAttribute('data-width');
+                            setTimeout(() => {
+                                bar.style.width = width + '%';
+                            }, 500);
+                        });
+                    }
+                    
+                    // Animate counters
+                    if (entry.target.querySelector('.stats-counter')) {
+                        const counters = entry.target.querySelectorAll('.stats-counter');
+                        counters.forEach(counter => {
+                            const target = parseInt(counter.getAttribute('data-target'));
+                            let current = 0;
+                            const increment = target / 50;
+                            const timer = setInterval(() => {
+                                current += increment;
+                                if (current >= target) {
+                                    counter.textContent = target;
+                                    clearInterval(timer);
+                                } else {
+                                    counter.textContent = Math.floor(current);
+                                }
+                            }, 40);
+                        });
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                icon.className = 'fas fa-sun text-yellow-400';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.className = 'fas fa-moon text-gray-600';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+            icon.className = 'fas fa-sun text-yellow-400';
+        }
+
+        // Enhanced modal functions
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Enhanced button functionality
+        document.getElementById('download-resume')?.addEventListener('click', () => {
+            // Convert Google Drive view link to direct download link
+            const driveFileId = '1he-oj6yRM8Wx-kY01pAQf6bDgEli1t1V';
+            const downloadUrl = `https://drive.google.com/uc?export=download&id=${driveFileId}`;
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = 'Pooja_Nair_Resume.pdf';
+            link.target = '_blank';
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Visual feedback
+            const button = document.getElementById('download-resume');
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check mr-2"></i>Downloading...';
+            setTimeout(() => {
+                button.innerHTML = originalText;
+            }, 2000);
+        });
+
+        document.getElementById('view-projects')?.addEventListener('click', () => {
+            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // Enhanced name animation
+        function animateName() {
+            const nameElement = document.querySelector('.name-animation');
+            const text = nameElement.textContent;
+            nameElement.innerHTML = '';
+            
+            text.split('').forEach((char, index) => {
+                const span = document.createElement('span');
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                span.style.animationDelay = `${index * 0.1}s`;
+                nameElement.appendChild(span);
+            });
+        }
+
+
+
+        // Parallax effect for floating elements (disabled on mobile for performance)
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelectorAll('.floating-element');
+                const speed = 0.5;
+
+                parallax.forEach(element => {
+                    const yPos = -(scrolled * speed);
+                    element.style.transform = `translateY(${yPos}px)`;
+                });
+            });
+        }
+
+        // Initialize typed.js
+        document.addEventListener('DOMContentLoaded', function() {
+            var typed = new Typed('.typed', {
+                strings: ['Data Analyst', 'Data Storyteller', 'Data Visualization Specialist', 'Machine Learning Enthusiast'],
+                typeSpeed: 100,
+                backSpeed: 50,
+                backDelay: 2000,
+                loop: true,
+                showCursor: true,
+                cursorChar: '|'
+            });
+        });
+
+        // Initialize enhanced animations on load
+        window.addEventListener('load', () => {
+            // Animate name after a short delay
+            setTimeout(() => {
+                animateName();
+            }, 1000);
+            
+            // Staggered animation for initial elements
+            document.querySelectorAll('.scroll-animate').forEach((el, index) => {
+                setTimeout(() => {
+                    if (el.getBoundingClientRect().top < window.innerHeight) {
+                        el.classList.add('visible');
+                    }
+                }, index * 100);
+            });
+            
+            // Initialize progress bars
+            setTimeout(() => {
+                document.querySelectorAll('.progress-fill').forEach(bar => {
+                    const width = bar.getAttribute('data-width');
+                    if (bar.getBoundingClientRect().top < window.innerHeight) {
+                        bar.style.width = width + '%';
+                    }
+                });
+            }, 2000);
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.show').forEach(modal => {
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                });
+                
+                // Close mobile menu on escape
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuIcon.className = 'fas fa-bars text-gray-600';
+                }
+            }
+        });
+
+        // Add loading animation
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '0';
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 0.5s ease';
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Handle window resize for mobile menu
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.className = 'fas fa-bars text-gray-600';
+            }
+        });
+
+        // Touch-friendly improvements for mobile
+        if ('ontouchstart' in window) {
+            // Add touch feedback for buttons
+            document.querySelectorAll('button, .project-card, .skill-card').forEach(element => {
+                element.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                
+                element.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9723dc2dd63687fe',t:'MTc1NTcxMzU1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
