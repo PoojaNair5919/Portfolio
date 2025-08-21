@@ -313,6 +313,23 @@
             border-color: #333333 !important;
         }
         
+        .dark-mode #theme-toggle {
+            background-color: #4f46e5 !important;
+        }
+        
+        .dark-mode .theme-toggle-circle {
+            transform: translateX(24px);
+            background-color: #1f2937 !important;
+        }
+        
+        .dark-mode .theme-toggle-circle i {
+            color: #fbbf24 !important;
+        }
+        
+        .dark-mode .theme-label {
+            color: #9ca3af !important;
+        }
+        
         .name-animation {
             display: inline-block;
         }
@@ -567,44 +584,75 @@
         /* Mobile-specific improvements */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.5rem !important;
+                font-size: 2.25rem !important;
                 line-height: 1.2;
+                margin-bottom: 1.5rem !important;
             }
             
             .hero-subtitle {
-                font-size: 1.25rem !important;
+                font-size: 1.125rem !important;
                 line-height: 1.4;
+                margin-bottom: 2rem !important;
             }
             
             .hero-buttons {
                 flex-direction: column;
                 width: 100%;
+                gap: 0.75rem;
+                margin-bottom: 2rem !important;
             }
             
             .hero-buttons button {
                 width: 100%;
                 justify-content: center;
+                padding: 0.875rem 1.25rem;
+                font-size: 0.875rem;
             }
             
             .social-icons {
                 justify-content: center;
                 flex-wrap: wrap;
-                gap: 1rem;
+                gap: 0.75rem;
+                margin-bottom: 2rem;
+            }
+            
+            .social-icon {
+                padding: 0.75rem !important;
+            }
+            
+            .social-icon i {
+                font-size: 1rem !important;
             }
             
             .hero-image {
-                width: 250px;
-                height: 250px;
-                margin-top: 2rem;
+                width: 200px;
+                height: 200px;
+                margin-top: 1rem;
             }
             
             .hero-image .inner-circle {
-                width: 220px;
-                height: 220px;
+                width: 180px;
+                height: 180px;
             }
             
             .hero-image i {
-                font-size: 4rem;
+                font-size: 3.5rem;
+            }
+            
+            /* Mobile grid layout improvements */
+            .grid.md\\:grid-cols-2 {
+                gap: 2rem;
+            }
+            
+            /* Better spacing for mobile hero section */
+            #home {
+                padding-top: 5rem;
+                padding-bottom: 3rem;
+            }
+            
+            /* Theme toggle mobile positioning */
+            .theme-label {
+                display: none;
             }
         }
         
@@ -801,11 +849,17 @@
                 </div>
                 
                 <!-- Mobile Navigation Toggle & Theme Toggle -->
-                <div class="flex items-center space-x-2">
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300 hover:scale-110">
-                        <i class="fas fa-moon text-gray-600"></i>
-                    </button>
-                    <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300">
+                <div class="flex items-center space-x-3">
+                    <!-- Enhanced Theme Toggle -->
+                    <div class="relative">
+                        <button id="theme-toggle" class="flex items-center justify-center w-12 h-6 bg-gray-200 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                            <div class="absolute left-1 w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300 flex items-center justify-center theme-toggle-circle">
+                                <i class="fas fa-moon text-gray-600 text-xs"></i>
+                            </div>
+                        </button>
+                        <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 whitespace-nowrap theme-label">Light</span>
+                    </div>
+                    <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
                         <i class="fas fa-bars text-gray-600"></i>
                     </button>
                 </div>
@@ -1770,14 +1824,17 @@
         const themeToggle = document.getElementById('theme-toggle');
         const body = document.body;
         const icon = themeToggle.querySelector('i');
+        const themeLabel = document.querySelector('.theme-label');
 
         themeToggle.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             if (body.classList.contains('dark-mode')) {
-                icon.className = 'fas fa-sun text-yellow-400';
+                icon.className = 'fas fa-sun text-yellow-400 text-xs';
+                themeLabel.textContent = 'Dark';
                 localStorage.setItem('theme', 'dark');
             } else {
-                icon.className = 'fas fa-moon text-gray-600';
+                icon.className = 'fas fa-moon text-gray-600 text-xs';
+                themeLabel.textContent = 'Light';
                 localStorage.setItem('theme', 'light');
             }
         });
@@ -1786,7 +1843,8 @@
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
             body.classList.add('dark-mode');
-            icon.className = 'fas fa-sun text-yellow-400';
+            icon.className = 'fas fa-sun text-yellow-400 text-xs';
+            themeLabel.textContent = 'Dark';
         }
 
         // Enhanced modal functions
@@ -1961,5 +2019,5 @@
             });
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9723dc2dd63687fe',t:'MTc1NTcxMzU1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'972609065786c508',t:'MTc1NTczNjM2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
