@@ -1895,31 +1895,30 @@
             });
         });
 
-        // Enhanced button functionality
-        document.getElementById('download-resume')?.addEventListener('click', () => {
-            // Convert Google Drive view link to direct download link
-            const driveFileId = '1he-oj6yRM8Wx-kY01pAQf6bDgEli1t1V';
-            const downloadUrl = `https://drive.google.com/uc?export=download&id=${driveFileId}`;
-            
-            // Create download link
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = 'Pooja_Nair_Resume.pdf';
-            link.target = '_blank';
-            
-            // Trigger download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Visual feedback
-            const button = document.getElementById('download-resume');
-            const originalText = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check mr-2"></i>Downloading...';
-            setTimeout(() => {
-                button.innerHTML = originalText;
-            }, 2000);
-        });
+        // Enhanced button functionality for GitHub-hosted resume
+document.getElementById('download-resume')?.addEventListener('click', () => {
+    // GitHub Pages direct resume link
+    const downloadUrl = 'https://poojanair5919.github.io/Portfolio/Pooja_Nair_Resume.pdf';
+    
+    // Create download link
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = 'Pooja_Nair_Resume.pdf';
+    link.target = '_blank';
+    
+    // Trigger download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Visual feedback
+    const button = document.getElementById('download-resume');
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fas fa-check mr-2"></i>Downloading...';
+    setTimeout(() => {
+        button.innerHTML = originalText;
+    }, 2000);
+});
 
         document.getElementById('view-projects')?.addEventListener('click', () => {
             document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
@@ -2046,6 +2045,7 @@
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'972615c82052a46b',t:'MTc1NTczNjg5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
