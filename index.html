@@ -1075,6 +1075,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
             <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div class="text-gray-800 text-center md:text-left">
+                    <!-- Mobile Photo - Only visible on mobile -->
+                    <div class="flex justify-center mb-6 md:hidden scroll-animate">
+                        <div class="hero-image w-48 h-48 bg-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
+                            <img src="Profile Pic.jpg" alt="Pooja Nair - Data Analyst" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="inner-circle w-44 h-44 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden" style="display: none;">
+                                <i class="fas fa-user text-white text-5xl z-10"></i>
+                                <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-20"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold mb-6 lg:mb-8 scroll-animate">
                         <span class="animated-text"><span class="text-blue-600 name-animation">Pooja Nair</span></span>
                     </h1>
@@ -1121,7 +1132,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-center scroll-animate" style="animation-delay: 0.6s">
+                <!-- Desktop Photo - Hidden on mobile -->
+                <div class="hidden md:flex justify-center scroll-animate" style="animation-delay: 0.6s">
                     <div class="hero-image w-64 sm:w-80 h-64 sm:h-80 bg-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
                         <img src="Profile Pic.jpg" alt="Pooja Nair - Data Analyst" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="inner-circle w-56 sm:w-72 h-56 sm:h-72 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden" style="display: none;">
@@ -2019,5 +2031,5 @@
             });
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'972609065786c508',t:'MTc1NTczNjM2OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'972615c82052a46b',t:'MTc1NTczNjg5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
