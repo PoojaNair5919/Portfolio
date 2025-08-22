@@ -1086,77 +1086,90 @@
         </div>
         
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
-            <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
-                <div class="text-gray-800 text-center md:text-left">
-                    <!-- Mobile Photo - Only visible on mobile -->
-                    <div class="flex justify-center mb-6 md:hidden scroll-animate">
-                        <div class="hero-image w-48 h-48 bg-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
-                            <img src="profile.jpg" alt="Pooja Nair - Data Analyst" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                            <div class="inner-circle w-44 h-44 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden" style="display: none;">
-                                <i class="fas fa-user text-white text-5xl z-10"></i>
-                                <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-20"></div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold mb-6 lg:mb-8 scroll-animate">
-                        <span class="animated-text"><span class="text-blue-600 name-animation">Pooja Nair</span></span>
-                    </h1>
-                    <p class="hero-subtitle lead text-lg sm:text-xl md:text-2xl mb-6 lg:mb-8 scroll-animate" style="animation-delay: 0.2s">I'm a <span class="typed" data-typed-items="Data Analyst, Data Storyteller, Data Visualization Specialist, Machine Learning Enthusiast"></span></p>
-
-                    <div class="hero-buttons flex flex-col sm:flex-row gap-3 mb-6 lg:mb-8 scroll-animate" style="animation-delay: 0.4s">
-                        <button id="download-resume" class="bg-blue-600 text-white px-5 py-3 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center">
-                            <i class="fas fa-download text-sm mr-2"></i>Download Resume
-                        </button>
-                        <button id="view-projects" class="border-2 border-blue-600 text-blue-600 px-5 py-3 rounded-lg text-sm font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 flex items-center justify-center">
-                            <i class="fas fa-eye text-sm mr-2"></i>View Projects
-                        </button>
-                    </div>
-                    <div class="social-icons flex space-x-4 sm:space-x-6 justify-center md:justify-start scroll-animate" style="animation-delay: 0.6s">
-                        <div class="social-icon-container">
-                            <a href="https://www.linkedin.com/in/pooja-nair" target="_blank" class="social-icon bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
-                                <i class="fab fa-linkedin text-lg sm:text-xl"></i>
-                            </a>
-                            <span class="social-tooltip">LinkedIn</span>
-                        </div>
-                        <div class="social-icon-container">
-                            <a href="https://public.tableau.com/app/profile/pooja.nair3441/vizzes" target="_blank" class="social-icon bg-orange-500 text-white p-3 rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
-                                <i class="bi bi-bar-chart text-lg sm:text-xl"></i>
-                            </a>
-                            <span class="social-tooltip">Tableau</span>
-                        </div>
-                        <div class="social-icon-container">
-                            <a href="https://github.com/PoojaNair5919" target="_blank" class="social-icon bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
-                                <i class="fab fa-github text-lg sm:text-xl"></i>
-                            </a>
-                            <span class="social-tooltip">GitHub</span>
-                        </div>
-                        <div class="social-icon-container">
-                            <a href="https://medium.com/@poojanair5919" target="_blank" class="social-icon bg-green-600 text-white p-3 rounded-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
-                                <i class="bi bi-medium text-lg sm:text-xl"></i>
-                            </a>
-                            <span class="social-tooltip">Medium</span>
-                        </div>
-                        <div class="social-icon-container">
-                            <a href="https://www.mygreatlearning.com/eportfolio/pooja-nair" target="_blank" class="social-icon bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
-                                <i class="fas fa-graduation-cap text-lg sm:text-xl"></i>
-                            </a>
-                            <span class="social-tooltip">Great Learning</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Desktop Photo - Hidden on mobile -->
-                <div class="hidden md:flex justify-center scroll-animate" style="animation-delay: 0.6s">
-                    <div class="hero-image w-64 sm:w-80 h-64 sm:h-80 bg-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
-                        <img src="profile.jpg" alt="Pooja Nair - Data Analyst" class="w-full h-full object-cover rounded-full" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="inner-circle w-56 sm:w-72 h-56 sm:h-72 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden" style="display: none;">
-                            <i class="fas fa-user text-white text-6xl sm:text-8xl z-10"></i>
-                            <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-20"></div>
-                        </div>
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div class="text-gray-800 text-center md:text-left">
+            <!-- Mobile Photo - Only visible on mobile -->
+            <div class="flex justify-center mb-6 md:hidden scroll-animate">
+                <div class="hero-image w-48 h-48 bg-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
+                    <img src="profile.jpg" alt="Pooja Nair - Data Analyst" class="w-full h-full object-cover rounded-full" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="inner-circle w-44 h-44 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden" style="display: none;">
+                        <i class="fas fa-user text-white text-5xl z-10"></i>
+                        <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-20"></div>
                     </div>
                 </div>
             </div>
+            
+            <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl font-bold mb-6 lg:mb-8 scroll-animate">
+                <span class="animated-text"><span class="text-blue-600 name-animation">Pooja Nair</span></span>
+            </h1>
+            <p class="hero-subtitle lead text-lg sm:text-xl md:text-2xl mb-6 lg:mb-8 scroll-animate" style="animation-delay: 0.2s">
+                I'm a <span class="typed" data-typed-items="Data Analyst, Data Storyteller, Data Visualization Specialist, Machine Learning Enthusiast"></span>
+            </p>
+
+            <!-- Buttons -->
+            <div class="hero-buttons flex flex-col sm:flex-row gap-3 mb-6 lg:mb-8 scroll-animate" style="animation-delay: 0.4s">
+                <!-- Fixed Resume Download Button -->
+                <a href="pooja_nair_resume_data_analyst.pdf" download target="_blank"
+                   class="bg-blue-600 text-white px-5 py-3 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg flex items-center justify-center">
+                   <i class="fas fa-download text-sm mr-2"></i>Download Resume
+                </a>
+
+                <!-- View Projects -->
+                <a href="#projects"
+                   class="border-2 border-blue-600 text-blue-600 px-5 py-3 rounded-lg text-sm font-semibold hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-105 flex items-center justify-center">
+                   <i class="fas fa-eye text-sm mr-2"></i>View Projects
+                </a>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="social-icons flex space-x-4 sm:space-x-6 justify-center md:justify-start scroll-animate" style="animation-delay: 0.6s">
+                <div class="social-icon-container">
+                    <a href="https://www.linkedin.com/in/pooja-nair" target="_blank" class="social-icon bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                        <i class="fab fa-linkedin text-lg sm:text-xl"></i>
+                    </a>
+                    <span class="social-tooltip">LinkedIn</span>
+                </div>
+                <div class="social-icon-container">
+                    <a href="https://public.tableau.com/app/profile/pooja.nair3441/vizzes" target="_blank" class="social-icon bg-orange-500 text-white p-3 rounded-lg hover:bg-orange-600 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                        <i class="bi bi-bar-chart text-lg sm:text-xl"></i>
+                    </a>
+                    <span class="social-tooltip">Tableau</span>
+                </div>
+                <div class="social-icon-container">
+                    <a href="https://github.com/PoojaNair5919" target="_blank" class="social-icon bg-gray-800 text-white p-3 rounded-lg hover:bg-gray-900 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                        <i class="fab fa-github text-lg sm:text-xl"></i>
+                    </a>
+                    <span class="social-tooltip">GitHub</span>
+                </div>
+                <div class="social-icon-container">
+                    <a href="https://medium.com/@poojanair5919" target="_blank" class="social-icon bg-green-600 text-white p-3 rounded-lg hover:bg-green-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                        <i class="bi bi-medium text-lg sm:text-xl"></i>
+                    </a>
+                    <span class="social-tooltip">Medium</span>
+                </div>
+                <div class="social-icon-container">
+                    <a href="https://www.mygreatlearning.com/eportfolio/pooja-nair" target="_blank" class="social-icon bg-purple-600 text-white p-3 rounded-lg hover:bg-purple-700 transition-all duration-300 transform hover:scale-125 hover:rotate-12">
+                        <i class="fas fa-graduation-cap text-lg sm:text-xl"></i>
+                    </a>
+                    <span class="social-tooltip">Great Learning</span>
+                </div>
+            </div>
         </div>
+
+        <!-- Desktop Photo -->
+        <div class="hidden md:flex justify-center scroll-animate" style="animation-delay: 0.6s">
+            <div class="hero-image w-64 sm:w-80 h-64 sm:h-80 bg-white rounded-full flex items-center justify-center shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 overflow-hidden">
+                <img src="profile.jpg" alt="Pooja Nair - Data Analyst" class="w-full h-full object-cover rounded-full" 
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="inner-circle w-56 sm:w-72 h-56 sm:h-72 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center relative overflow-hidden" style="display: none;">
+                    <i class="fas fa-user text-white text-6xl sm:text-8xl z-10"></i>
+                    <div class="absolute inset-0 bg-gradient-to-br from-transparent to-black opacity-20"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     </section>
 
     <!-- About Section -->
@@ -2045,6 +2058,7 @@ document.getElementById('download-resume')?.addEventListener('click', () => {
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'972615c82052a46b',t:'MTc1NTczNjg5MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
 
 
 
