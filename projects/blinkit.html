@@ -16,56 +16,93 @@
 
 <section class="py-16 bg-white">
 
-<div class="max-w-4xl mx-auto px-6">
+<div class="max-w-5xl mx-auto px-6">
 
-<h1 class="text-4xl font-bold mb-6">
-
+<h1 class="text-4xl font-bold text-gray-800 mb-6">
 Blinkit Sales & Operations BI Analysis
-
 </h1>
 
-<p class="text-gray-600 mb-8">
-
-This project analyzes revenue concentration, product performance,
-and delivery delays using a Power BI semantic model.
-
+<p class="text-gray-600 text-lg mb-10">
+This project analyzes Blinkit grocery delivery data using a Power BI semantic model.
+The goal was to understand revenue drivers, product concentration, and operational
+delivery delays affecting customer experience.
 </p>
 
-<h2 class="text-2xl font-semibold mb-4">
-Business Questions
-</h2>
 
-<ul class="list-disc pl-6 text-gray-600 mb-8">
+<h2 class="text-2xl font-semibold mb-4">Business Questions</h2>
 
-<li>Which products drive most revenue?</li>
-
-<li>Do delivery delays affect order value?</li>
-
-<li>How concentrated is revenue across products?</li>
-
+<ul class="list-disc pl-6 text-gray-600 mb-10">
+<li>Which products contribute the most to total revenue?</li>
+<li>How concentrated is revenue across top products?</li>
+<li>Do delivery delays impact average order value?</li>
+<li>Which stores contribute most to delayed orders?</li>
 </ul>
 
-<h2 class="text-2xl font-semibold mb-4">
-Tools
-</h2>
 
-<p class="text-gray-600 mb-8">
+<h2 class="text-2xl font-semibold mb-4">Data Model</h2>
 
-Power BI • DAX • Star Schema Modeling
-
+<p class="text-gray-600 mb-6">
+The analysis was built using a star schema to create a scalable semantic model
+for reporting and KPI calculations.
 </p>
 
+<ul class="list-disc pl-6 text-gray-600 mb-10">
+<li><strong>Fact Table:</strong> Orders</li>
+<li><strong>Dimension Tables:</strong> Products, Customers, Stores, Delivery</li>
+<li><strong>Model Type:</strong> Star Schema</li>
+</ul>
+
+
+<h2 class="text-2xl font-semibold mb-4">Key Metrics</h2>
+
+<ul class="list-disc pl-6 text-gray-600 mb-10">
+<li>Total Revenue</li>
+<li>Average Order Value (AOV)</li>
+<li>% Orders Delayed</li>
+<li>Revenue from Delayed Orders</li>
+<li>% Revenue from Top 10 Products</li>
+</ul>
+
+
+<h2 class="text-2xl font-semibold mb-4">Dashboard Overview</h2>
+
+<p class="text-gray-600 mb-10">
+The Power BI report contains multiple analytical views including sales performance,
+product revenue concentration, customer insights, and delivery operations analysis.
+</p>
+
+
+<h2 class="text-2xl font-semibold mb-4">Key Insights</h2>
+
+<ul class="list-disc pl-6 text-gray-600 mb-10">
+<li>Approximately 30% of orders experienced delivery delays.</li>
+<li>Average order value remained consistent across delayed and on-time orders.</li>
+<li>Revenue impact from delays is driven by the frequency of delayed orders rather than smaller basket sizes.</li>
+<li>Revenue distribution follows a long-tail pattern where a small group of products generates a large share of total revenue.</li>
+</ul>
+
+
+<h2 class="text-2xl font-semibold mb-4">Business Recommendations</h2>
+
+<ul class="list-disc pl-6 text-gray-600 mb-10">
+<li>Prioritize operational improvements in stores with the highest delay rates.</li>
+<li>Track delay percentage as a core operational KPI.</li>
+<li>Focus promotions on high-performing products driving revenue concentration.</li>
+</ul>
+
+
+<div class="flex gap-4 mt-10">
+
 <a href="../projects.html"
-class="text-blue-600 underline">
-
-← Back to Projects
-
+class="border border-gray-300 px-5 py-3 rounded-lg text-sm font-semibold">
+Back to Projects
 </a>
+
+</div>
 
 </div>
 
 </section>
 
 </body>
-
 </html>
