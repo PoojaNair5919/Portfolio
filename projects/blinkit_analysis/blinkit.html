@@ -51,8 +51,17 @@ The goal was to understand revenue drivers, product concentration, and operation
 delivery delays affecting customer experience.
 </p>
 
+  <h2 class="text-2xl font-semibold mb-4">Business Problem</h2>
 
-<h2 class="text-2xl font-semibold mb-4">Business Questions</h2>
+<p class="text-gray-600 mb-8">
+Blinkit operates a fast-delivery grocery model where operational efficiency
+and product mix significantly affect revenue performance. The objective of
+this analysis was to understand how revenue is distributed across products,
+customers, and delivery performance, and whether delivery delays influence
+order value or revenue exposure.
+</p>
+
+<h2 class="text-2xl font-semibold mb-4">Analytical Questions</h2>
 
 <ul class="list-disc pl-6 text-gray-600 mb-10">
 <li>Which products contribute the most to total revenue?</li>
@@ -72,6 +81,12 @@ for reporting and KPI calculations.
   <img src="images/star_schema.png"
 class="rounded-lg shadow-lg mb-10 w-full"
 alt="Blinkit Power BI Star Schema">
+  <p class="text-gray-600 mb-10">
+A star schema was designed to support scalable analytical queries and KPI
+calculations. A central fact table stores order-level transactions while
+dimension tables capture customer, product, and time attributes. This
+structure simplifies aggregation and improves performance for BI reporting.
+</p>
 <ul class="list-disc pl-6 text-gray-600 mb-10">
 <li><strong>Fact Table:</strong> Orders</li>
 <li><strong>Dimension Tables:</strong> Products, Customers, Stores, Delivery</li>
@@ -90,11 +105,11 @@ alt="Blinkit Power BI Star Schema">
 </ul>
 
 <h2 class="text-3xl font-bold mb-6">Power BI Dashboard</h2>
-<h2 class="text-2xl font-semibold mb-4">Dashboard Overview</h2>
+<h2 class="text-2xl font-semibold mb-4">Dashboard Walkthrough</h2>
 
 <p class="text-gray-600 mb-10">
-The Power BI report contains multiple analytical views including sales performance,
-product revenue concentration, customer insights, and delivery operations analysis.
+The Power BI report consists of four analytical views designed to evaluate
+revenue structure, operational performance, and delivery delay impact.
 </p>
 
   <h3 class="text-xl font-semibold mb-4">Business Baseline</h3>
@@ -163,9 +178,17 @@ alt="Average Order Value by Delay Bucket">
 <h2 class="text-2xl font-semibold mb-4">Business Recommendations</h2>
 
 <ul class="list-disc pl-6 text-gray-600 mb-10">
-<li>Prioritize operational improvements in stores with the highest delay rates.</li>
-<li>Track delay percentage as a core operational KPI.</li>
-<li>Focus promotions on high-performing products driving revenue concentration.</li>
+
+<li>Monitor delivery delay percentage as a core operational KPI.</li>
+
+<li>Investigate stores with consistently high delay times to identify
+logistics bottlenecks.</li>
+
+<li>Prioritize inventory availability for high-revenue product categories
+to protect revenue concentration.</li>
+
+<li>Implement operational dashboards for real-time delay monitoring.</li>
+
 </ul>
 
 
