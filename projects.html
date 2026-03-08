@@ -24,16 +24,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes slide-up {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes count-up {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .animate-blob { animation: blob 7s infinite; }
     .animation-delay-2000 { animation-delay: 2s; }
     .animation-delay-4000 { animation-delay: 4s; }
@@ -44,7 +34,6 @@
     }
 
     .animation-delay-200 { animation-delay: 0.2s; }
-    .animation-delay-400 { animation-delay: 0.4s; }
 
     /* Card scroll-in animation */
     .project-card {
@@ -62,7 +51,6 @@
       display: none;
     }
 
-    /* Stagger delays for cards */
     .project-card:nth-child(1) { transition-delay: 0.05s; }
     .project-card:nth-child(2) { transition-delay: 0.15s; }
     .project-card:nth-child(3) { transition-delay: 0.25s; }
@@ -118,17 +106,6 @@
       border-color: transparent;
       box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
     }
-
-    /* Stats bar animation */
-    .stat-item {
-      animation: count-up 0.6s ease-out forwards;
-      opacity: 0;
-    }
-
-    .stat-item:nth-child(1) { animation-delay: 0.3s; }
-    .stat-item:nth-child(2) { animation-delay: 0.5s; }
-    .stat-item:nth-child(3) { animation-delay: 0.7s; }
-    .stat-item:nth-child(4) { animation-delay: 0.9s; }
   </style>
  </head>
  <body class="transition-colors duration-300 min-h-screen" style="font-family: 'Geist', sans-serif;">
@@ -143,8 +120,8 @@
 
   <!-- Navigation -->
   <nav class="relative z-10 max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-    <a href="index.html" class="group inline-flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-all shadow-md hover:shadow-lg">
-      <i class="fas fa-arrow-left text-lg group-hover:-translate-x-1 transition-transform"></i>
+    <a href="index.html" class="group inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-semibold rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-sm hover:shadow-md">
+      <i class="fas fa-arrow-left text-sm group-hover:-translate-x-1 transition-transform"></i>
       <span>Back Home</span>
     </a>
     <button id="darkModeToggle" class="relative w-12 h-12 rounded-full bg-gradient-to-br from-yellow-200 to-yellow-300 dark:from-indigo-600 dark:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
@@ -161,30 +138,8 @@
     </div>
   </section>
 
-  <!-- Stats Bar -->
-  <section class="relative z-10 max-w-4xl mx-auto px-6 py-8">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700 px-8 py-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div class="stat-item">
-        <p class="text-3xl font-black text-indigo-600 dark:text-indigo-400">5</p>
-        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">Projects</p>
-      </div>
-      <div class="stat-item">
-        <p class="text-3xl font-black text-purple-600 dark:text-purple-400">3</p>
-        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">Tools Used</p>
-      </div>
-      <div class="stat-item">
-        <p class="text-3xl font-black text-blue-600 dark:text-blue-400">5</p>
-        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">Medium Articles</p>
-      </div>
-      <div class="stat-item">
-        <p class="text-3xl font-black text-cyan-600 dark:text-cyan-400">5</p>
-        <p class="text-sm font-semibold text-gray-500 dark:text-gray-400 mt-1">GitHub Repos</p>
-      </div>
-    </div>
-  </section>
-
   <!-- Filter Section -->
-  <section class="relative z-10 max-w-7xl mx-auto px-6 py-2">
+  <section class="relative z-10 max-w-7xl mx-auto px-6 py-8">
     <div class="mb-8">
       <h2 class="text-sm uppercase tracking-widest font-bold text-gray-600 dark:text-gray-400 mb-4">Filter by Technology</h2>
       <div class="flex flex-wrap gap-3">
@@ -223,9 +178,9 @@
               <span class="px-3 py-1 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">DAX</span>
               <span class="px-3 py-1 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">Star Schema</span>
             </div>
-            <div class="mt-auto">
-              <a href="projects/blinkit_analysis/blinkit.html" class="inline-flex items-center gap-2 font-semibold text-blue-600 dark:text-blue-400 hover:gap-3 transition-all group/link">
-                View Project <i class="fas fa-arrow-right text-sm group-hover/link:translate-x-1 transition-transform"></i>
+            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700">
+              <a href="projects/blinkit_analysis/blinkit.html" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-all hover:shadow-md group/link">
+                View Project <i class="fas fa-arrow-right text-xs group-hover/link:translate-x-1 transition-transform"></i>
               </a>
             </div>
           </div>
@@ -247,12 +202,12 @@
               <span class="px-3 py-1 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full">Scikit-learn</span>
               <span class="px-3 py-1 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full">K-Means</span>
             </div>
-            <div class="mt-auto flex gap-4">
-              <a href="https://medium.com/@poojanair5919/how-i-used-k-means-boosting-models-to-optimize-airline-ads-by-device-type-908fe89d83d9" target="_blank" class="inline-flex items-center gap-2 font-semibold text-green-600 dark:text-green-400 hover:gap-3 transition-all group/link">
+            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex gap-3">
+              <a href="https://medium.com/@poojanair5919/how-i-used-k-means-boosting-models-to-optimize-airline-ads-by-device-type-908fe89d83d9" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 dark:bg-green-500 text-white text-sm font-semibold rounded-lg hover:bg-green-700 transition-all hover:shadow-md group/link">
                 Article <i class="fas fa-external-link-alt text-xs group-hover/link:translate-x-1 transition-transform"></i>
               </a>
-              <a href="https://github.com/PoojaNair5919/Airline-Ad-Optimisation" target="_blank" class="inline-flex items-center gap-2 font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors">
-                <i class="fab fa-github"></i>
+              <a href="https://github.com/PoojaNair5919/Airline-Ad-Optimisation" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white text-sm font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
+                <i class="fab fa-github"></i> GitHub
               </a>
             </div>
           </div>
@@ -274,12 +229,12 @@
               <span class="px-3 py-1 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">Excel</span>
               <span class="px-3 py-1 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">EDA</span>
             </div>
-            <div class="mt-auto flex gap-4">
-              <a href="https://medium.com/@poojanair5919/what-90s-boston-condo-sales-reveal-about-market-psychology-a-data-story-part-1-160028027f3d" target="_blank" class="inline-flex items-center gap-2 font-semibold text-purple-600 dark:text-purple-400 hover:gap-3 transition-all group/link">
+            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex gap-3">
+              <a href="https://medium.com/@poojanair5919/what-90s-boston-condo-sales-reveal-about-market-psychology-a-data-story-part-1-160028027f3d" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 dark:bg-purple-500 text-white text-sm font-semibold rounded-lg hover:bg-purple-700 transition-all hover:shadow-md group/link">
                 Article <i class="fas fa-external-link-alt text-xs group-hover/link:translate-x-1 transition-transform"></i>
               </a>
-              <a href="https://github.com/PoojaNair5919/Boston-Real-Estate-Analysis" target="_blank" class="inline-flex items-center gap-2 font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors">
-                <i class="fab fa-github"></i>
+              <a href="https://github.com/PoojaNair5919/Boston-Real-Estate-Analysis" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white text-sm font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
+                <i class="fab fa-github"></i> GitHub
               </a>
             </div>
           </div>
@@ -301,12 +256,12 @@
               <span class="px-3 py-1 bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-full">Excel</span>
               <span class="px-3 py-1 bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-full">EDA</span>
             </div>
-            <div class="mt-auto flex gap-4">
-              <a href="https://medium.com/@poojanair5919/data-science-careers-in-2025-hype-or-reality-aa9a325710d8" target="_blank" class="inline-flex items-center gap-2 font-semibold text-indigo-600 dark:text-indigo-400 hover:gap-3 transition-all group/link">
+            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex gap-3">
+              <a href="https://medium.com/@poojanair5919/data-science-careers-in-2025-hype-or-reality-aa9a325710d8" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white text-sm font-semibold rounded-lg hover:bg-indigo-700 transition-all hover:shadow-md group/link">
                 Article <i class="fas fa-external-link-alt text-xs group-hover/link:translate-x-1 transition-transform"></i>
               </a>
-              <a href="https://github.com/PoojaNair5919/Data-Science-Jobs-Salary-Trends-Analysis" target="_blank" class="inline-flex items-center gap-2 font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors">
-                <i class="fab fa-github"></i>
+              <a href="https://github.com/PoojaNair5919/Data-Science-Jobs-Salary-Trends-Analysis" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white text-sm font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
+                <i class="fab fa-github"></i> GitHub
               </a>
             </div>
           </div>
@@ -328,12 +283,12 @@
               <span class="px-3 py-1 bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 text-pink-700 dark:text-pink-300 text-xs font-semibold rounded-full">Spotify API</span>
               <span class="px-3 py-1 bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 text-pink-700 dark:text-pink-300 text-xs font-semibold rounded-full">Tableau</span>
             </div>
-            <div class="mt-auto flex gap-4">
-              <a href="https://medium.com/@poojanair5919/exploring-the-greatest-songs-of-all-time-on-spotify-53a41bab3823" target="_blank" class="inline-flex items-center gap-2 font-semibold text-pink-600 dark:text-pink-400 hover:gap-3 transition-all group/link">
+            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex gap-3">
+              <a href="https://medium.com/@poojanair5919/exploring-the-greatest-songs-of-all-time-on-spotify-53a41bab3823" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-pink-600 dark:bg-pink-500 text-white text-sm font-semibold rounded-lg hover:bg-pink-700 transition-all hover:shadow-md group/link">
                 Article <i class="fas fa-external-link-alt text-xs group-hover/link:translate-x-1 transition-transform"></i>
               </a>
-              <a href="https://github.com/PoojaNair5919/Spotify-s-Greatest-Songs-of-All-Time" target="_blank" class="inline-flex items-center gap-2 font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 transition-colors">
-                <i class="fab fa-github"></i>
+              <a href="https://github.com/PoojaNair5919/Spotify-s-Greatest-Songs-of-All-Time" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-gray-800 dark:bg-gray-700 text-white text-sm font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
+                <i class="fab fa-github"></i> GitHub
               </a>
             </div>
           </div>
@@ -369,7 +324,6 @@
         projectCards.forEach(card => {
           if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
             card.classList.remove('hidden');
-            // Re-trigger animation
             card.classList.remove('visible');
             setTimeout(() => card.classList.add('visible'), 50);
           } else {
@@ -379,7 +333,7 @@
       });
     });
 
-    // Scroll-in animation using IntersectionObserver
+    // Scroll-in animation
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
