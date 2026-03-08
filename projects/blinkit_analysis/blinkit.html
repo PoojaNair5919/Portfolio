@@ -10,7 +10,6 @@ darkMode: 'class'
 }
 </script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
 // Initialize theme immediately (before page renders)
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme === 'dark') {
@@ -228,10 +227,12 @@ to {
   <style>body { box-sizing: border-box; }</style>
  </head>
  <body class="bg-white dark:bg-gray-950 transition-colors duration-300">
-  <!-- Theme Toggle Button --> <button id="theme-toggle" onclick="toggleDarkMode()" class="fixed top-6 right-6 bg-yellow-400 dark:bg-yellow-500 text-gray-900 dark:text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center">
-   <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" style="transition: transform 0.3s ease;">
-    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-   </svg></button> <!-- Image Modal -->
+  <!-- Theme Toggle Button --> <button onclick="toggleDarkMode()"
+class="fixed top-6 right-6 bg-yellow-400 dark:bg-yellow-500 text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center">
+<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+</svg> </button> 
+  <!-- Image Modal -->
   <div id="imageModal" class="modal-overlay"><span class="modal-close" onclick="closeModal()">×</span> <img id="modalImage" src="" alt="Zoomed Image" class="modal-image">
   </div><!-- Hero Section -->
   <section class="py-20 bg-gradient-to-br from-yellow-300 via-yellow-100 to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-950 text-gray-900 dark:text-white transition-colors duration-300">
