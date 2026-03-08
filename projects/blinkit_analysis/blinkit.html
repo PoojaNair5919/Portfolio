@@ -25,6 +25,37 @@ function toggleDarkMode() {
   const isDark = html.classList.contains('dark');
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
+
+function openModal(imgElement) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  modalImg.src = imgElement.src;
+  modalImg.alt = imgElement.alt;
+  modal.classList.add('active');
+}
+
+function closeModal() {
+  const modal = document.getElementById('imageModal');
+  modal.classList.remove('active');
+}
+
+// Close modal when clicking outside the image
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('imageModal');
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+});
+
 </script>
   <style>
 @keyframes fadeInUp {
@@ -137,6 +168,62 @@ to {
 .accent-line {
   background: linear-gradient(90deg, #FFCE31 0%, #FFB81C 100%);
 }
+
+.image-container {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover {
+  transform: scale(1.02);
+}
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.modal-close:hover {
+  transform: scale(1.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
@@ -145,13 +232,16 @@ to {
  </head>
  <body class="bg-white dark:bg-gray-950 transition-colors duration-300"><!-- Theme Toggle Button --> <button id="theme-toggle" onclick="toggleDarkMode()" class="fixed top-6 right-6 bg-yellow-400 dark:bg-yellow-500 text-gray-900 dark:text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center">
    <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" style="transition: transform 0.3s ease;"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-   </svg></button> <!-- Hero Section -->
+   </svg></button> <!-- Image Modal -->
+  <div id="imageModal" class="modal-overlay">
+   <span class="modal-close" onclick="closeModal()">×</span> <img id="modalImage" src="" alt="Zoomed Image" class="modal-image">
+  </div><!-- Hero Section -->
   <section class="py-20 bg-gradient-to-br from-yellow-300 via-yellow-100 to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-950 text-gray-900 dark:text-white transition-colors duration-300">
-   <div class="max-w-6xl mx-auto px-6">
+   <div class="max-w-6xl mx-auto px-6 text-center">
     <div class="fade-in-up">
      <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Blinkit Sales &amp; Operations<br><span class="text-yellow-600 dark:text-yellow-300">BI Analysis</span></h1>
-     <p class="text-xl text-gray-800 dark:text-gray-200 mb-8 max-w-2xl">Uncovering revenue drivers, product concentration, and delivery performance insights through advanced data analytics</p>
-     <div class="flex flex-wrap gap-4"><a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis" target="_blank" class="cta-button inline-flex items-center bg-gray-900 dark:bg-yellow-400 text-yellow-300 dark:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"> View on GitHub </a> <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda" target="_blank" class="cta-button inline-flex items-center border-2 border-gray-900 dark:border-yellow-300 text-gray-900 dark:text-yellow-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-900 hover:text-yellow-300 dark:hover:bg-yellow-300 dark:hover:text-gray-900 transition-all duration-300"> Read Medium Article </a>
+     <p class="text-xl text-gray-800 dark:text-gray-200 mb-8 max-w-2xl mx-auto">Uncovering revenue drivers, product concentration, and delivery performance insights through advanced data analytics</p>
+     <div class="flex flex-wrap gap-4 justify-center"><a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis" target="_blank" class="cta-button inline-flex items-center bg-gray-900 dark:bg-yellow-400 text-yellow-300 dark:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"> View on GitHub </a> <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda" target="_blank" class="cta-button inline-flex items-center border-2 border-gray-900 dark:border-yellow-300 text-gray-900 dark:text-yellow-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-900 hover:text-yellow-300 dark:hover:bg-yellow-300 dark:hover:text-gray-900 transition-all duration-300"> Read Medium Article </a>
      </div>
     </div>
    </div>
@@ -240,28 +330,28 @@ to {
      <div class="w-16 h-1 accent-line mb-8"></div>
      <div class="grid grid-cols-1 gap-8">
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded">
+       <div class="bg-gray-200 dark:bg-gray-600 h-80 flex items-center justify-center mb-4 rounded image-container" onclick="openModal(this.querySelector('img'))">
         <img src="images/dashboard_business_baseline.png" alt="Business Baseline Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Business Baseline</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">KPI tracking and performance metrics</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded">
+       <div class="bg-gray-200 dark:bg-gray-600 h-80 flex items-center justify-center mb-4 rounded image-container" onclick="openModal(this.querySelector('img'))">
         <img src="images/dashboard_revenue_structure.png" alt="Revenue Structure Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Revenue Structure</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">Product mix and revenue distribution</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded">
+       <div class="bg-gray-200 dark:bg-gray-600 h-80 flex items-center justify-center mb-4 rounded image-container" onclick="openModal(this.querySelector('img'))">
         <img src="images/dashboard_operational_performance.png" alt="Operational Performance Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Operational Performance</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">Delivery delays and store performance</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded">
+       <div class="bg-gray-200 dark:bg-gray-600 h-80 flex items-center justify-center mb-4 rounded image-container" onclick="openModal(this.querySelector('img'))">
         <img src="images/dashboard_impact_analysis.png" alt="Impact Analysis Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Impact Analysis</p>
@@ -300,5 +390,5 @@ to {
     </div>
    </div>
   </section>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d908d5860cec08b',t:'MTc3Mjk1OTQwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d9092ccc047c08b',t:'MTc3Mjk1OTYyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
