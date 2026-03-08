@@ -208,9 +208,11 @@ to {
      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Data Model</h2>
      <div class="w-16 h-1 accent-line mb-6"></div>
      <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">The analysis was built using a star schema to create a scalable semantic model for reporting and KPI calculations. A central fact table stores order-level transactions while dimension tables capture customer, product, and time attributes.</p>
-     <div class="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 p-8 rounded-lg text-center border-2 border-yellow-400 dark:border-yellow-500">
-      <p class="text-gray-600 dark:text-gray-400 font-semibold">📊 Star Schema Diagram</p>
-      <p class="text-gray-500 dark:text-gray-300 text-sm mt-2">(Fact Table ← Dimension Tables: Customers, Products, Time, Stores)</p>
+     <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
+      <div class="bg-gray-200 dark:bg-gray-600 h-96 flex items-center justify-center mb-4 rounded"><img src="images/star_schema.png" alt="Star Schema Diagram" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Star schema image unavailable';">
+      </div>
+      <p class="font-semibold text-gray-900 dark:text-white mb-2">Star Schema Diagram</p>
+      <p class="text-sm text-gray-700 dark:text-gray-300">Fact Table ← Dimension Tables: Customers, Products, Time, Stores</p>
      </div>
     </div><!-- Metric Design -->
     <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-lg mb-12">
@@ -241,25 +243,25 @@ to {
      <div class="w-16 h-1 accent-line mb-8"></div>
      <div class="grid grid-cols-1 gap-8">
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-96 flex items-center justify-center mb-4 rounded"><img src="images/dashboard_business_baseline.png" alt="Business Baseline Dashboard" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
+       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded"><img src="images/dashboard_business_baseline.png" alt="Business Baseline Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Business Baseline</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">KPI tracking and performance metrics</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-96 flex items-center justify-center mb-4 rounded"><img src="images/dashboard_revenue_structure.png" alt="Revenue Structure Dashboard" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
+       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded"><img src="images/dashboard_revenue_structure.png" alt="Revenue Structure Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Revenue Structure</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">Product mix and revenue distribution</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-96 flex items-center justify-center mb-4 rounded"><img src="images/dashboard_operational_performance.png" alt="Operational Performance Dashboard" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
+       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded"><img src="images/dashboard_operational_performance.png" alt="Operational Performance Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Operational Performance</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">Delivery delays and store performance</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-96 flex items-center justify-center mb-4 rounded"><img src="images/dashboard_impact_analysis.png" alt="Impact Analysis Dashboard" loading="lazy" class="w-full h-full object-cover" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
+       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded"><img src="images/dashboard_impact_analysis.png" alt="Impact Analysis Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Impact Analysis</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">Delay impact on AOV and revenue</p>
@@ -294,5 +296,5 @@ to {
     </div>
    </div>
   </section>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d9085b9229b1397',t:'MTc3Mjk1OTA5My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d908b657390c08b',t:'MTc3Mjk1OTMyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
