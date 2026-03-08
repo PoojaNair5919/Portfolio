@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -13,9 +14,25 @@
 
 </head>
 
+
 <body class="bg-gray-50">
 
-<!-- Header -->
+<!-- Back to Home -->
+
+<div class="max-w-7xl mx-auto px-6 pt-8">
+
+<a href="../index.html"
+class="inline-flex items-center text-blue-600 hover:underline">
+
+<i class="fas fa-arrow-left mr-2"></i>
+Back to Home
+
+</a>
+
+</div>
+
+
+<!-- Page Header -->
 
 <section class="py-16 bg-white text-center">
 
@@ -23,11 +40,14 @@
 Projects
 </h1>
 
-<p class="text-gray-600">
-A collection of analytics and BI projects exploring real-world data problems.
+<p class="text-gray-600 max-w-2xl mx-auto">
+A collection of analytics and business intelligence projects exploring real-world
+data problems, data modeling, and decision-focused insights.
 </p>
 
 </section>
+
+
 
 <!-- Projects Grid -->
 
@@ -37,7 +57,8 @@ A collection of analytics and BI projects exploring real-world data problems.
 
 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<!-- Blinkit Project Card -->
+
+<!-- Blinkit Project -->
 
 <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition">
 
@@ -46,8 +67,10 @@ Blinkit Sales & Operations BI Analysis
 </h3>
 
 <p class="text-gray-600 mb-4">
-End-to-end BI analysis using a star schema data model and Power BI semantic layer to evaluate revenue concentration, delivery delays, and operational performance.
+End-to-end BI analysis using a star schema data model in Power BI to evaluate
+revenue concentration, delivery delays, and operational performance.
 </p>
+
 
 <!-- Tech Stack -->
 
@@ -69,25 +92,67 @@ Star Schema
 Data Modeling
 </span>
 
-<span class="text-xs bg-gray-200 text-gray-700 px-2 py-1 rounded">
-Analytics
-</span>
-
 </div>
 
-<a href="projects/blinkit_analysis/blinkit.html"
-class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700">
 
+<!-- Links -->
+
+<div class="flex gap-4 text-sm">
+
+<a href="projects/blinkit_analysis/blinkit.html"
+class="text-blue-600 font-semibold hover:underline">
 View Project
+</a>
+
+<a href="https://github.com/YOUR_GITHUB_REPO"
+target="_blank"
+class="text-gray-700 hover:text-black flex items-center gap-1">
+
+<i class="fab fa-github"></i>
+GitHub
+
+</a>
+
+<a href="https://medium.com/YOUR_ARTICLE_LINK"
+target="_blank"
+class="text-green-700 hover:text-green-900 flex items-center gap-1">
+
+<i class="fa-brands fa-medium"></i>
+Article
 
 </a>
 
 </div>
+
+</div>
+
+
+
+<!-- Placeholder For Future Projects -->
+
+<div class="bg-white rounded-xl shadow-lg p-6 border-2 border-dashed">
+
+<h3 class="text-xl font-bold text-gray-800 mb-2">
+More Projects Coming Soon
+</h3>
+
+<p class="text-gray-600">
+Additional analytics and BI projects covering SQL analytics,
+data modeling, and dashboard-driven decision analysis will
+be added here.
+</p>
+
+</div>
+
+
+
 </div>
 
 </div>
 
 </section>
 
+
 </body>
+
 </html>
