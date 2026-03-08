@@ -359,13 +359,7 @@ Blinkit Sales & Operations<br>
 const html = document.documentElement
 
 function toggleDarkMode() {
-
-    html.classList.toggle("dark")
-
-    const isDark = html.classList.contains("dark")
-
-    localStorage.setItem("theme", isDark ? "dark" : "light")
-
+  document.documentElement.classList.toggle("dark");
 }
 
 document.addEventListener("DOMContentLoaded", function(){
