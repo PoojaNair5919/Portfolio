@@ -143,18 +143,15 @@ to {
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
- <body class="bg-white dark:bg-gray-950 transition-colors duration-300">
-  <!-- Theme Toggle Button --> <button id="theme-toggle" onclick="toggleDarkMode()" class="fixed top-6 right-6 bg-yellow-400 dark:bg-yellow-500 text-gray-900 dark:text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center">
-   <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" style="transition: transform 0.3s ease;">
-    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+ <body class="bg-white dark:bg-gray-950 transition-colors duration-300"><!-- Theme Toggle Button --> <button id="theme-toggle" onclick="toggleDarkMode()" class="fixed top-6 right-6 bg-yellow-400 dark:bg-yellow-500 text-gray-900 dark:text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center">
+   <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20" style="transition: transform 0.3s ease;"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
    </svg></button> <!-- Hero Section -->
   <section class="py-20 bg-gradient-to-br from-yellow-300 via-yellow-100 to-yellow-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-950 text-gray-900 dark:text-white transition-colors duration-300">
    <div class="max-w-6xl mx-auto px-6">
     <div class="fade-in-up">
      <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">Blinkit Sales &amp; Operations<br><span class="text-yellow-600 dark:text-yellow-300">BI Analysis</span></h1>
      <p class="text-xl text-gray-800 dark:text-gray-200 mb-8 max-w-2xl">Uncovering revenue drivers, product concentration, and delivery performance insights through advanced data analytics</p>
-     <div class="flex flex-wrap gap-4">
-      <a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis" target="_blank" class="cta-button inline-flex items-center bg-gray-900 dark:bg-yellow-400 text-yellow-300 dark:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"> View on GitHub </a> <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda" target="_blank" class="cta-button inline-flex items-center border-2 border-gray-900 dark:border-yellow-300 text-gray-900 dark:text-yellow-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-900 hover:text-yellow-300 dark:hover:bg-yellow-300 dark:hover:text-gray-900 transition-all duration-300"> Read Medium Article </a>
+     <div class="flex flex-wrap gap-4"><a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis" target="_blank" class="cta-button inline-flex items-center bg-gray-900 dark:bg-yellow-400 text-yellow-300 dark:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"> View on GitHub </a> <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda" target="_blank" class="cta-button inline-flex items-center border-2 border-gray-900 dark:border-yellow-300 text-gray-900 dark:text-yellow-300 px-6 py-3 rounded-lg font-semibold hover:bg-gray-900 hover:text-yellow-300 dark:hover:bg-yellow-300 dark:hover:text-gray-900 transition-all duration-300"> Read Medium Article </a>
      </div>
     </div>
    </div>
@@ -187,8 +184,7 @@ to {
    </div>
   </section><!-- Content Section -->
   <section class="py-16 px-6">
-   <div class="max-w-5xl mx-auto">
-    <!-- Business Problem -->
+   <div class="max-w-5xl mx-auto"><!-- Business Problem -->
     <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg mb-12 card-hover">
      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">Business Problem</h2>
      <div class="w-16 h-1 accent-line mb-6"></div>
@@ -209,7 +205,8 @@ to {
      <div class="w-16 h-1 accent-line mb-6"></div>
      <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">The analysis was built using a star schema to create a scalable semantic model for reporting and KPI calculations. A central fact table stores order-level transactions while dimension tables capture customer, product, and time attributes.</p>
      <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-      <div class="bg-gray-200 dark:bg-gray-600 h-96 flex items-center justify-center mb-4 rounded"><img src="images/star_schema.png" alt="Star Schema Diagram" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Star schema image unavailable';">
+      <div class="bg-gray-200 dark:bg-gray-600 h-96 flex items-center justify-center mb-4 rounded">
+       <img src="images/star_schema.png" alt="Star Schema Diagram" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Star schema image unavailable';">
       </div>
       <p class="font-semibold text-gray-900 dark:text-white mb-2">Star Schema Diagram</p>
       <p class="text-sm text-gray-700 dark:text-gray-300">Fact Table ← Dimension Tables: Customers, Products, Time, Stores</p>
@@ -243,25 +240,29 @@ to {
      <div class="w-16 h-1 accent-line mb-8"></div>
      <div class="grid grid-cols-1 gap-8">
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded"><img src="images/dashboard_business_baseline.png" alt="Business Baseline Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
+       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded">
+        <img src="images/dashboard_business_baseline.png" alt="Business Baseline Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Business Baseline</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">KPI tracking and performance metrics</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded"><img src="images/dashboard_revenue_structure.png" alt="Revenue Structure Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
+       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded">
+        <img src="images/dashboard_revenue_structure.png" alt="Revenue Structure Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Revenue Structure</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">Product mix and revenue distribution</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded"><img src="images/dashboard_operational_performance.png" alt="Operational Performance Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
+       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded">
+        <img src="images/dashboard_operational_performance.png" alt="Operational Performance Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Operational Performance</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">Delivery delays and store performance</p>
       </div>
       <div class="bg-white dark:bg-gray-700 p-6 rounded-lg border-2 border-yellow-400 dark:border-yellow-500 overflow-hidden">
-       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded"><img src="images/dashboard_impact_analysis.png" alt="Impact Analysis Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
+       <div class="bg-gray-200 dark:bg-gray-600 h-screen flex items-center justify-center mb-4 rounded">
+        <img src="images/dashboard_impact_analysis.png" alt="Impact Analysis Dashboard" loading="lazy" class="w-full h-full object-contain" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Dashboard image unavailable';">
        </div>
        <p class="font-semibold text-gray-900 dark:text-white mb-2">Impact Analysis</p>
        <p class="text-sm text-gray-700 dark:text-gray-300">Delay impact on AOV and revenue</p>
@@ -288,13 +289,16 @@ to {
       <li class="flex items-start"><span class="inline-block w-2 h-2 bg-yellow-500 rounded-full mt-2.5 mr-4 flex-shrink-0"></span> <span><strong>Implement operational dashboards</strong> that allow teams to monitor delivery delay patterns and order volumes in real time.</span></li>
      </ul>
     </div><!-- CTA Footer -->
-    <div class="bg-gradient-to-br from-yellow-300 via-yellow-100 to-yellow-50 dark:from-yellow-400 dark:to-yellow-300 text-gray-900 dark:text-gray-900 p-8 rounded-xl shadow-lg text-center">
+    <div class="bg-gradient-to-br from-yellow-300 via-yellow-100 to-yellow-50 dark:from-yellow-400 dark:to-yellow-300 text-gray-900 dark:text-gray-900 p-8 rounded-xl shadow-lg text-center mb-8">
      <h3 class="text-2xl font-bold mb-6">Ready to explore the full analysis?</h3>
-     <div class="flex flex-wrap gap-4 justify-center">
-      <a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis" target="_blank" class="cta-button inline-flex items-center bg-gray-900 dark:bg-gray-900 text-white dark:text-yellow-400 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"> View on GitHub </a> <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda" target="_blank" class="cta-button inline-flex items-center bg-gray-900 dark:bg-yellow-400 text-yellow-400 dark:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"> Read Medium Article </a>
+     <div class="flex flex-wrap gap-4 justify-center"><a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis" target="_blank" class="cta-button inline-flex items-center bg-gray-900 dark:bg-gray-900 text-white dark:text-yellow-400 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"> View on GitHub </a> <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda" target="_blank" class="cta-button inline-flex items-center bg-gray-900 dark:bg-yellow-400 text-yellow-400 dark:text-gray-900 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300"> Read Medium Article </a>
      </div>
+    </div><!-- Back to Projects Button -->
+    <div class="text-center"><a href="../index.html" class="inline-flex items-center bg-gray-900 dark:bg-gray-700 text-yellow-400 dark:text-yellow-300 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg> Back to Projects </a>
     </div>
    </div>
   </section>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d908b657390c08b',t:'MTc3Mjk1OTMyNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d908d5860cec08b',t:'MTc3Mjk1OTQwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
