@@ -10,6 +10,7 @@ darkMode: 'class'
 }
 </script>
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <script>
 // Initialize theme immediately (before page renders)
 const savedTheme = localStorage.getItem('theme');
@@ -43,19 +44,20 @@ function closeModal() {
 document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('imageModal');
   modal.addEventListener('click', function(event) {
-    if (event.target === modal) {
-      closeModal();
-    }
-  });
-</script>
-  // Close modal on Escape key
-  document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape') {
-      closeModal();
-    }
-  });
+  if (event.target === modal) {
+    closeModal();
+  }
 });
 
+// Close modal on Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeModal();
+  }
+});
+
+});
+</script>
 </script>
   <style>
 @keyframes fadeInUp {
