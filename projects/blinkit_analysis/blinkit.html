@@ -8,59 +8,105 @@
 
 <title>Blinkit BI Analysis</title>
 
+<script>
+tailwind.config = {
+darkMode: 'class'
+}
+</script>
+
 <script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+function toggleDarkMode() {
+document.documentElement.classList.toggle('dark');
+
+localStorage.setItem(
+'theme',
+document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+);
+}
+
+window.onload = function() {
+if (localStorage.getItem('theme') === 'dark') {
+document.documentElement.classList.add('dark');
+}
+};
+</script>
 
 </head>
 
-<body class="bg-gray-50">
 
-<section class="py-16 bg-white">
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+
+
+<button onclick="toggleDarkMode()"
+class="fixed top-6 right-6 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-900 z-50">
+
+Toggle Theme
+
+</button>
+
+
+
+<section class="py-16 bg-white dark:bg-gray-900">
 
 <div class="max-w-5xl mx-auto px-6">
 
-<h1 class="text-4xl font-bold text-gray-800 mb-6">
+
+<h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-6">
 Blinkit Sales & Operations BI Analysis
 </h1>
 
+
 <div class="grid md:grid-cols-4 gap-6 mb-12">
 
-<div class="bg-gray-100 p-4 rounded-lg">
-<p class="text-sm text-gray-500">Dataset</p>
-<p class="font-semibold">Blinkit Grocery Orders</p>
+<div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+<p class="text-sm text-gray-500 dark:text-gray-400">Dataset</p>
+<p class="font-semibold dark:text-white">Blinkit Grocery Orders</p>
 </div>
 
-<div class="bg-gray-100 p-4 rounded-lg">
-<p class="text-sm text-gray-500">Orders Analyzed</p>
-<p class="font-semibold">5,000+</p>
+<div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+<p class="text-sm text-gray-500 dark:text-gray-400">Orders Analyzed</p>
+<p class="font-semibold dark:text-white">5,000+</p>
 </div>
 
-<div class="bg-gray-100 p-4 rounded-lg">
-<p class="text-sm text-gray-500">Tools Used</p>
-<p class="font-semibold">Power BI • DAX • Star Schema</p>
+<div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+<p class="text-sm text-gray-500 dark:text-gray-400">Tools Used</p>
+<p class="font-semibold dark:text-white">Power BI • DAX • Star Schema</p>
 </div>
 
-<div class="bg-gray-100 p-4 rounded-lg">
-<p class="text-sm text-gray-500">Key Finding</p>
-<p class="font-semibold">Delivery delays impact revenue through order volume, not basket size</p>
+<div class="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg">
+<p class="text-sm text-gray-500 dark:text-gray-400">Key Finding</p>
+<p class="font-semibold dark:text-white">
+Delivery delays impact revenue through order volume, not basket size
+</p>
 </div>
 
 </div>
-<p class="text-gray-600 text-lg mb-10">
+
+
+<p class="text-gray-600 dark:text-gray-300 text-lg mb-6">
 This project analyzes Blinkit grocery delivery data using a Power BI semantic model.
 The goal was to understand revenue drivers, product concentration, and operational
 delivery delays affecting customer experience.
 </p>
-<p class="text-sm text-gray-500 mb-10">
-Full analysis available on 
+
+
+<p class="text-sm text-gray-500 dark:text-gray-400 mb-12">
+Full analysis available on
 <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda"
 target="_blank"
 class="text-blue-600 font-semibold hover:underline">
 Medium
 </a>.
 </p>
-  <h2 class="text-2xl font-semibold mb-4">Business Problem</h2>
 
-<p class="text-gray-600 mb-8">
+
+
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Business Problem</h2>
+<div class="w-16 h-1 bg-blue-600 mb-6"></div>
+
+<p class="text-gray-600 dark:text-gray-300 mb-10">
 Blinkit operates a fast-delivery grocery model where operational efficiency
 and product mix significantly affect revenue performance. The objective of
 this analysis was to understand how revenue is distributed across products,
@@ -68,91 +114,56 @@ customers, and delivery performance, and whether delivery delays influence
 order value or revenue exposure.
 </p>
 
-<h2 class="text-2xl font-semibold mb-4">Analytical Questions</h2>
 
-<ul class="list-disc pl-6 text-gray-600 mb-10">
+
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Analytical Questions</h2>
+<div class="w-16 h-1 bg-blue-600 mb-6"></div>
+
+<ul class="list-disc pl-6 text-gray-600 dark:text-gray-300 mb-12">
+
 <li>Which products contribute the most to total revenue?</li>
 <li>How concentrated is revenue across top products?</li>
 <li>Do delivery delays impact average order value?</li>
 <li>Which stores contribute most to delayed orders?</li>
+
 </ul>
 
-<div class="bg-white p-8 rounded-xl shadow-md mb-12">
-<h2 class="text-2xl font-bold text-gray-800 mb-2">Data Model</h2>
-<div class="w-16 h-1 bg-blue-600 mb-6"></div>
-  
 
-<p class="text-gray-600 mb-6">
+
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md mb-12">
+
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Data Model</h2>
+<div class="w-16 h-1 bg-blue-600 mb-6"></div>
+
+<p class="text-gray-600 dark:text-gray-300 mb-6">
 The analysis was built using a star schema to create a scalable semantic model
 for reporting and KPI calculations.
 </p>
-  <img src="images/star_schema.png"
+
+<img src="images/star_schema.png"
 class="rounded-lg shadow-lg mb-10 w-full"
 alt="Blinkit Power BI Star Schema">
-  <p class="text-gray-600 mb-10">
+
+<p class="text-gray-600 dark:text-gray-300 mb-10">
 A star schema was designed to support scalable analytical queries and KPI
 calculations. A central fact table stores order-level transactions while
-dimension tables capture customer, product, and time attributes. This
-structure simplifies aggregation and improves performance for BI reporting.
+dimension tables capture customer, product, and time attributes.
 </p>
-<ul class="list-disc pl-6 text-gray-600 mb-10">
-<li><strong>Fact Table:</strong> Orders</li>
-<li><strong>Dimension Tables:</strong> Products, Customers, Stores, Delivery</li>
-<li><strong>Model Type:</strong> Star Schema</li>
-</ul>
 
 </div>
 
-<div class="bg-white p-8 rounded-xl shadow-md mb-12">
-<h2 class="text-2xl font-bold text-gray-800 mb-2">Key Metrics</h2>
+
+
+
+<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md mb-12">
+
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Metric Design (DAX)</h2>
 <div class="w-16 h-1 bg-blue-600 mb-6"></div>
 
-<ul class="list-disc pl-6 text-gray-600 mb-10">
-<li>Total Revenue</li>
-<li>Average Order Value (AOV)</li>
-<li>% Orders Delayed</li>
-<li>Revenue from Delayed Orders</li>
-<li>% Revenue from Top 10 Products</li>
-</ul>
-
-<h2 class="text-2xl font-bold text-gray-800 mb-2">Metric Design (DAX)</h2>
-<div class="w-16 h-1 bg-blue-600 mb-6"></div>
-
-<p class="text-gray-600 mb-6">
+<p class="text-gray-600 dark:text-gray-300 mb-6">
 A semantic metric layer was implemented using DAX measures to standardize
-KPI definitions across the Power BI report. These measures power all
-dashboard visuals and ensure consistent calculations across different
-analytical views.
-</p>
-
-<p class="text-gray-600 mb-6">
-The metric layer focuses on three analytical themes:
-revenue performance, operational delivery efficiency, and revenue
-concentration patterns.
-</p>
-
-<h3 class="text-xl font-semibold mb-4">Core KPI Measures</h3>
-
-<ul class="list-disc pl-6 text-gray-600 mb-8">
-
-<li><strong>Total Revenue</strong> – Total sales generated from all order transactions.</li>
-
-<li><strong>Total Orders</strong> – Distinct count of orders placed on the platform.</li>
-
-<li><strong>Average Order Value (AOV)</strong> – Average revenue generated per order.</li>
-
-<li><strong>% Orders Delayed</strong> – Percentage of orders delivered later than the promised delivery window.</li>
-
-<li><strong>% Revenue from Delayed Orders</strong> – Measures revenue exposure associated with delayed deliveries.</li>
-
-<li><strong>Cumulative Revenue % (Pareto)</strong> – Used to identify long-tail revenue concentration across products and customers.</li>
-
-</ul>
-
-<h3 class="text-xl font-semibold mb-4">Example DAX Measures</h3>
-
-<p class="text-gray-600 mb-4">
-Below are examples of DAX measures used to power key KPIs in the report.
+KPI definitions across the Power BI report.
 </p>
 
 <pre class="bg-gray-900 text-green-300 p-4 rounded-lg overflow-x-auto mb-6">
@@ -173,136 +184,124 @@ DIVIDE(
 
 </div>
 
-<div class="bg-white p-8 rounded-xl shadow-md mb-12">
-  <h2 class="text-3xl font-bold mb-6">Power BI Dashboard</h2>
- 
-<h2 class="text-2xl font-bold text-gray-800 mb-2">Dashboard Walkthrough</h2>
-<div class="w-16 h-1 bg-blue-600 mb-6"></div>
-<p class="text-gray-600 mb-10">
-The Power BI report consists of four analytical views designed to evaluate
-revenue structure, operational performance, and delivery delay impact.
-</p>
 
-  <h3 class="text-xl font-semibold mb-4">Business Baseline</h3>
-  <div class="mb-12">
+
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md mb-12">
+
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+Power BI Dashboard
+</h2>
+
+<div class="w-16 h-1 bg-blue-600 mb-8"></div>
+
+
+<h3 class="text-xl font-semibold mb-4 dark:text-white">Business Baseline</h3>
+
 <img src="images/dashboard_business_baseline.png"
-class="rounded-lg shadow-lg w-full"
-alt="Blinkit Business Baseline Dashboard">
-</div>
-  
-  <h3 class="text-xl font-semibold mb-4">Revenue Structure</h3>
-<div class="mb-12">
-  <img src="images/dashboard_revenue_structure.png"
-class="rounded-lg shadow-lg mb-10 w-full"
-alt="Revenue Structure Dashboard">
-  </div>
-  
-  <h3 class="text-xl font-semibold mb-4">Operational Performance</h3>
-<div class="mb-12">
-  <img src="images/dashboard_operational_performance.png"
-class="rounded-lg shadow-lg mb-10 w-full"
-alt="Operational Performance Dashboard">
-  </div>
+class="rounded-lg shadow-lg mb-12 w-full">
 
-    <h3 class="text-xl font-semibold mb-4">Impact Analysis</h3>
+
+<h3 class="text-xl font-semibold mb-4 dark:text-white">Revenue Structure</h3>
+
+<img src="images/dashboard_revenue_structure.png"
+class="rounded-lg shadow-lg mb-12 w-full">
+
+
+<h3 class="text-xl font-semibold mb-4 dark:text-white">Operational Performance</h3>
+
+<img src="images/dashboard_operational_performance.png"
+class="rounded-lg shadow-lg mb-12 w-full">
+
+
+<h3 class="text-xl font-semibold mb-4 dark:text-white">Impact Analysis</h3>
+
 <img src="images/dashboard_impact_analysis.png"
-class="rounded-lg shadow-lg mb-10 w-full"
-alt="Impact Analysis Dashboard">
-</div>  
+class="rounded-lg shadow-lg mb-12 w-full">
 
-  <div class="bg-white p-8 rounded-xl shadow-md mb-12">
-  <h2 class="text-2xl font-bold text-gray-800 mb-2">Report Pages</h2>
+</div>
+
+
+
+
+<div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl shadow-md mb-12">
+
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Key Insights</h2>
 <div class="w-16 h-1 bg-blue-600 mb-6"></div>
 
-<ul class="list-disc pl-6 text-gray-600 mb-10">
-
-<li><strong>Sales Performance Overview</strong> – Executive KPIs including revenue, average order value, and delayed order percentage.</li>
-
-<li><strong>Product Performance</strong> – Product revenue distribution and Pareto analysis identifying top revenue-generating items.</li>
-
-<li><strong>Customer Performance</strong> – Customer segment contribution to total revenue.</li>
-
-<li><strong>Delivery & Operations</strong> – Analysis of delivery delays and operational performance.</li>
-
-<li><strong>Store Comparison</strong> – Store-level delay rates and operational efficiency comparisons.</li>
-
-<li><strong>Operations Impact</strong> – Evaluation of how delivery delays affect revenue outcomes.</li>
-
-</ul>
-</div> 
-<div class="bg-white p-8 rounded-xl shadow-md mb-12">
-<h2 class="text-2xl font-bold text-gray-800 mb-2">Key Insights</h2>
-<div class="w-16 h-1 bg-blue-600 mb-6"></div>
 <img src="images/delay_bucket_aov.png"
-class="rounded-lg shadow-lg mb-6 w-full max-w-2xl mx-auto"
-alt="Average Order Value by Delay Bucket">
-<p class="text-sm text-gray-500 text-center mb-8">
-Average order value remains stable across delay buckets, suggesting
-delivery delays impact revenue through order frequency rather than basket size.
+class="rounded-lg shadow-lg mb-6 w-full max-w-2xl mx-auto">
+
+<p class="text-sm text-gray-500 dark:text-gray-400 text-center mb-8">
+Average order value remains stable across delay buckets.
 </p>
-<ul class="list-disc pl-6 text-gray-600 mb-10">
+
+<ul class="list-disc pl-6 text-gray-600 dark:text-gray-300">
 
 <li>Approximately 30.6% of orders experienced delivery delays.</li>
-
-<li>Average order value for delayed and on-time orders remained nearly identical.</li>
-
-<li>Revenue impact from delays is driven by the volume of delayed orders rather than reduced basket size.</li>
-
-<li>Product revenue follows a long-tail distribution where a small group of products generates a large portion of total sales.</li>
-
-<li>Operational delays are concentrated in specific stores rather than evenly distributed across locations.</li>
+<li>AOV for delayed vs on-time orders remained stable.</li>
+<li>Revenue impact comes from delayed order volume.</li>
+<li>Revenue follows a long-tail product distribution.</li>
 
 </ul>
+
 </div>
 
-<div class="bg-white p-8 rounded-xl shadow-md mb-12">
-<h2 class="text-2xl font-bold text-gray-800 mb-2">Business Recommendations</h2>
+
+
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-md mb-12">
+
+<h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+Business Recommendations
+</h2>
+
 <div class="w-16 h-1 bg-blue-600 mb-6"></div>
 
-<ul class="list-disc pl-6 text-gray-600 mb-10">
+<ul class="list-disc pl-6 text-gray-600 dark:text-gray-300">
 
-<li>Monitor delivery delay percentage as a core operational KPI.</li>
-
-<li>Investigate stores with consistently high delay times to identify
-logistics bottlenecks.</li>
-
-<li>Prioritize inventory availability for high-revenue product categories
-to protect revenue concentration.</li>
-
-<li>Implement operational dashboards for real-time delay monitoring.</li>
+<li>Monitor delivery delay percentage as a core KPI.</li>
+<li>Investigate stores with consistently high delays.</li>
+<li>Prioritize high-revenue categories for inventory availability.</li>
+<li>Implement operational dashboards for delay monitoring.</li>
 
 </ul>
 
 </div>
+
+
+
+
 <div class="mt-12 flex flex-wrap gap-4">
 
 <a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis"
 target="_blank"
-class="inline-flex items-center bg-gray-800 text-white px-5 py-2 rounded-lg
-hover:bg-gray-900 transition-all duration-300 font-semibold">
+class="inline-flex items-center bg-gray-800 text-white px-5 py-2 rounded-lg hover:bg-gray-900 font-semibold">
 
 View on GitHub
 
 </a>
 
+
 <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda"
 target="_blank"
-class="inline-flex items-center bg-green-600 text-white px-5 py-2 rounded-lg
-hover:bg-green-700 transition-all duration-300 font-semibold">
+class="inline-flex items-center bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 font-semibold">
 
 Read Medium Article
 
 </a>
 
+
 <a href="../../projects.html"
-class="inline-flex items-center border border-gray-400 text-gray-700 px-5 py-2 rounded-lg
-hover:bg-gray-100 transition-all duration-300 font-semibold">
+class="inline-flex items-center border border-gray-400 text-gray-700 dark:text-gray-300 px-5 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 font-semibold">
 
 ← Back to Projects
 
 </a>
 
 </div>
+
+
 </div>
 
 </section>
