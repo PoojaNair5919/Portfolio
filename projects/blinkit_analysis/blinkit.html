@@ -94,6 +94,8 @@ structure simplifies aggregation and improves performance for BI reporting.
 </ul>
 
 </div>
+
+<div class="bg-white p-8 rounded-xl shadow-md mb-12">
 <h2 class="text-2xl font-semibold mb-4">Key Metrics</h2>
 
 <ul class="list-disc pl-6 text-gray-600 mb-10">
@@ -103,6 +105,63 @@ structure simplifies aggregation and improves performance for BI reporting.
 <li>Revenue from Delayed Orders</li>
 <li>% Revenue from Top 10 Products</li>
 </ul>
+
+<h2 class="text-2xl font-semibold mb-4">Metric Design (DAX)</h2>
+
+<p class="text-gray-600 mb-6">
+A semantic metric layer was implemented using DAX measures to standardize
+KPI definitions across the Power BI report. These measures power all
+dashboard visuals and ensure consistent calculations across different
+analytical views.
+</p>
+
+<p class="text-gray-600 mb-6">
+The metric layer focuses on three analytical themes:
+revenue performance, operational delivery efficiency, and revenue
+concentration patterns.
+</p>
+
+<h3 class="text-xl font-semibold mb-4">Core KPI Measures</h3>
+
+<ul class="list-disc pl-6 text-gray-600 mb-8">
+
+<li><strong>Total Revenue</strong> – Total sales generated from all order transactions.</li>
+
+<li><strong>Total Orders</strong> – Distinct count of orders placed on the platform.</li>
+
+<li><strong>Average Order Value (AOV)</strong> – Average revenue generated per order.</li>
+
+<li><strong>% Orders Delayed</strong> – Percentage of orders delivered later than the promised delivery window.</li>
+
+<li><strong>% Revenue from Delayed Orders</strong> – Measures revenue exposure associated with delayed deliveries.</li>
+
+<li><strong>Cumulative Revenue % (Pareto)</strong> – Used to identify long-tail revenue concentration across products and customers.</li>
+
+</ul>
+
+<h3 class="text-xl font-semibold mb-4">Example DAX Measures</h3>
+
+<p class="text-gray-600 mb-4">
+Below are examples of DAX measures used to power key KPIs in the report.
+</p>
+
+<pre class="bg-gray-900 text-green-300 p-4 rounded-lg overflow-x-auto mb-6">
+AOV =
+DIVIDE(
+    [Total Revenue],
+    DISTINCTCOUNT(FactOrderItems[order_id])
+)
+</pre>
+
+<pre class="bg-gray-900 text-green-300 p-4 rounded-lg overflow-x-auto">
+% Orders Delayed =
+DIVIDE(
+    [Delayed Orders],
+    [Total Orders]
+)
+</pre>
+
+</div>
 
 <div class="bg-white p-8 rounded-xl shadow-md mb-12">
   <h2 class="text-3xl font-bold mb-6">Power BI Dashboard</h2>
@@ -181,6 +240,8 @@ delivery delays impact revenue through order frequency rather than basket size.
 
 </ul>
 </div>
+
+<div class="bg-white p-8 rounded-xl shadow-md mb-12">
 <h2 class="text-2xl font-semibold mb-4">Business Recommendations</h2>
 
 <ul class="list-disc pl-6 text-gray-600 mb-10">
@@ -197,7 +258,7 @@ to protect revenue concentration.</li>
 
 </ul>
 
-
+</div>
 <div class="flex gap-4 mt-10">
 
 <a href="../projects.html"
