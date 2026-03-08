@@ -183,7 +183,7 @@ to {
  </head>
  <body class="bg-white dark:bg-gray-950 transition-colors duration-300">
   <!-- Theme Toggle Button --> <button onclick="toggleDarkMode()"
-class="fixed top-6 right-6 bg-yellow-400 dark:bg-yellow-500 text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center">
+class="fixed top-6 right-6 bg-yellow-400 dark:bg-yellow-500 text-gray-900 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 flex items-center justify-center">
 
 <svg id="themeIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
@@ -351,69 +351,28 @@ Blinkit Sales & Operations<br>
    </div>
   </section>
  <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d90956183d9c08b',t:'MTc3Mjk1OTczNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
- <script>
+
+  <script>
 
 const html = document.documentElement
 
-// Load saved theme
-const savedTheme = localStorage.getItem("theme")
-
-if (savedTheme === "dark") {
-  html.classList.add("dark")
-}
-
-// Toggle theme
 function toggleDarkMode() {
 
-  html.classList.toggle("dark")
+    html.classList.toggle("dark")
 
-  const isDark = html.classList.contains("dark")
+    const isDark = html.classList.contains("dark")
 
-  localStorage.setItem("theme", isDark ? "dark" : "light")
-
-}
-
-// Image modal
-function openModal(imgElement) {
-
-  const modal = document.getElementById("imageModal")
-  const modalImg = document.getElementById("modalImage")
-
-  modalImg.src = imgElement.src
-  modalImg.alt = imgElement.alt
-
-  modal.classList.add("active")
+    localStorage.setItem("theme", isDark ? "dark" : "light")
 
 }
 
-function closeModal() {
+document.addEventListener("DOMContentLoaded", function(){
 
-  const modal = document.getElementById("imageModal")
+    const savedTheme = localStorage.getItem("theme")
 
-  modal.classList.remove("active")
-
-}
-
-// Modal behaviour
-document.addEventListener("DOMContentLoaded", function () {
-
-  const modal = document.getElementById("imageModal")
-
-  modal.addEventListener("click", function (event) {
-
-    if (event.target === modal) {
-      closeModal()
+    if(savedTheme === "dark"){
+        html.classList.add("dark")
     }
-
-  })
-
-  document.addEventListener("keydown", function (event) {
-
-    if (event.key === "Escape") {
-      closeModal()
-    }
-
-  })
 
 })
 
