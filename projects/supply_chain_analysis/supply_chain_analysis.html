@@ -1,251 +1,686 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supply Chain Analytics Dashboard</title>
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Supply Chain Analytics Dashboard</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+        html, body { height: 100%; margin: 0; }
+        .scroll-wrapper { height: 100%; overflow: auto; transition: background-color 0.3s ease; }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f5f5f5;
-            color: #333;
+        /* Theme colors - CSS Variables */
+        :root {
+            --bg-light: #faf7f5;
+            --bg-dark: #0a0e1a;
+            --surface-light: #f5f0f8;
+            --surface-dark: #2d1b4e;
+            --text-light: #1f1a35;
+            --text-dark: #e8d5ff;
+            --primary-light: #a855f7;
+            --primary-dark: #d8b4fe;
+            --secondary-light: #7c3aed;
+            --secondary-dark: #c084fc;
+            --accent-light: #d8b4fe;
+            --accent-dark: #a855f7;
+            
+            /* Active theme (light by default) */
+            --bg: var(--bg-light);
+            --surface: var(--surface-light);
+            --text: var(--text-light);
+            --primary: var(--primary-light);
+            --secondary: var(--secondary-light);
+            --accent: var(--accent-light);
         }
 
-        .container {
-            width: 85%;
-            margin: auto;
-            padding: 40px 0;
+        /* Dark theme override */
+        .scroll-wrapper.dark {
+            --bg: var(--bg-dark);
+            --surface: var(--surface-dark);
+            --text: var(--text-dark);
+            --primary: var(--primary-dark);
+            --secondary: var(--secondary-dark);
+            --accent: var(--accent-dark);
         }
 
-        h1 {
-            font-size: 40px;
-            margin-bottom: 10px;
+        /* Animated gradient border */
+        @keyframes borderShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .gradient-border {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #3b82f6);
+            background-size: 200% 200%;
+            animation: borderShift 4s ease infinite;
+        }
+        
+        .scroll-wrapper.dark .gradient-border {
+            background: linear-gradient(135deg, #d8b4fe, #8b5cf6, #d8b4fe);
         }
 
-        h2 {
-            margin-top: 40px;
-            color: #222;
+        /* Staggered fade-in */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up {
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+        .fade-up-1 { animation-delay: 0.1s; }
+        .fade-up-2 { animation-delay: 0.25s; }
+        .fade-up-3 { animation-delay: 0.4s; }
+        .fade-up-4 { animation-delay: 0.55s; }
+        .fade-up-5 { animation-delay: 0.7s; }
+        .fade-up-6 { animation-delay: 0.85s; }
+        .fade-up-7 { animation-delay: 1.0s; }
+        .fade-up-8 { animation-delay: 1.15s; }
+
+        /* Stat counter pulse */
+        @keyframes pulseStat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+        }
+        .stat-pulse:hover { animation: pulseStat 0.6s ease; }
+
+        /* Smooth link hover */
+        .link-btn {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);
         }
 
-        p {
-            line-height: 1.6;
+        /* Section card hover */
+        .section-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.08);
         }
 
-        .subtitle {
-            font-size: 18px;
-            color: #555;
-            margin-bottom: 20px;
+        /* Tag chip */
+        .tech-tag {
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .tech-tag:hover {
+            background-color: #a855f7;
+            color: #ffffff;
+        }
+        
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--surface);
+            border: 1px solid #e9d5ff;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.15);
+        }
+        
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.25);
+        }
+        
+        .scroll-wrapper.dark .theme-toggle {
+            background: #1a1730;
+            border-color: #a78bfa33;
         }
 
-        .links a {
-            display: inline-block;
-            margin-right: 15px;
-            margin-top: 10px;
-            padding: 10px 15px;
-            background-color: #6a0dad;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
+        /* Light mode background */
+        .scroll-wrapper {
+            background: linear-gradient(135deg, #fff5f3 0%, #fef8f5 25%, #f8f3ff 50%, #f5eff8 75%, #fff5f3 100%);
         }
 
-        .links a:hover {
-            background-color: #4b0082;
+        /* Dark mode background */
+        .scroll-wrapper.dark {
+            background: #0f0f1a;
         }
 
-        .section {
-            background: white;
-            padding: 25px;
-            margin-top: 25px;
-            border-radius: 8px;
+        /* Light mode text colors - FIXED */
+        .scroll-wrapper h1, 
+        .scroll-wrapper h2 {
+            color: #1e3a8a;
+            transition: color 0.3s ease;
         }
 
-        img {
-            width: 100%;
-            margin-top: 15px;
-            border-radius: 6px;
+        .scroll-wrapper p,
+        .scroll-wrapper span {
+            color: #1e40af;
+            transition: color 0.3s ease;
         }
 
-        ul {
-            padding-left: 20px;
+        /* Dark mode text colors */
+        .scroll-wrapper.dark h1,
+        .scroll-wrapper.dark h2 {
+            color: #d8b4fe;
         }
 
-        .highlight {
-            font-weight: bold;
-            font-size: 18px;
+        .scroll-wrapper.dark p,
+        .scroll-wrapper.dark span {
+            color: #b3d9ff;
         }
 
-    </style>
-</head>
+        /* Light mode sections */
+        .section-card {
+            background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+            border: 1px solid #bfdbfe;
+        }
 
-<body>
+        .stat-pulse {
+            background: linear-gradient(135deg, #dbeafe, #e0e7ff);
+            border: 1px solid #93c5fd;
+        }
 
-<div class="container">
+        /* Dark mode sections */
+        .scroll-wrapper.dark .section-card {
+            background: linear-gradient(135deg, #1a2e4e, #253d5f);
+            border-color: #0066cc44;
+        }
 
+        .scroll-wrapper.dark .stat-pulse {
+            background: linear-gradient(135deg, #1a2e4e, #253d5f);
+            border-color: #0066cc;
+        }
+
+        /* Tech tags light mode */
+        .tech-tag {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            color: #ffffff;
+            border: none;
+        }
+
+        /* Tech tags dark mode */
+        .scroll-wrapper.dark .tech-tag {
+            background: #1a1730;
+            color: #d8b4fe;
+            border: 1px solid #a78bfa55;
+        }
+
+        /* Stat numbers in light mode - FIXED */
+        .scroll-wrapper .stat-number {
+            color: #1e40af;
+        }
+
+        .scroll-wrapper .stat-label {
+            color: #3b82f6;
+        }
+
+        /* Stat numbers in dark mode */
+        .scroll-wrapper.dark .stat-number {
+            color: #d8b4fe;
+        }
+
+        .scroll-wrapper.dark .stat-label {
+            color: #b3d9ff;
+        }
+
+        /* Dark mode icon colors */
+        .scroll-wrapper.dark [data-lucide] {
+            color: #60a5fa !important;
+        }
+
+        /* Dark mode inline backgrounds - override inline styles */
+        .scroll-wrapper.dark .section-card > div[style*="background"] {
+            background: linear-gradient(135deg, #1a2e4e, #253d5f) !important;
+        }
+
+        .scroll-wrapper.dark .section-card div[class*="rounded-xl"][style*="background:linear-gradient"] {
+            background: linear-gradient(135deg, #1e293b, #1e3a5f) !important;
+            border-color: #334155 !important;
+        }
+
+        /* Dark mode for Approach cards */
+        .scroll-wrapper.dark .section-card div[style*="background:linear-gradient(135deg, #3b82f6"],
+        .scroll-wrapper.dark .section-card div[style*="background:linear-gradient(135deg, #8b5cf6"],
+        .scroll-wrapper.dark .section-card div[style*="background:linear-gradient(135deg, #6366f1"],
+        .scroll-wrapper.dark .section-card div[style*="background:linear-gradient(135deg, #2563eb"] {
+            background: linear-gradient(135deg, #1e3a8a, #312e81) !important;
+        }
+
+        /* Dark mode for Executive Overview cards */
+        .scroll-wrapper.dark section div[style*="rounded-xl p-4 text-center"] {
+            background: linear-gradient(135deg, #1e3a8a, #312e81) !important;
+        }
+
+        /* Dark mode text colors - override inline styles */
+        .scroll-wrapper.dark h1,
+        .scroll-wrapper.dark h2,
+        .scroll-wrapper.dark p,
+        .scroll-wrapper.dark span {
+            color: #cbd5e1 !important;
+        }
+
+        .scroll-wrapper.dark strong {
+            color: #e0e7ff !important;
+        }
+
+        /* Dark mode SVG text */
+        .scroll-wrapper.dark svg text {
+            fill: #cbd5e1 !important;
+        }
+
+        /* Dark mode SVG shapes */
+        .scroll-wrapper.dark svg rect,
+        .scroll-wrapper.dark svg line {
+            stroke: #60a5fa !important;
+            fill: #1e3a8a !important;
+        }
+
+        /* Dark mode for problem highlight */
+        .scroll-wrapper.dark #problem-highlight {
+            color: #e0e7ff !important;
+        }
+
+        /* Dark mode for checkmark backgrounds */
+        .scroll-wrapper.dark .space-y-4 > div > div[style*="background-color:#3b82f6"] {
+            background-color: #3b82f6 !important;
+        }
+
+        /* Dark mode for CTA buttons */
+        .scroll-wrapper.dark .link-btn[style*="background:linear-gradient"] {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6) !important;
+        }
+
+        .scroll-wrapper.dark .link-btn[style*="border-color:#3b82f6"] {
+            border-color: #60a5fa !important;
+            color: #60a5fa !important;
+        }
+
+        /* Dark mode for footer */
+        .scroll-wrapper.dark .gradient-border > div {
+            background: linear-gradient(135deg, #1a2438, #1e2a47) !important;
+        }
+
+        /* Dark mode preserve white text in gradient cards */
+        .scroll-wrapper.dark .section-card div[style*="color:#ffffff"] * {
+            color: #ffffff !important;
+        }
+
+        /* Dark mode for tech tags - keep as is in dark mode */
+        .scroll-wrapper.dark .tech-tag {
+            background: linear-gradient(135deg, #1e3a8a, #312e81) !important;
+            color: #cbd5e1 !important;
+        }
+
+        /* Dark mode for dashboard image placeholder */
+        .scroll-wrapper.dark section div[style*="Executive Dashboard Preview"] {
+            background: linear-gradient(135deg, #1e293b, #1e3a5f) !important;
+            border-color: #334155 !important;
+        }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full">
+  <div class="scroll-wrapper w-full">
+   <!-- Theme toggle button --> 
+   <button id="theme-toggle" class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode"> 
+     <i id="theme-icon" data-lucide="moon" style="width:20px;height:20px;color:#3b82f6;"></i> 
+   </button> 
+   
+   <!-- Decorative top bar -->
+   <div class="gradient-border w-full" style="height: 4px;"></div>
+   
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
     <!-- HERO -->
-    <section class="section">
-        <h1>Supply Chain Analytics Dashboard</h1>
-
-        <p class="subtitle">
-            Exploring global supply chain performance across revenue, logistics, and customer behavior using Power BI.
-        </p>
-
-        <div class="links">
-            <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank">
-                📄 Read Full Analysis (Medium)
-            </a>
-
-            <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank">
-                💻 View Code & Project Files (GitHub)
-            </a>
-        </div>
-
-        <img src="images/dashboard_gif.gif" alt="Dashboard Demo">
+    <section class="fade-up fade-up-1 mb-10">
+     <div class="flex items-center gap-3 mb-6">
+      <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg, #3b82f6, #8b5cf6);">
+       <i data-lucide="bar-chart-3" style="width:20px;height:20px;color:#ffffff;"></i>
+      </div>
+      <span class="text-xs font-medium tracking-widest uppercase" style="font-family:'DM Sans',sans-serif;color:#3b82f6;letter-spacing:0.15em;">Data Analytics Project</span>
+     </div>
+     <h1 id="hero-title" style="font-family:'Playfair Display',serif;font-size:2.8rem;line-height:1.15;font-weight:800;margin:0 0 16px 0;">Supply Chain Analytics Dashboard</h1>
+     <p id="hero-subtitle" style="font-family:'DM Sans',sans-serif;font-size:1.15rem;line-height:1.7;margin:0 0 28px 0;">Exploring global supply chain performance across revenue, logistics, and customer behavior using Power BI.</p>
+     <div class="flex flex-wrap gap-3 mb-8">
+      <a id="medium-link" href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" rel="noopener noreferrer" class="link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold" style="font-family:'DM Sans',sans-serif;background:linear-gradient(135deg, #3b82f6, #8b5cf6);color:#ffffff;"> 
+       <i data-lucide="file-text" style="width:16px;height:16px;"></i> Read Full Analysis 
+      </a> 
+      <a id="github-link" href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" rel="noopener noreferrer" class="link-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold border" style="font-family:'DM Sans',sans-serif;background:transparent;color:#3b82f6;border-color:#3b82f6;"> 
+       <i data-lucide="github" style="width:16px;height:16px;"></i> View on GitHub 
+      </a>
+     </div>
+     
+     <!-- Tech tags -->
+     <div class="flex flex-wrap gap-2 tech-tags-container">
+      <span class="tech-tag px-3 py-1 rounded-full text-xs font-medium cursor-default" style="font-family:'DM Sans',sans-serif;">Python</span> 
+      <span class="tech-tag px-3 py-1 rounded-full text-xs font-medium cursor-default" style="font-family:'DM Sans',sans-serif;">Pandas</span> 
+      <span class="tech-tag px-3 py-1 rounded-full text-xs font-medium cursor-default" style="font-family:'DM Sans',sans-serif;">Power BI</span> 
+      <span class="tech-tag px-3 py-1 rounded-full text-xs font-medium cursor-default" style="font-family:'DM Sans',sans-serif;">DAX</span> 
+      <span class="tech-tag px-3 py-1 rounded-full text-xs font-medium cursor-default" style="font-family:'DM Sans',sans-serif;">Star Schema</span>
+     </div>
     </section>
-
-
-    <!-- PROBLEM -->
-    <section class="section">
-        <h2>The Problem</h2>
-
-        <p>
-            While analyzing a global supply chain dataset with over 180,000 order records, one issue stood out.
-        </p>
-
-        <p class="highlight">
-            Nearly 35% of all orders were delivered later than scheduled.
-        </p>
-
-        <p>
-            This raises important questions around logistics efficiency, operational planning, and delivery performance.
-        </p>
+    
+    <!-- STATS ROW -->
+    <section class="fade-up fade-up-2 grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10">
+     <div class="stat-pulse rounded-xl p-5 text-center">
+      <div class="stat-number" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;">180K+</div>
+      <div class="stat-label" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;margin-top:4px;">Orders Analyzed</div>
+     </div>
+     <div class="stat-pulse rounded-xl p-5 text-center">
+      <div id="stat-highlight" class="stat-number" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;">~35%</div>
+      <div class="stat-label" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;margin-top:4px;">Late Deliveries</div>
+     </div>
+     <div class="stat-pulse rounded-xl p-5 text-center">
+      <div class="stat-number" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;">5</div>
+      <div class="stat-label" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;margin-top:4px;">Dashboard Pages</div>
+     </div>
+     <div class="stat-pulse rounded-xl p-5 text-center">
+      <div class="stat-number" style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;">Global</div>
+      <div class="stat-label" style="font-family:'DM Sans',sans-serif;font-size:0.78rem;margin-top:4px;">Market Coverage</div>
+     </div>
     </section>
-
-
+    
+    <!-- THE PROBLEM -->
+    <section class="fade-up fade-up-3 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-4">
+      <i data-lucide="alert-triangle" style="width:20px;height:20px;color:#3b82f6;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">The Problem</h2>
+     </div>
+     <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 16px 0;">While analyzing a global supply chain dataset with over 180,000 order records, one issue stood out:</p>
+     <div class="rounded-xl p-5 my-4" style="background: linear-gradient(135deg, #dbeafe, #e0e7ff);border-left:4px solid #3b82f6;">
+      <p id="problem-highlight" style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;margin:0;">Nearly 35% of all orders were delivered later than scheduled.</p>
+     </div>
+     <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:16px 0 0 0;">This raises important questions around logistics efficiency, operational planning, and delivery performance.</p>
+    </section>
+    
     <!-- APPROACH -->
-    <section class="section">
-        <h2>Approach</h2>
-
-        <ul>
-            <li>Data cleaning and preprocessing using Python (Pandas)</li>
-            <li>Star schema data modeling</li>
-            <li>KPI creation using DAX</li>
-            <li>Interactive dashboard development in Power BI</li>
-        </ul>
+    <section class="fade-up fade-up-4 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-5">
+      <i data-lucide="compass" style="width:20px;height:20px;color:#1e40af;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Approach</h2>
+     </div>
+     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #3b82f6, #2563eb);color:#ffffff;">
+       <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:rgba(255,255,255,0.2);">
+        <i data-lucide="code" style="width:16px;height:16px;color:#ffffff;"></i>
+       </div>
+       <div>
+        <div style="font-family:'DM Sans',sans-serif;color:#ffffff;font-size:0.9rem;font-weight:600;">Data Cleaning</div>
+        <div style="font-family:'DM Sans',sans-serif;color:#dbeafe;font-size:0.8rem;margin-top:2px;">Python &amp; Pandas preprocessing</div>
+       </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #8b5cf6, #7c3aed);color:#ffffff;">
+       <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:rgba(255,255,255,0.2);">
+        <i data-lucide="database" style="width:16px;height:16px;color:#ffffff;"></i>
+       </div>
+       <div>
+        <div style="font-family:'DM Sans',sans-serif;color:#ffffff;font-size:0.9rem;font-weight:600;">Star Schema</div>
+        <div style="font-family:'DM Sans',sans-serif;color:#f3e8ff;font-size:0.8rem;margin-top:2px;">Optimized data modeling</div>
+       </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #6366f1, #8b5cf6);color:#ffffff;">
+       <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:rgba(255,255,255,0.2);">
+        <i data-lucide="calculator" style="width:16px;height:16px;color:#ffffff;"></i>
+       </div>
+       <div>
+        <div style="font-family:'DM Sans',sans-serif;color:#ffffff;font-size:0.9rem;font-weight:600;">DAX Measures</div>
+        <div style="font-family:'DM Sans',sans-serif;color:#e0e7ff;font-size:0.8rem;margin-top:2px;">Custom KPI calculations</div>
+       </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #2563eb, #3b82f6);color:#ffffff;">
+       <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:rgba(255,255,255,0.2);">
+        <i data-lucide="layout-dashboard" style="width:16px;height:16px;color:#ffffff;"></i>
+       </div>
+       <div>
+        <div style="font-family:'DM Sans',sans-serif;color:#ffffff;font-size:0.9rem;font-weight:600;">Power BI Dashboard</div>
+        <div style="font-family:'DM Sans',sans-serif;color:#dbeafe;font-size:0.8rem;margin-top:2px;">Interactive visualizations</div>
+       </div>
+      </div>
+     </div>
     </section>
-
-
+    
     <!-- DATA MODEL -->
-    <section class="section">
-        <h2>Data Model</h2>
-
-        <p>
-            The dataset was structured using a star schema to enable efficient and scalable analysis across multiple dimensions.
-        </p>
-
-        <img src="images/star_schema.jpg" alt="Star Schema">
+    <section class="fade-up fade-up-5 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-4">
+      <i data-lucide="git-branch" style="width:20px;height:20px;color:#6d28d9;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Data Model</h2>
+     </div>
+     <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">The dataset was structured using a star schema to enable efficient and scalable analysis across multiple dimensions.</p>
+     <!-- Schema diagram -->
+     <div class="rounded-xl p-8 flex flex-col items-center justify-center" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:180px;">
+      <svg width="200" height="140" viewbox="0 0 200 140" fill="none">
+       <!-- Center fact table --> 
+       <rect x="65" y="45" width="70" height="50" rx="8" fill="#3b82f6" opacity="0.15" stroke="#2563eb" stroke-width="2" /> 
+       <text x="100" y="67" text-anchor="middle" fill="#1e40af" font-size="9" font-family="DM Sans" font-weight="700">FACT</text> 
+       <text x="100" y="80" text-anchor="middle" fill="#3b82f6" font-size="7" font-family="DM Sans" opacity="0.9">Orders</text> 
+       <!-- Dimension tables --> 
+       <rect x="5" y="5" width="55" height="30" rx="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" opacity="0.9" /> 
+       <text x="32" y="24" text-anchor="middle" fill="#1e40af" font-size="7" font-family="DM Sans" font-weight="600">Customers</text> 
+       <line x1="58" y1="30" x2="72" y2="50" stroke="#3b82f6" stroke-width="1.5" opacity="0.7" /> 
+       <rect x="140" y="5" width="55" height="30" rx="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" opacity="0.9" /> 
+       <text x="167" y="24" text-anchor="middle" fill="#1e40af" font-size="7" font-family="DM Sans" font-weight="600">Products</text> 
+       <line x1="143" y1="30" x2="130" y2="50" stroke="#3b82f6" stroke-width="1.5" opacity="0.7" /> 
+       <rect x="5" y="105" width="55" height="30" rx="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" opacity="0.9" /> 
+       <text x="32" y="124" text-anchor="middle" fill="#1e40af" font-size="7" font-family="DM Sans" font-weight="600">Markets</text> 
+       <line x1="58" y1="110" x2="72" y2="90" stroke="#3b82f6" stroke-width="1.5" opacity="0.7" /> 
+       <rect x="140" y="105" width="55" height="30" rx="5" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5" opacity="0.9" /> 
+       <text x="167" y="124" text-anchor="middle" fill="#1e40af" font-size="7" font-family="DM Sans" font-weight="600">Shipping</text> 
+       <line x1="143" y1="110" x2="130" y2="90" stroke="#3b82f6" stroke-width="1.5" opacity="0.7" />
+      </svg>
+      <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.75rem;margin-top:12px;font-weight:500;">Star Schema Data Model</span>
+     </div>
     </section>
-
-
-    <!-- EXECUTIVE -->
-    <section class="section">
-        <h2>Executive Overview</h2>
-
-        <p>
-            A high-level summary of revenue, orders, profit, and delivery performance across global markets.
-        </p>
-
-        <img src="images/executive_supply_chain_overview.jpg" alt="Executive Dashboard">
+    
+    <!-- EXECUTIVE OVERVIEW -->
+    <section class="fade-up fade-up-6 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-4">
+      <i data-lucide="trending-up" style="width:20px;height:20px;color:#1e40af;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Executive Overview</h2>
+     </div>
+     <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">A high-level summary of revenue, orders, profit, and delivery performance across global markets.</p>
+     
+     <!-- Dashboard Image Placeholder -->
+     <div class="rounded-xl mb-6 flex items-center justify-center overflow-hidden" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:320px;">
+      <div class="text-center p-8">
+       <i data-lucide="image" style="width:48px;height:48px;color:#3b82f6;opacity:0.3;margin:0 auto 12px;display:block;"></i>
+       <p style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.9rem;margin:0;">Executive Dashboard Preview</p>
+       <p style="font-family:'DM Sans',sans-serif;color:#3b82f6;font-size:0.75rem;margin-top:4px;opacity:0.7;">Add your Power BI dashboard screenshot here</p>
+      </div>
+     </div>
+     
+     <!-- Mini chart visualization -->
+     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="rounded-xl p-4 text-center" style="background:linear-gradient(135deg, #3b82f6, #2563eb);">
+       <i data-lucide="dollar-sign" style="width:18px;height:18px;color:#ffffff;margin:0 auto 6px;display:block;"></i>
+       <div style="font-family:'DM Sans',sans-serif;color:#dbeafe;font-size:0.7rem;">Revenue</div>
+       <div style="font-family:'Playfair Display',serif;color:#ffffff;font-size:1rem;font-weight:700;">$12.4M</div>
+      </div>
+      <div class="rounded-xl p-4 text-center" style="background:linear-gradient(135deg, #8b5cf6, #7c3aed);">
+       <i data-lucide="package" style="width:18px;height:18px;color:#ffffff;margin:0 auto 6px;display:block;"></i>
+       <div style="font-family:'DM Sans',sans-serif;color:#f3e8ff;font-size:0.7rem;">Total Orders</div>
+       <div style="font-family:'Playfair Display',serif;color:#ffffff;font-size:1rem;font-weight:700;">180K+</div>
+      </div>
+      <div class="rounded-xl p-4 text-center" style="background:linear-gradient(135deg, #6366f1, #8b5cf6);">
+       <i data-lucide="pie-chart" style="width:18px;height:18px;color:#ffffff;margin:0 auto 6px;display:block;"></i>
+       <div style="font-family:'DM Sans',sans-serif;color:#e0e7ff;font-size:0.7rem;">Profit Margin</div>
+       <div style="font-family:'Playfair Display',serif;color:#ffffff;font-size:1rem;font-weight:700;">28.3%</div>
+      </div>
+      <div class="rounded-xl p-4 text-center" style="background:linear-gradient(135deg, #2563eb, #3b82f6);">
+       <i data-lucide="clock" style="width:18px;height:18px;color:#ffffff;margin:0 auto 6px;display:block;"></i>
+       <div style="font-family:'DM Sans',sans-serif;color:#dbeafe;font-size:0.7rem;">On-Time Rate</div>
+       <div style="font-family:'Playfair Display',serif;color:#ffffff;font-size:1rem;font-weight:700;">65%</div>
+      </div>
+     </div>
     </section>
-
-
-    <!-- LOGISTICS -->
-    <section class="section">
-        <h2>Logistics Performance</h2>
-
-        <p>
-            Analysis of delivery delays, shipping modes, and operational efficiency across regions.
-        </p>
-
-        <img src="images/logistics_performance.jpg" alt="Logistics Dashboard">
+    
+    <!-- LOGISTICS PERFORMANCE -->
+    <section class="fade-up fade-up-8 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-4">
+      <i data-lucide="truck" style="width:20px;height:20px;color:#1e40af;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Logistics Performance</h2>
+     </div>
+     <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">Analysis of delivery delays, shipping modes, and operational efficiency across regions.</p>
+     <div class="rounded-xl p-6 flex flex-col items-center justify-center" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:160px;">
+      <i data-lucide="activity" style="width:32px;height:32px;color:#3b82f6;opacity:0.5;margin-bottom:12px;"></i> 
+      <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.85rem;">Shipping Mode &amp; Regional Performance Analysis</span>
+     </div>
     </section>
-
-
-    <!-- PRODUCT -->
-    <section class="section">
-        <h2>Product Performance</h2>
-
-        <p>
-            Evaluation of product categories and top-performing products by revenue and profitability.
-        </p>
-
-        <img src="images/product_performance.jpg" alt="Product Dashboard">
+    
+    <!-- PRODUCT PERFORMANCE -->
+    <section class="fade-up fade-up-1 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-4">
+      <i data-lucide="shopping-cart" style="width:20px;height:20px;color:#1e40af;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Product Performance</h2>
+     </div>
+     <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">Evaluation of product categories and top-performing products by revenue and profitability.</p>
+     <div class="rounded-xl p-6 flex flex-col items-center justify-center" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:160px;">
+      <i data-lucide="bar-chart-2" style="width:32px;height:32px;color:#3b82f6;opacity:0.5;margin-bottom:12px;"></i> 
+      <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.85rem;">Product Category Revenue &amp; Profitability Analysis</span>
+     </div>
     </section>
-
-
-    <!-- CUSTOMER -->
-    <section class="section">
-        <h2>Customer & Market Insights</h2>
-
-        <p>
-            Insights into customer behavior, revenue distribution, and market-level performance.
-        </p>
-
-        <img src="images/customer_market_insights.jpg" alt="Customer Dashboard">
+    
+    <!-- CUSTOMER & MARKET INSIGHTS -->
+    <section class="fade-up fade-up-2 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-4">
+      <i data-lucide="users" style="width:20px;height:20px;color:#1e40af;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Customer &amp; Market Insights</h2>
+     </div>
+     <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">Insights into customer behavior, revenue distribution, and market-level performance.</p>
+     <div class="rounded-xl p-6 flex flex-col items-center justify-center" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:160px;">
+      <i data-lucide="globe" style="width:32px;height:32px;color:#3b82f6;opacity:0.4;margin-bottom:12px;"></i> 
+      <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.85rem;">Customer Segmentation &amp; Global Market Distribution</span>
+     </div>
     </section>
-
-
-    <!-- INSIGHTS -->
-    <section class="section">
-        <h2>Key Insights</h2>
-
-        <ul>
-            <li>~35% of orders are delayed, indicating operational inefficiencies</li>
-            <li>Revenue is concentrated in a few product categories</li>
-            <li>Standard shipping mode dominates order volume</li>
-            <li>Customer revenue follows a long-tail distribution</li>
-        </ul>
+    
+    <!-- EXPANDED INSIGHTS -->
+    <section class="fade-up fade-up-3 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-5">
+      <i data-lucide="sparkles" style="width:20px;height:20px;color:#1e40af;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Deeper Insights</h2>
+     </div>
+     <div class="space-y-4">
+      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:#3b82f6;">
+        <i data-lucide="check" style="width:12px;height:12px;color:#ffffff;"></i>
+       </div>
+       <p style="font-family:'DM Sans',sans-serif;font-size:0.9rem;line-height:1.6;margin:0;"><strong style="color:#1e40af;">~35% of orders are delayed,</strong> <span style="color:#2563eb;">indicating operational inefficiencies in fulfillment and logistics processes.</span></p>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:#3b82f6;">
+        <i data-lucide="check" style="width:12px;height:12px;color:#ffffff;"></i>
+       </div>
+       <p style="font-family:'DM Sans',sans-serif;font-size:0.9rem;line-height:1.6;margin:0;"><strong style="color:#1e40af;">Revenue is concentrated</strong> <span style="color:#2563eb;">in a few product categories, showing opportunities for diversification.</span></p>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:#3b82f6;">
+        <i data-lucide="check" style="width:12px;height:12px;color:#ffffff;"></i>
+       </div>
+       <p style="font-family:'DM Sans',sans-serif;font-size:0.9rem;line-height:1.6;margin:0;"><strong style="color:#1e40af;">Standard shipping mode dominates</strong> <span style="color:#2563eb;">order volume but accounts for most delays.</span></p>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5" style="background-color:#3b82f6;">
+        <i data-lucide="check" style="width:12px;height:12px;color:#ffffff;"></i>
+       </div>
+       <p style="font-family:'DM Sans',sans-serif;font-size:0.9rem;line-height:1.6;margin:0;"><strong style="color:#1e40af;">Customer revenue follows a long-tail distribution,</strong> <span style="color:#2563eb;">with a small number of high-value customers driving significant revenue.</span></p>
+      </div>
+     </div>
     </section>
-
-
-    <!-- TOOLS -->
-    <section class="section">
-        <h2>Tools & Technologies</h2>
-
-        <ul>
-            <li>Python (Pandas)</li>
-            <li>Power BI</li>
-            <li>DAX</li>
-            <li>Dimensional Data Modeling</li>
-        </ul>
+    
+    <!-- TOOLS & TECHNOLOGIES -->
+    <section class="fade-up fade-up-4 section-card rounded-2xl p-7 sm:p-9 mb-8">
+     <div class="flex items-center gap-2 mb-5">
+      <i data-lucide="wrench" style="width:20px;height:20px;color:#1e40af;"></i>
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Tools &amp; Technologies</h2>
+     </div>
+     <div class="grid grid-cols-2 gap-3">
+      <div class="flex items-center gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <i data-lucide="code" style="width:18px;height:18px;color:#3b82f6;"></i> 
+       <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.9rem;">Python (Pandas)</span>
+      </div>
+      <div class="flex items-center gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <i data-lucide="layout-dashboard" style="width:18px;height:18px;color:#3b82f6;"></i> 
+       <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.9rem;">Power BI</span>
+      </div>
+      <div class="flex items-center gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <i data-lucide="calculator" style="width:18px;height:18px;color:#3b82f6;"></i> 
+       <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.9rem;">DAX</span>
+      </div>
+      <div class="flex items-center gap-3 p-4 rounded-xl" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <i data-lucide="database" style="width:18px;height:18px;color:#3b82f6;"></i> 
+       <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.9rem;">Data Modeling</span>
+      </div>
+     </div>
     </section>
-
-
-    <!-- CTA -->
-    <section class="section">
-        <h2>Explore More</h2>
-
-        <p>
-            Want to dive deeper into the analysis or explore the implementation?
-        </p>
-
-        <p>
-            <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank">
-                → Read the full Medium article
-            </a>
-        </p>
-
-        <p>
-            <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank">
-                → Explore the GitHub repository
-            </a>
-        </p>
+    
+    <!-- FOOTER CTA -->
+    <section class="fade-up fade-up-5 text-center py-8">
+     <div class="gradient-border rounded-2xl p-px">
+      <div class="rounded-2xl p-8" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);">
+       <p style="font-family:'Playfair Display',serif;color:#1e40af;font-size:1.3rem;font-weight:700;margin:0 0 8px 0;">Explore the Full Analysis</p>
+       <p style="font-family:'DM Sans',sans-serif;color:#2563eb;font-size:0.9rem;margin:0 0 20px 0;">Dive into the detailed research or explore the implementation and data files.</p>
+       <div class="flex flex-wrap justify-center gap-3">
+        <a id="medium-link-footer" href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" rel="noopener noreferrer" class="link-btn inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold" style="font-family:'DM Sans',sans-serif;background:linear-gradient(135deg, #3b82f6, #8b5cf6);color:#ffffff;"> 
+         <i data-lucide="external-link" style="width:15px;height:15px;"></i> Read on Medium 
+        </a> 
+        <a id="github-link-footer" href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" rel="noopener noreferrer" class="link-btn inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold border" style="font-family:'DM Sans',sans-serif;background:transparent;color:#3b82f6;border-color:#3b82f6;"> 
+         <i data-lucide="github" style="width:15px;height:15px;"></i> View on GitHub 
+        </a>
+       </div>
+      </div>
+     </div>
     </section>
+   </div>
+  </div>
 
-</div>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
 
-</body>
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('theme-toggle');
+    const scrollWrapper = document.querySelector('.scroll-wrapper');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    if (currentTheme === 'dark') {
+      scrollWrapper.classList.add('dark');
+      themeIcon.setAttribute('data-lucide', 'sun');
+      themeIcon.style.color = '#d8b4fe';
+    }
+    
+    // Re-create icons after setting initial state
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+    
+    themeToggle.addEventListener('click', function() {
+      scrollWrapper.classList.toggle('dark');
+      
+      // Update icon
+      if (scrollWrapper.classList.contains('dark')) {
+        themeIcon.setAttribute('data-lucide', 'sun');
+        themeIcon.style.color = '#d8b4fe';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.setAttribute('data-lucide', 'moon');
+        themeIcon.style.color = '#3b82f6';
+        localStorage.setItem('theme', 'light');
+      }
+      
+      // Re-create icons after changing
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    });
+  </script>
+ </body>
 </html>
