@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supply Chain Analytics Dashboard</title>
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            width: 85%;
+            margin: auto;
+            padding: 40px 0;
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            color: #222;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin-right: 15px;
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #6a0dad;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .links a:hover {
+            background-color: #4b0082;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 8px;
+        }
+
+        img {
+            width: 100%;
+            margin-top: 15px;
+            border-radius: 6px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HERO -->
+    <section class="section">
+        <h1>Supply Chain Analytics Dashboard</h1>
+
+        <p class="subtitle">
+            Exploring global supply chain performance across revenue, logistics, and customer behavior using Power BI.
+        </p>
+
+        <div class="links">
+            <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank">
+                📄 Read Full Analysis (Medium)
+            </a>
+
+            <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank">
+                💻 View Code & Project Files (GitHub)
+            </a>
+        </div>
+
+        <img src="images/dashboard_gif.gif" alt="Dashboard Demo">
+    </section>
+
+
+    <!-- PROBLEM -->
+    <section class="section">
+        <h2>The Problem</h2>
+
+        <p>
+            While analyzing a global supply chain dataset with over 180,000 order records, one issue stood out.
+        </p>
+
+        <p class="highlight">
+            Nearly 35% of all orders were delivered later than scheduled.
+        </p>
+
+        <p>
+            This raises important questions around logistics efficiency, operational planning, and delivery performance.
+        </p>
+    </section>
+
+
+    <!-- APPROACH -->
+    <section class="section">
+        <h2>Approach</h2>
+
+        <ul>
+            <li>Data cleaning and preprocessing using Python (Pandas)</li>
+            <li>Star schema data modeling</li>
+            <li>KPI creation using DAX</li>
+            <li>Interactive dashboard development in Power BI</li>
+        </ul>
+    </section>
+
+
+    <!-- DATA MODEL -->
+    <section class="section">
+        <h2>Data Model</h2>
+
+        <p>
+            The dataset was structured using a star schema to enable efficient and scalable analysis across multiple dimensions.
+        </p>
+
+        <img src="images/star_schema.jpg" alt="Star Schema">
+    </section>
+
+
+    <!-- EXECUTIVE -->
+    <section class="section">
+        <h2>Executive Overview</h2>
+
+        <p>
+            A high-level summary of revenue, orders, profit, and delivery performance across global markets.
+        </p>
+
+        <img src="images/executive_supply_chain_overview.jpg" alt="Executive Dashboard">
+    </section>
+
+
+    <!-- LOGISTICS -->
+    <section class="section">
+        <h2>Logistics Performance</h2>
+
+        <p>
+            Analysis of delivery delays, shipping modes, and operational efficiency across regions.
+        </p>
+
+        <img src="images/logistics_performance.jpg" alt="Logistics Dashboard">
+    </section>
+
+
+    <!-- PRODUCT -->
+    <section class="section">
+        <h2>Product Performance</h2>
+
+        <p>
+            Evaluation of product categories and top-performing products by revenue and profitability.
+        </p>
+
+        <img src="images/product_performance.jpg" alt="Product Dashboard">
+    </section>
+
+
+    <!-- CUSTOMER -->
+    <section class="section">
+        <h2>Customer & Market Insights</h2>
+
+        <p>
+            Insights into customer behavior, revenue distribution, and market-level performance.
+        </p>
+
+        <img src="images/customer_market_insights.jpg" alt="Customer Dashboard">
+    </section>
+
+
+    <!-- INSIGHTS -->
+    <section class="section">
+        <h2>Key Insights</h2>
+
+        <ul>
+            <li>~35% of orders are delayed, indicating operational inefficiencies</li>
+            <li>Revenue is concentrated in a few product categories</li>
+            <li>Standard shipping mode dominates order volume</li>
+            <li>Customer revenue follows a long-tail distribution</li>
+        </ul>
+    </section>
+
+
+    <!-- TOOLS -->
+    <section class="section">
+        <h2>Tools & Technologies</h2>
+
+        <ul>
+            <li>Python (Pandas)</li>
+            <li>Power BI</li>
+            <li>DAX</li>
+            <li>Dimensional Data Modeling</li>
+        </ul>
+    </section>
+
+
+    <!-- CTA -->
+    <section class="section">
+        <h2>Explore More</h2>
+
+        <p>
+            Want to dive deeper into the analysis or explore the implementation?
+        </p>
+
+        <p>
+            <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank">
+                → Read the full Medium article
+            </a>
+        </p>
+
+        <p>
+            <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank">
+                → Explore the GitHub repository
+            </a>
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>
