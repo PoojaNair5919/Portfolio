@@ -323,11 +323,41 @@
             background: linear-gradient(135deg, #1e293b, #1e3a5f) !important;
             border-color: #334155 !important;
         }
+
+        /* Navigation button styles */
+        nav a {
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: #3b82f6 !important;
+            color: #ffffff !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .scroll-wrapper.dark nav a {
+            background: rgba(59, 130, 246, 0.15) !important;
+            color: #60a5fa !important;
+            border-color: #60a5fa !important;
+        }
+
+        .scroll-wrapper.dark nav a:hover {
+            background: #3b82f6 !important;
+            color: #ffffff !important;
+        }
   </style>
   <style>body { box-sizing: border-box; }</style>
  </head>
  <body class="h-full">
   <div class="scroll-wrapper w-full">
+   <!-- Navigation --> 
+   <nav class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
+    <a href="../../project.html" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all" style="font-family:'DM Sans',sans-serif;background:rgba(59,130,246,0.1);color:#3b82f6;border:1px solid #3b82f6;">
+     <i data-lucide="arrow-left" style="width:16px;height:16px;"></i> Back to Projects
+    </a>
+   </nav>
+   
    <!-- Theme toggle button --> 
    <button id="theme-toggle" class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode"> 
      <i id="theme-icon" data-lucide="moon" style="width:20px;height:20px;color:#3b82f6;"></i> 
@@ -485,13 +515,9 @@
      </div>
      <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">A high-level summary of revenue, orders, profit, and delivery performance across global markets.</p>
      
-     <!-- Dashboard Image Placeholder -->
-     <div class="rounded-xl mb-6 flex items-center justify-center overflow-hidden" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:320px;">
-      <div class="text-center p-8">
-       <i data-lucide="image" style="width:48px;height:48px;color:#3b82f6;opacity:0.3;margin:0 auto 12px;display:block;"></i>
-       <p style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.9rem;margin:0;">Executive Dashboard Preview</p>
-       <p style="font-family:'DM Sans',sans-serif;color:#3b82f6;font-size:0.75rem;margin-top:4px;opacity:0.7;">Add your Power BI dashboard screenshot here</p>
-      </div>
+     <!-- Dashboard Image -->
+     <div class="rounded-xl mb-6 overflow-hidden" style="border:2px solid #93c5fd;">
+      <img src="images/executive_supply_chain_overview.jpg" alt="Executive Supply Chain Overview Dashboard" style="width:100%;height:auto;display:block;">
      </div>
      
      <!-- Mini chart visualization -->
@@ -526,9 +552,8 @@
       <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Logistics Performance</h2>
      </div>
      <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">Analysis of delivery delays, shipping modes, and operational efficiency across regions.</p>
-     <div class="rounded-xl p-6 flex flex-col items-center justify-center" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:160px;">
-      <i data-lucide="activity" style="width:32px;height:32px;color:#3b82f6;opacity:0.5;margin-bottom:12px;"></i> 
-      <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.85rem;">Shipping Mode &amp; Regional Performance Analysis</span>
+     <div class="rounded-xl overflow-hidden" style="border:2px solid #93c5fd;">
+      <img src="images/logistics_performance.jpg" alt="Logistics Performance Dashboard" style="width:100%;height:auto;display:block;">
      </div>
     </section>
     
@@ -539,9 +564,8 @@
       <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Product Performance</h2>
      </div>
      <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">Evaluation of product categories and top-performing products by revenue and profitability.</p>
-     <div class="rounded-xl p-6 flex flex-col items-center justify-center" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:160px;">
-      <i data-lucide="bar-chart-2" style="width:32px;height:32px;color:#3b82f6;opacity:0.5;margin-bottom:12px;"></i> 
-      <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.85rem;">Product Category Revenue &amp; Profitability Analysis</span>
+     <div class="rounded-xl overflow-hidden" style="border:2px solid #93c5fd;">
+      <img src="images/product_performance.jpg" alt="Product Performance Dashboard" style="width:100%;height:auto;display:block;">
      </div>
     </section>
     
@@ -552,9 +576,8 @@
       <h2 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin:0;">Customer &amp; Market Insights</h2>
      </div>
      <p style="font-family:'DM Sans',sans-serif;line-height:1.75;margin:0 0 20px 0;">Insights into customer behavior, revenue distribution, and market-level performance.</p>
-     <div class="rounded-xl p-6 flex flex-col items-center justify-center" style="background:linear-gradient(135deg, #eff6ff, #e0e7ff);border:2px dashed #93c5fd;min-height:160px;">
-      <i data-lucide="globe" style="width:32px;height:32px;color:#3b82f6;opacity:0.4;margin-bottom:12px;"></i> 
-      <span style="font-family:'DM Sans',sans-serif;color:#1e40af;font-size:0.85rem;">Customer Segmentation &amp; Global Market Distribution</span>
+     <div class="rounded-xl overflow-hidden" style="border:2px solid #93c5fd;">
+      <img src="images/customer_market_insights.jpg" alt="Customer & Market Insights Dashboard" style="width:100%;height:auto;display:block;">
      </div>
     </section>
     
