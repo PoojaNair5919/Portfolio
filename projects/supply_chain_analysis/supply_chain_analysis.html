@@ -4,178 +4,757 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Supply Chain Analytics | Pooja Nair</title>
-
-<script src="https://cdn.tailwindcss.com/3.4.17"></script>
-<script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-body { font-family: 'DM Sans', sans-serif; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.hero-gradient {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-}
+  :root {
+    --ink: #0d0d12;
+    --ink2: #3a3a4a;
+    --ink3: #7a7a8a;
+    --surface: #ffffff;
+    --surface2: #f5f4f0;
+    --surface3: #eeecf6;
+    --accent: #6c3ce1;
+    --accent2: #a259ff;
+    --accent3: #f05fa0;
+    --teal: #14b8a6;
+    --amber: #f59e0b;
+    --border: rgba(0,0,0,0.08);
+  }
 
-.section-card {
-  border-radius: 12px;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  background: #fff;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-}
+  html { scroll-behavior: smooth; }
 
-.dashboard-img {
-  cursor: pointer;
-  transition: 0.3s;
-}
-.dashboard-img:hover { transform: scale(1.02); }
+  body {
+    font-family: 'Epilogue', sans-serif;
+    background: var(--surface2);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
 
-.kpi-card {
-  transition: 0.3s;
-}
-.kpi-card:hover {
-  transform: translateY(-6px) scale(1.03);
-}
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    background: var(--ink);
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(108,60,225,0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108,60,225,0.15) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridDrift 20s linear infinite;
+  }
+  @keyframes gridDrift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.35;
+    animation: orbFloat 8s ease-in-out infinite alternate;
+  }
+  .orb1 { width: 500px; height: 500px; background: var(--accent); top: -150px; left: -100px; animation-delay: 0s; }
+  .orb2 { width: 400px; height: 400px; background: var(--accent3); bottom: -100px; right: -80px; animation-delay: 3s; }
+  .orb3 { width: 300px; height: 300px; background: var(--teal); top: 40%; left: 50%; transform: translate(-50%,-50%); animation-delay: 1.5s; }
+  @keyframes orbFloat {
+    from { transform: translate(0, 0) scale(1); }
+    to { transform: translate(20px, -30px) scale(1.05); }
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(108,60,225,0.25);
+    border: 1px solid rgba(162,89,255,0.4);
+    color: #c4a5ff;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeSlideUp 0.8s ease both;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.5; transform:scale(1.4); } }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.05;
+    position: relative;
+    z-index: 1;
+    animation: fadeSlideUp 0.8s 0.15s ease both;
+  }
+  .hero h1 span {
+    background: linear-gradient(90deg, var(--accent2), var(--accent3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    max-width: 620px;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    margin: 1.5rem auto 2.5rem;
+    position: relative;
+    z-index: 1;
+    animation: fadeSlideUp 0.8s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeSlideUp 0.8s 0.45s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: var(--accent);
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.25s;
+    border: 1px solid transparent;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(108,60,225,0.5); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); transform: translateY(-2px); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    animation: fadeSlideUp 1s 1s ease both;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100% { opacity:0.4; transform:scaleY(0.5); transform-origin:top; } 50% { opacity:1; transform:scaleY(1); transform-origin:top; } }
+
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── KPI BAND ── */
+  .kpi-band {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 0 2rem 3rem;
+  }
+
+  .kpi-grid {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    transform: translateY(-32px);
+  }
+
+  .kpi-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.5rem 1.25rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .kpi-card.visible { animation: kpiIn 0.5s ease forwards; }
+  @keyframes kpiIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .kpi-card:hover { transform: translateY(-4px) !important; border-color: rgba(255,255,255,0.25); }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 16px 16px 0 0;
+  }
+  .kpi-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .kpi-card:nth-child(2)::before { background: linear-gradient(90deg, var(--teal), #67e8f9); }
+  .kpi-card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent3), #fb923c); }
+  .kpi-card:nth-child(4)::before { background: linear-gradient(90deg, #ef4444, var(--accent3)); }
+
+  .kpi-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .kpi-value span { font-size: 1.1rem; font-weight: 400; }
+
+  /* ── MAIN CONTENT ── */
+  .main { max-width: 900px; margin: 0 auto; padding: 2rem 2rem 6rem; }
+
+  /* ── SECTION CARDS ── */
+  .sc {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .sc.visible { opacity: 1; transform: translateY(0); }
+  .sc:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.07); }
+
+  .sc-accent-line {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    border-radius: 20px 0 0 20px;
+  }
+  .line-purple { background: linear-gradient(to bottom, var(--accent), var(--accent2)); }
+  .line-teal { background: linear-gradient(to bottom, var(--teal), #67e8f9); }
+  .line-amber { background: linear-gradient(to bottom, var(--amber), #fbbf24); }
+  .line-pink { background: linear-gradient(to bottom, var(--accent3), #fb923c); }
+  .line-indigo { background: linear-gradient(to bottom, #6366f1, #8b5cf6); }
+
+  .sc-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    font-size: 20px;
+  }
+  .icon-purple { background: rgba(108,60,225,0.1); }
+  .icon-teal { background: rgba(20,184,166,0.1); }
+  .icon-amber { background: rgba(245,158,11,0.1); }
+  .icon-pink { background: rgba(240,95,160,0.1); }
+  .icon-indigo { background: rgba(99,102,241,0.1); }
+
+  .sc h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .sc p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--ink2);
+    margin-bottom: 0.75rem;
+  }
+  .sc p:last-child { margin-bottom: 0; }
+
+  strong { color: var(--ink); font-weight: 600; }
+
+  /* ── INSIGHT HIGHLIGHT ── */
+  .insight-box {
+    background: linear-gradient(135deg, rgba(108,60,225,0.07), rgba(240,95,160,0.07));
+    border: 1px solid rgba(108,60,225,0.2);
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin-top: 1.25rem;
+    position: relative;
+  }
+  .insight-box::before {
+    content: '"';
+    position: absolute;
+    top: -12px; left: 20px;
+    font-size: 4rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    opacity: 0.5;
+  }
+  .insight-box p {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── IMAGE PLACEHOLDER ── */
+  .img-wrapper {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    margin-top: 1.5rem;
+    background: var(--surface2);
+    position: relative;
+  }
+  .img-wrapper img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .img-wrapper:hover img { transform: scale(1.02); }
+  .img-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(13,13,18,0.3), transparent);
+    pointer-events: none;
+  }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 1.5rem;
+  }
+  .stat-item {
+    background: var(--surface2);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: transform 0.25s, background 0.25s;
+  }
+  .stat-item:hover { transform: translateY(-3px); background: var(--surface3); }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-desc { font-size: 12px; color: var(--ink3); margin-top: 4px; }
+
+  /* ── PILL LIST ── */
+  .pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 1.25rem;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .pill:hover { transform: translateY(-2px); }
+  .pill-purple { background: rgba(108,60,225,0.08); color: var(--accent); border-color: rgba(108,60,225,0.25); }
+  .pill-teal { background: rgba(20,184,166,0.08); color: #0f766e; border-color: rgba(20,184,166,0.25); }
+  .pill-amber { background: rgba(245,158,11,0.08); color: #92400e; border-color: rgba(245,158,11,0.3); }
+  .pill-pink { background: rgba(240,95,160,0.08); color: #9d174d; border-color: rgba(240,95,160,0.25); }
+  .pill-indigo { background: rgba(99,102,241,0.08); color: #3730a3; border-color: rgba(99,102,241,0.25); }
+
+  /* ── FINDINGS LIST ── */
+  .finding-list { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 10px; }
+  .finding-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--surface2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: transform 0.25s, border-color 0.25s;
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  .finding-item.visible { animation: findingIn 0.4s ease forwards; }
+  @keyframes findingIn { to { opacity:1; transform:translateX(0); } }
+  .finding-item:hover { transform: translateX(4px) !important; border-color: rgba(108,60,225,0.2); }
+  .finding-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    margin-top: 6px; flex-shrink: 0;
+  }
+  .finding-item p { font-size: 14px; color: var(--ink2); line-height: 1.6; margin: 0; }
+
+  /* ── CHART BAR ── */
+  .bar-chart { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 10px; }
+  .bar-row { display: flex; align-items: center; gap: 12px; }
+  .bar-label { width: 130px; font-size: 13px; color: var(--ink2); flex-shrink: 0; text-align: right; }
+  .bar-track { flex: 1; height: 10px; background: var(--surface2); border-radius: 100px; overflow: hidden; }
+  .bar-fill {
+    height: 100%; border-radius: 100px;
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .bar-fill.anim { width: var(--w); }
+  .bar-pct { width: 40px; font-size: 13px; font-weight: 600; color: var(--ink); flex-shrink: 0; }
+
+  /* ── APPROACH STEPS ── */
+  .steps { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 0; }
+  .step-item {
+    display: flex;
+    gap: 16px;
+    position: relative;
+  }
+  .step-left { display: flex; flex-direction: column; align-items: center; }
+  .step-num {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-line { width: 1px; background: linear-gradient(to bottom, var(--accent), rgba(108,60,225,0.1)); flex: 1; margin: 4px 0; }
+  .step-item:last-child .step-line { display: none; }
+  .step-body { padding-bottom: 1.5rem; }
+  .step-title { font-weight: 600; font-size: 15px; color: var(--ink); margin-bottom: 4px; margin-top: 6px; }
+  .step-desc { font-size: 14px; color: var(--ink3); line-height: 1.6; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); transform: translateY(-20px); }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .sc { padding: 1.75rem 1.25rem; }
+    .bar-label { width: 90px; font-size: 12px; }
+  }
 </style>
 </head>
-
-<body class="bg-gray-50">
+<body>
 
 <!-- HERO -->
-<div class="hero-gradient text-white text-center py-14 px-6">
-  <h1 class="text-5xl font-bold mb-4" style="font-family:'Playfair Display'">Supply Chain Analytics</h1>
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
 
-  <p class="text-xl max-w-3xl mx-auto mb-6">
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    Data Analytics · Supply Chain
+  </div>
+
+  <h1>Supply Chain<br><span>Analytics</span></h1>
+
+  <p class="hero-sub">
     Analyzed 180K+ supply chain records to identify delivery bottlenecks and uncover that delays are driven by high-volume segments rather than inefficiency.
   </p>
 
-  <div class="flex justify-center gap-4">
-    <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446"
-       target="_blank"
-       class="px-6 py-3 bg-white text-black rounded-lg font-semibold">
-       Read Analysis
+  <div class="hero-actions">
+    <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-primary">
+      ✦ Read Analysis
     </a>
-
-    <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main"
-       target="_blank"
-       class="px-6 py-3 border border-white rounded-lg font-semibold">
-       GitHub
+    <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-outline">
+      ⌥ GitHub
     </a>
   </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- KPI BAND -->
+<div class="kpi-band">
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Revenue</div>
+      <div class="kpi-value">$12.4<span>M</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Orders</div>
+      <div class="kpi-value">180<span>K+</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Profit Margin</div>
+      <div class="kpi-value">28.3<span>%</span></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Late Deliveries</div>
+      <div class="kpi-value">57<span>%</span></div>
+    </div>
+  </div>
 </div>
 
-<!-- CONTENT -->
-<div class="max-w-5xl mx-auto px-6 py-12">
+<!-- MAIN -->
+<main class="main">
 
-<!-- KPI -->
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-
-  <div class="kpi-card bg-purple-500 text-white rounded-xl p-4 text-center">
-    <div>Revenue</div>
-    <div class="text-xl font-bold">$12.4M</div>
+  <!-- PROBLEM -->
+  <div class="sc" id="sc1">
+    <div class="sc-accent-line line-purple"></div>
+    <div class="sc-icon icon-purple">🎯</div>
+    <h2>Business Problem</h2>
+    <p>Nearly <strong>57% of orders were delivered later than scheduled</strong>, indicating widespread fulfillment challenges across the entire supply chain network.</p>
+    <p>The goal was to identify where delays have the highest business impact and prioritize operational improvements at the most critical leverage points.</p>
+    <div class="stats-row">
+      <div class="stat-item"><span class="stat-num">57%</span><div class="stat-desc">Orders delayed</div></div>
+      <div class="stat-item"><span class="stat-num">180K+</span><div class="stat-desc">Records analyzed</div></div>
+      <div class="stat-item"><span class="stat-num">$12.4M</span><div class="stat-desc">Total revenue</div></div>
+    </div>
   </div>
 
-  <div class="kpi-card bg-indigo-500 text-white rounded-xl p-4 text-center">
-    <div>Orders</div>
-    <div class="text-xl font-bold">180K+</div>
+  <!-- KEY INSIGHT -->
+  <div class="sc" id="sc2">
+    <div class="sc-accent-line line-teal"></div>
+    <div class="sc-icon icon-teal">💡</div>
+    <h2>Key Insight</h2>
+    <p>While premium shipping modes show higher <em>relative</em> delays, the majority of delayed orders are driven by high-volume <strong>Standard Class shipments</strong>.</p>
+    <p>A small number of high-volume segments — primarily Standard Class shipments in Europe and Asia — account for a disproportionately large share of total delays.</p>
+    <div class="insight-box">
+      <p>Targeted improvements in these segments can significantly reduce overall delays — this concentration is the opportunity.</p>
+    </div>
+
+    <!-- Animated bar chart for delay by class -->
+    <div class="bar-chart" id="barChart">
+      <div class="bar-row">
+        <div class="bar-label">Standard Class</div>
+        <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#6c3ce1,#a259ff);--w:82%"></div></div>
+        <div class="bar-pct">82%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Second Class</div>
+        <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#14b8a6,#67e8f9);--w:54%"></div></div>
+        <div class="bar-pct">54%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">First Class</div>
+        <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#f59e0b,#fbbf24);--w:61%"></div></div>
+        <div class="bar-pct">61%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Same Day</div>
+        <div class="bar-track"><div class="bar-fill" style="background:linear-gradient(90deg,#f05fa0,#fb923c);--w:38%"></div></div>
+        <div class="bar-pct">38%</div>
+      </div>
+    </div>
+    <p style="font-size:12px;color:var(--ink3);margin-top:8px;">Share of total delayed volume by shipping class</p>
   </div>
 
-  <div class="kpi-card bg-violet-500 text-white rounded-xl p-4 text-center">
-    <div>Profit Margin</div>
-    <div class="text-xl font-bold">28.3%</div>
+  <!-- DASHBOARD -->
+  <div class="sc" id="sc3">
+    <div class="sc-accent-line line-amber"></div>
+    <div class="sc-icon icon-amber">📊</div>
+    <h2>Dashboard Preview</h2>
+    <p>An interactive Power BI dashboard surfaces real-time KPIs, delay breakdowns, and segment-level drill-downs across 180K+ records.</p>
+    <div class="img-wrapper">
+      <img src="images/dashboard_gif.gif" alt="Supply chain dashboard preview" onerror="this.parentElement.style.minHeight='220px';this.style.display='none';">
+      <div class="img-overlay"></div>
+    </div>
   </div>
 
-  <div class="kpi-card bg-rose-500 text-white rounded-xl p-4 text-center">
-    <div>Late Deliveries</div>
-    <div class="text-xl font-bold">57%</div>
+  <!-- BOTTLENECK -->
+  <div class="sc" id="sc4">
+    <div class="sc-accent-line line-pink"></div>
+    <div class="sc-icon icon-pink">🔍</div>
+    <h2>Top Bottlenecks</h2>
+    <p>A contribution vs. over-index analysis pinpoints exactly which segment × region combinations demand immediate operational attention.</p>
+    <div class="img-wrapper">
+      <img src="images/bottleneck_analysis.jpg" alt="Bottleneck analysis chart" onerror="this.parentElement.style.minHeight='220px';this.style.display='none';">
+      <div class="img-overlay"></div>
+    </div>
   </div>
 
-</div>
+  <!-- APPROACH -->
+  <div class="sc" id="sc5">
+    <div class="sc-accent-line line-indigo"></div>
+    <div class="sc-icon icon-indigo">🛠</div>
+    <h2>Analytical Approach</h2>
+    <div class="steps">
+      <div class="step-item">
+        <div class="step-left"><div class="step-num">1</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-title">Star Schema Modeling</div>
+          <div class="step-desc">Designed a dimensional model to separate facts from dimensions — enabling fast, flexible querying across 180K rows.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-left"><div class="step-num">2</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-title">Power BI Dashboard</div>
+          <div class="step-desc">Built an interactive dashboard with slicers, drill-throughs, and conditional formatting to surface hidden patterns.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-left"><div class="step-num">3</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-title">DAX-based KPI Design</div>
+          <div class="step-desc">Engineered calculated measures for delivery rate, delay ratio, and revenue contribution using DAX time intelligence.</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-left"><div class="step-num">4</div><div class="step-line"></div></div>
+        <div class="step-body">
+          <div class="step-title">Contribution vs. Over-Index Analysis</div>
+          <div class="step-desc">Identified which segments punch above their weight in driving delays versus which are high-volume but efficient.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<!-- PROBLEM -->
-<section class="section-card">
-<h2 class="text-2xl font-bold mb-4">Business Problem</h2>
+  <!-- FINDINGS -->
+  <div class="sc" id="sc6">
+    <div class="sc-accent-line line-teal"></div>
+    <div class="sc-icon icon-teal">📌</div>
+    <h2>Key Findings</h2>
+    <div class="finding-list" id="findings">
+      <div class="finding-item"><div class="finding-dot" style="background:#6c3ce1"></div><p><strong>~57% of orders are delayed</strong> — indicating systemic operational issues across the network, not isolated incidents.</p></div>
+      <div class="finding-item"><div class="finding-dot" style="background:#14b8a6"></div><p><strong>Standard Class drives majority of delays due to volume</strong> — even a small improvement here has outsized impact on overall performance.</p></div>
+      <div class="finding-item"><div class="finding-dot" style="background:#f59e0b"></div><p><strong>First Class shows higher inefficiency but lower absolute impact</strong> — useful for premium SLA optimization separately.</p></div>
+      <div class="finding-item"><div class="finding-dot" style="background:#f05fa0"></div><p><strong>Revenue follows a long-tail distribution</strong> — a small segment of customers drives a disproportionate share of total revenue.</p></div>
+    </div>
+  </div>
 
-<p class="mb-4">
-Nearly <strong>57% of orders were delivered later than scheduled</strong>, indicating widespread fulfillment challenges.
-</p>
+  <!-- TOOLS -->
+  <div class="sc" id="sc7">
+    <div class="sc-accent-line line-purple"></div>
+    <div class="sc-icon icon-purple">⚡</div>
+    <h2>Tools Used</h2>
+    <div class="pill-list">
+      <span class="pill pill-purple">🐍 Python (Pandas)</span>
+      <span class="pill pill-teal">📊 Power BI</span>
+      <span class="pill pill-amber">⚙️ DAX</span>
+      <span class="pill pill-indigo">🗂 Data Modeling</span>
+      <span class="pill pill-pink">🔗 Star Schema</span>
+    </div>
+  </div>
 
-<p>
-The goal was to identify where delays have the highest business impact and prioritize operational improvements.
-</p>
-</section>
-
-<!-- KEY INSIGHT -->
-<section class="section-card">
-<h2 class="text-2xl font-bold mb-4">Key Insight</h2>
-
-<p class="mb-4">
-While premium shipping modes show higher relative delays, the majority of delayed orders are driven by high-volume Standard Class shipments.
-</p>
-
-<p class="mb-4">
-A small number of high-volume segments (primarily Standard Class shipments in Europe and Asia) account for a disproportionately large share of delays.
-</p>
-
-<p class="font-semibold">
-This concentration presents an opportunity — targeted improvements in these segments can significantly reduce overall delays.
-</p>
-</section>
-
-<!-- DASHBOARD -->
-<section class="section-card">
-<h2 class="text-2xl font-bold mb-4">Dashboard Preview</h2>
-<img src="images/dashboard_gif.gif" class="dashboard-img w-full rounded-lg">
-</section>
-
-<!-- BOTTLENECK -->
-<section class="section-card">
-<h2 class="text-2xl font-bold mb-4">Top Bottlenecks</h2>
-<img src="images/bottleneck_analysis.jpg" class="dashboard-img w-full rounded-lg">
-</section>
-
-<!-- APPROACH -->
-<section class="section-card">
-<h2 class="text-2xl font-bold mb-4">Analytical Approach</h2>
-
-<ul class="list-disc pl-5 space-y-2">
-<li>Star schema modeling</li>
-<li>Power BI dashboard development</li>
-<li>DAX-based KPI design</li>
-<li>Contribution vs Over Index analysis</li>
-</ul>
-</section>
-
-<!-- INSIGHTS -->
-<section class="section-card">
-<h2 class="text-2xl font-bold mb-4">Key Findings</h2>
-
-<ul class="list-disc pl-5 space-y-2">
-<li><strong>~57% of orders are delayed</strong>, indicating systemic operational issues</li>
-<li>Standard Class drives majority of delays due to volume</li>
-<li>First Class shows higher inefficiency but lower impact</li>
-<li>Revenue follows a long-tail distribution</li>
-</ul>
-</section>
-
-<!-- TOOLS -->
-<section class="section-card">
-<h2 class="text-2xl font-bold mb-4">Tools Used</h2>
-
-<ul class="list-disc pl-5 space-y-2">
-<li>Python (Pandas)</li>
-<li>Power BI</li>
-<li>DAX</li>
-<li>Data Modeling</li>
-</ul>
-</section>
-
-</div>
+</main>
 
 <script>
-lucide.createIcons();
-</script>
+// Intersection observer for section cards
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
 
+document.querySelectorAll('.sc').forEach(el => observer.observe(el));
+
+// KPI cards staggered
+const kpiObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const cards = entry.target.querySelectorAll('.kpi-card');
+      cards.forEach((c, i) => {
+        setTimeout(() => c.classList.add('visible'), i * 100);
+      });
+      kpiObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const kpiGrid = document.querySelector('.kpi-grid');
+if (kpiGrid) kpiObserver.observe(kpiGrid);
+
+// Bar chart animation
+const barObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.bar-fill').forEach((bar, i) => {
+        setTimeout(() => bar.classList.add('anim'), i * 150);
+      });
+      barObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+const bc = document.getElementById('barChart');
+if (bc) barObserver.observe(bc);
+
+// Findings staggered
+const findingsObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.finding-item').forEach((item, i) => {
+        setTimeout(() => item.classList.add('visible'), i * 120);
+      });
+      findingsObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+const fl = document.getElementById('findings');
+if (fl) findingsObserver.observe(fl);
+</script>
 </body>
 </html>
