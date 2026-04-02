@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="night">
+<html lang="en" data-theme="day">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -244,6 +244,8 @@ body{
 .sc p:last-child{margin-bottom:0}
 strong{color:var(--ink);font-weight:600}
 
+[data-theme="day"] #kfTitle{color:#4a1fa0 !important;font-weight:800}
+
 /* INSIGHT BOX */
 .ib{
   background:var(--ib-bg);border:1px solid var(--ib-border);
@@ -270,10 +272,13 @@ strong{color:var(--ink);font-weight:600}
 .bp{width:40px;font-size:13px;font-weight:600;color:var(--ink);flex-shrink:0;transition:color .4s}
 
 /* IMAGE */
-.iw{border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-top:1.5rem;background:var(--surface2);position:relative;transition:background .55s,border-color .55s}
+.iw{border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-top:1.5rem;background:#fff;position:relative;transition:background .55s,border-color .55s;cursor:zoom-in}
 .iw img{width:100%;display:block;transition:transform .5s ease}
 .iw:hover img{transform:scale(1.02)}
 .io{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.25),transparent);pointer-events:none}
+.iw.zoomed{position:fixed;inset:0;z-index:999;border-radius:0;background:#fff;display:flex;align-items:center;justify-content:center;cursor:zoom-out;overflow:auto}
+.iw.zoomed img{width:90%;height:auto;max-width:90vw;max-height:90vh;border-radius:0}
+.iw.zoomed .io{display:none}
 
 /* PILLS */
 .plist{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.25rem}
@@ -368,11 +373,9 @@ strong{color:var(--ink);font-weight:600}
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
- <body>
-  <!-- THEME TOGGLE --> <button class="theme-toggle" id="togBtn" aria-label="Toggle theme">
+ <body><!-- THEME TOGGLE --> <button class="theme-toggle" id="togBtn" aria-label="Toggle theme">
    <div class="tog-track">
-    <div class="tog-thumb" id="togThumb">
-     <span id="togIcon">☽</span>
+    <div class="tog-thumb" id="togThumb"><span id="togIcon">☽</span>
     </div>
    </div><span class="tog-night">Night</span> <span class="tog-day">Day</span> </button> <!-- HERO -->
   <section class="hero">
@@ -385,9 +388,11 @@ strong{color:var(--ink);font-weight:600}
    </div>
    <h1>Supply Chain<br><span>Analytics</span></h1>
    <p class="hero-sub">Analyzed 180K+ supply chain records to identify delivery bottlenecks and uncover that delays are driven by high-volume segments rather than inefficiency.</p>
-   <div class="hero-acts"><a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-p">Read Full Analysis</a> <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-o secondary">View on GitHub</a>
+   <div class="hero-acts">
+    <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-p">Read Full Analysis</a> <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-o secondary">View on GitHub</a>
    </div>
-   <div class="scroll-hint"><span>Scroll</span>
+   <div class="scroll-hint">
+    <span>Scroll</span>
     <div class="sline"></div>
    </div>
   </section><!-- KPI BAND -->
@@ -434,17 +439,20 @@ strong{color:var(--ink);font-weight:600}
     <p>Nearly <strong>57% of orders were delivered later than scheduled</strong>, indicating widespread fulfillment challenges across the entire supply chain network.</p>
     <p>The goal was to identify where delays have the highest business impact and prioritize operational improvements at the most critical leverage points.</p>
     <div class="srow">
-     <div class="si"><span class="sn">57%</span>
+     <div class="si">
+      <span class="sn">57%</span>
       <div class="sd">
        Orders delayed
       </div>
      </div>
-     <div class="si"><span class="sn">180K+</span>
+     <div class="si">
+      <span class="sn">180K+</span>
       <div class="sd">
        Records analyzed
       </div>
      </div>
-     <div class="si"><span class="sn">$12.4M</span>
+     <div class="si">
+      <span class="sn">$12.4M</span>
       <div class="sd">
        Total revenue
       </div>
@@ -511,7 +519,8 @@ strong{color:var(--ink);font-weight:600}
     <div class="acc a-a"></div>
     <h2>Dashboard Preview</h2>
     <p>An interactive Power BI dashboard surfaces real-time KPIs, delay breakdowns, and segment-level drill-downs across 180K+ records.</p>
-    <div class="iw"><img src="images/dashboard_gif.gif" alt="Dashboard preview" onerror="this.parentElement.style.minHeight='200px';this.style.display='none'">
+    <div class="iw">
+     <img src="images/dashboard_gif.gif" alt="Dashboard preview" onerror="this.parentElement.style.minHeight='200px';this.style.display='none'">
      <div class="io"></div>
     </div>
    </div>
@@ -519,7 +528,8 @@ strong{color:var(--ink);font-weight:600}
     <div class="acc a-k"></div>
     <h2>Top Bottlenecks</h2>
     <p>A contribution vs. over-index analysis pinpoints exactly which segment × region combinations demand immediate operational attention.</p>
-    <div class="iw"><img src="images/bottleneck_analysis.jpg" alt="Bottleneck analysis" onerror="this.parentElement.style.minHeight='200px';this.style.display:'none'">
+    <div class="iw">
+     <img src="images/bottleneck_analysis.jpg" alt="Bottleneck analysis" onerror="this.parentElement.style.minHeight='200px';this.style.display:'none'">
      <div class="io"></div>
     </div>
    </div>
@@ -593,33 +603,32 @@ strong{color:var(--ink);font-weight:600}
      </div>
     </div>
    </div>
-   <div class="sc" id="sc6">
+   <div class="sc" id="sc6" style="background:linear-gradient(135deg,rgba(124,77,255,0.15),rgba(20,217,197,0.08));border:1.5px solid rgba(124,77,255,0.35)">
     <div class="acc a-t"></div>
-    <h2>Key Findings</h2>
+    <h2 id="kfTitle" style="color:var(--accent2)">Key Findings</h2>
     <div class="flist" id="findings">
-     <div class="fi">
+     <div class="fi" style="background:rgba(124,77,255,0.12);border:1px solid rgba(124,77,255,0.3)">
       <div class="fdot" style="background:#7c4dff"></div>
       <p><strong>~57% of orders are delayed</strong> — indicating systemic operational issues across the network, not isolated incidents.</p>
      </div>
-     <div class="fi">
+     <div class="fi" style="background:rgba(20,217,197,0.12);border:1px solid rgba(20,217,197,0.3)">
       <div class="fdot" style="background:#14d9c5"></div>
       <p><strong>Standard Class drives the majority of delays by volume</strong> — even a small improvement here has outsized impact on overall performance.</p>
      </div>
-     <div class="fi">
+     <div class="fi" style="background:rgba(255,184,48,0.12);border:1px solid rgba(255,184,48,0.3)">
       <div class="fdot" style="background:#ffb830"></div>
       <p><strong>First Class shows higher inefficiency but lower absolute impact</strong> — useful for premium SLA optimization separately.</p>
      </div>
-     <div class="fi">
+     <div class="fi" style="background:rgba(255,95,160,0.12);border:1px solid rgba(255,95,160,0.3)">
       <div class="fdot" style="background:#ff5fa0"></div>
       <p><strong>Revenue follows a long-tail distribution</strong> — a small segment of customers drives a disproportionate share of total revenue.</p>
      </div>
     </div>
    </div>
-   <div class="sc" id="sc7" style="margin-bottom:1rem">
+   <div class="sc" id="sc7" style="margin-bottom:2rem">
     <div class="acc a-p"></div>
     <h2>Tools Used</h2>
-    <div class="plist">
-     <span class="pill pill-p">Python (Pandas)</span> <span class="pill pill-t">Power BI</span> <span class="pill pill-a">DAX</span> <span class="pill pill-i">Data Modeling</span> <span class="pill pill-k">Star Schema</span>
+    <div class="plist"><span class="pill pill-p">Python (Pandas)</span> <span class="pill pill-t">Power BI</span> <span class="pill pill-a">DAX</span> <span class="pill pill-i">Data Modeling</span> <span class="pill pill-k">Star Schema</span>
     </div>
    </div>
   </main><!-- CTA SECTION -->
@@ -627,16 +636,15 @@ strong{color:var(--ink);font-weight:600}
    <div class="cta-box">
     <h2 class="cta-title">Ready to Explore Full Analysis?</h2>
     <p class="cta-subtitle">Dive deeper into the supply chain insights and discover actionable patterns.</p>
-    <div class="cta-buttons">
-     <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-p">Read Full Analysis</a> <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-o secondary">View on GitHub</a>
+    <div class="cta-buttons"><a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-p">Read Full Analysis</a> <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-o secondary">View on GitHub</a>
     </div>
    </div><a href="#" class="back-btn" onclick="history.back();return false">← Back to Projects</a>
   </div>
   <script>
 const html=document.documentElement,btn=document.getElementById('togBtn'),icon=document.getElementById('togIcon');
 function applyTheme(t){html.setAttribute('data-theme',t);icon.textContent=t==='night'?'☽':'☀';try{localStorage.setItem('scTheme',t)}catch(e){}}
-try{const s=localStorage.getItem('scTheme');if(s==='day'||s==='night')applyTheme(s)}catch(e){}
-btn.addEventListener('click',()=>applyTheme(html.getAttribute('data-theme')==='night'?'day':'night'));
+try{const s=localStorage.getItem('scTheme');applyTheme(s==='night'?'night':'day')}catch(e){}
+btn.addEventListener('click',()=>applyTheme(html.getAttribute('data-theme')==='day'?'night':'day'));
 
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.sc').forEach(el=>obs.observe(el));
@@ -649,6 +657,8 @@ const bc=document.getElementById('barChart');if(bc)bObs.observe(bc);
 
 const fObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.fi').forEach((f,i)=>setTimeout(()=>f.classList.add('vis'),i*130));fObs.unobserve(e.target)}})},{threshold:.2});
 const fl=document.getElementById('findings');if(fl)fObs.observe(fl);
+
+document.querySelectorAll('.iw').forEach(img=>{img.addEventListener('click',function(){this.classList.toggle('zoomed');if(this.classList.contains('zoomed')){document.body.style.overflow='hidden'}else{document.body.style.overflow='auto'}})});
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e60c0a741aafcad',t:'MTc3NTE0MjU0NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e60ccef707e47e9',t:'MTc3NTE0MzA0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
