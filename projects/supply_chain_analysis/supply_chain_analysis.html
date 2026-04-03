@@ -37,7 +37,7 @@
   --border:rgba(0,0,0,0.08);--border2:rgba(0,0,0,0.15);
   --accent:#6130d4;--accent2:#8b50ff;--accent3:#e8307a;
   --teal:#0a9e8e;--amber:#c97e00;
-  --hero-bg:#f5f3fd;--hero-grid:rgba(108,60,225,0.12);--orb-op:0.25;
+  --hero-bg:#f5f3fd;--hero-grid:rgba(108,60,225,0.18);--orb-op:0.45;
   --kpi-bg:rgba(97,48,212,0.06);--kpi-border:rgba(97,48,212,0.15);
   --kpi-label:rgba(74,72,102,0.70);--kpi-val:#1a1829;
   --stat-bg:#f0ecf9;
@@ -373,9 +373,11 @@ strong{color:var(--ink);font-weight:600}
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
   <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
- <body><!-- THEME TOGGLE --> <button class="theme-toggle" id="togBtn" aria-label="Toggle theme">
+ <body>
+  <!-- THEME TOGGLE --> <button class="theme-toggle" id="togBtn" aria-label="Toggle theme">
    <div class="tog-track">
-    <div class="tog-thumb" id="togThumb"><span id="togIcon">☽</span>
+    <div class="tog-thumb" id="togThumb">
+     <span id="togIcon">☽</span>
     </div>
    </div><span class="tog-night">Night</span> <span class="tog-day">Day</span> </button> <!-- HERO -->
   <section class="hero">
@@ -388,11 +390,9 @@ strong{color:var(--ink);font-weight:600}
    </div>
    <h1>Supply Chain<br><span>Analytics</span></h1>
    <p class="hero-sub">Analyzed 180K+ supply chain records to identify delivery bottlenecks and uncover that delays are driven by high-volume segments rather than inefficiency.</p>
-   <div class="hero-acts">
-    <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-p">Read Full Analysis</a> <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-o secondary">View on GitHub</a>
+   <div class="hero-acts"><a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-p">Read Full Analysis</a> <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-o secondary">View on GitHub</a>
    </div>
-   <div class="scroll-hint">
-    <span>Scroll</span>
+   <div class="scroll-hint"><span>Scroll</span>
     <div class="sline"></div>
    </div>
   </section><!-- KPI BAND -->
@@ -439,20 +439,17 @@ strong{color:var(--ink);font-weight:600}
     <p>Nearly <strong>57% of orders were delivered later than scheduled</strong>, indicating widespread fulfillment challenges across the entire supply chain network.</p>
     <p>The goal was to identify where delays have the highest business impact and prioritize operational improvements at the most critical leverage points.</p>
     <div class="srow">
-     <div class="si">
-      <span class="sn">57%</span>
+     <div class="si"><span class="sn">57%</span>
       <div class="sd">
        Orders delayed
       </div>
      </div>
-     <div class="si">
-      <span class="sn">180K+</span>
+     <div class="si"><span class="sn">180K+</span>
       <div class="sd">
        Records analyzed
       </div>
      </div>
-     <div class="si">
-      <span class="sn">$12.4M</span>
+     <div class="si"><span class="sn">$12.4M</span>
       <div class="sd">
        Total revenue
       </div>
@@ -519,8 +516,7 @@ strong{color:var(--ink);font-weight:600}
     <div class="acc a-a"></div>
     <h2>Dashboard Preview</h2>
     <p>An interactive Power BI dashboard surfaces real-time KPIs, delay breakdowns, and segment-level drill-downs across 180K+ records.</p>
-    <div class="iw">
-     <img src="images/dashboard_gif.gif" alt="Dashboard preview" onerror="this.parentElement.style.minHeight='200px';this.style.display='none'">
+    <div class="iw"><img src="images/dashboard_gif.gif" alt="Dashboard preview" onerror="this.parentElement.style.minHeight='200px';this.style.display='none'">
      <div class="io"></div>
     </div>
    </div>
@@ -528,8 +524,7 @@ strong{color:var(--ink);font-weight:600}
     <div class="acc a-k"></div>
     <h2>Top Bottlenecks</h2>
     <p>A contribution vs. over-index analysis pinpoints exactly which segment × region combinations demand immediate operational attention.</p>
-    <div class="iw">
-     <img src="images/bottleneck_analysis.jpg" alt="Bottleneck analysis" onerror="this.parentElement.style.minHeight='200px';this.style.display:'none'">
+    <div class="iw"><img src="images/bottleneck_analysis.jpg" alt="Bottleneck analysis" onerror="this.parentElement.style.minHeight='200px';this.style.display:'none'">
      <div class="io"></div>
     </div>
    </div>
@@ -628,7 +623,8 @@ strong{color:var(--ink);font-weight:600}
    <div class="sc" id="sc7" style="margin-bottom:2rem">
     <div class="acc a-p"></div>
     <h2>Tools Used</h2>
-    <div class="plist"><span class="pill pill-p">Python (Pandas)</span> <span class="pill pill-t">Power BI</span> <span class="pill pill-a">DAX</span> <span class="pill pill-i">Data Modeling</span> <span class="pill pill-k">Star Schema</span>
+    <div class="plist">
+     <span class="pill pill-p">Python (Pandas)</span> <span class="pill pill-t">Power BI</span> <span class="pill pill-a">DAX</span> <span class="pill pill-i">Data Modeling</span> <span class="pill pill-k">Star Schema</span>
     </div>
    </div>
   </main><!-- CTA SECTION -->
@@ -636,7 +632,8 @@ strong{color:var(--ink);font-weight:600}
    <div class="cta-box">
     <h2 class="cta-title">Ready to Explore Full Analysis?</h2>
     <p class="cta-subtitle">Dive deeper into the supply chain insights and discover actionable patterns.</p>
-    <div class="cta-buttons"><a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-p">Read Full Analysis</a> <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-o secondary">View on GitHub</a>
+    <div class="cta-buttons">
+     <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="btn-p">Read Full Analysis</a> <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="btn-o secondary">View on GitHub</a>
     </div>
    </div><a href="#" class="back-btn" onclick="history.back();return false">← Back to Projects</a>
   </div>
@@ -660,5 +657,5 @@ const fl=document.getElementById('findings');if(fl)fObs.observe(fl);
 
 document.querySelectorAll('.iw').forEach(img=>{img.addEventListener('click',function(){this.classList.toggle('zoomed');if(this.classList.contains('zoomed')){document.body.style.overflow='hidden'}else{document.body.style.overflow='auto'}})});
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e60ccef707e47e9',t:'MTc3NTE0MzA0OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e6586b77535162e',t:'MTc3NTE5MjYwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
