@@ -6,6 +6,39 @@
   <title>Supply Chain Analytics | Pooja Nair</title>
   <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&amp;family=Source+Sans+Pro:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
   <style>
+
+   .modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+   
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 [data-theme="night"]{
@@ -53,6 +86,14 @@
 }
 
 html{scroll-behavior:smooth}
+
+   <!-- Image Modal -->
+<div id="imageModal" class="modal-overlay">
+  <span class="modal-close" onclick="closeModal()">×</span>
+  <img id="modalImage" class="modal-image" src="">
+</div>
+
+   
 body{
   font-family:'Source Sans Pro',sans-serif;
   background:var(--bg);color:var(--ink);
@@ -276,9 +317,7 @@ strong{color:var(--ink);font-weight:600}
 .iw img{width:100%;display:block;transition:transform .5s ease}
 .iw:hover img{transform:scale(1.02)}
 .io{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.25),transparent);pointer-events:none}
-.iw.zoomed{position:fixed;inset:0;z-index:999;border-radius:0;background:#fff;display:flex;align-items:center;justify-content:center;cursor:zoom-out;overflow:auto}
-.iw.zoomed img{width:90%;height:auto;max-width:90vw;max-height:90vh;border-radius:0}
-.iw.zoomed .io{display:none}
+
 
 /* PILLS */
 .plist{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.25rem}
@@ -521,7 +560,7 @@ strong{color:var(--ink);font-weight:600}
     <div class="acc a-a"></div>
     <h2>Dashboard Preview</h2>
     <p>An interactive Power BI dashboard surfaces real-time KPIs, delay breakdowns, and segment-level drill-downs across 180K+ records.</p>
-    <div class="iw">
+    <div class="iw" onclick="openModal(this.querySelector('img'))">>
      <img src="images/dashboard_gif.gif" alt="Dashboard preview" onerror="this.parentElement.style.minHeight='200px';this.style.display='none'">
      <div class="io"></div>
     </div>
@@ -530,7 +569,7 @@ strong{color:var(--ink);font-weight:600}
     <div class="acc a-k"></div>
     <h2>Top Bottlenecks</h2>
     <p>A contribution vs. over-index analysis pinpoints exactly which segment × region combinations demand immediate operational attention.</p>
-    <div class="iw">
+    <div class="iw" onclick="openModal(this.querySelector('img'))">>
      <img src="images/bottleneck_analysis.jpg" alt="Bottleneck analysis" onerror="this.parentElement.style.minHeight='200px';this.style.display:'none'">
      <div class="io"></div>
     </div>
@@ -660,24 +699,23 @@ const bc=document.getElementById('barChart');if(bc)bObs.observe(bc);
 const fObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.fi').forEach((f,i)=>setTimeout(()=>f.classList.add('vis'),i*130));fObs.unobserve(e.target)}})},{threshold:.2});
 const fl=document.getElementById('findings');if(fl)fObs.observe(fl);
 
-document.querySelectorAll('.iw').forEach(container => {
+function openModal(img) {
+  document.getElementById("modalImage").src = img.src;
+  document.getElementById("imageModal").classList.add("active");
+}
 
-  const img = container.querySelector('img');
+function closeModal() {
+  document.getElementById("imageModal").classList.remove("active");
+}
 
-  img.addEventListener('click', function(e) {
-    e.stopPropagation(); // prevent immediate toggle
+// Close on background click
+document.getElementById("imageModal").addEventListener("click", function(e) {
+  if (e.target === this) closeModal();
+});
 
-    container.classList.add('zoomed');
-    document.body.style.overflow = 'hidden';
-  });
-
-  container.addEventListener('click', function() {
-    if (container.classList.contains('zoomed')) {
-      container.classList.remove('zoomed');
-      document.body.style.overflow = 'auto';
-    }
-  });
-
+// Close on ESC
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") closeModal();
 });
 
   </script>
