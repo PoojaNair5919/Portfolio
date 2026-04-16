@@ -753,8 +753,6 @@
         }
     </style>
   <style>@view-transition { navigation: auto; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
  <body class="transition-colors duration-300"><!-- Floating Background Elements -->
   <div class="floating-elements"><!-- Animated Bar Chart -->
@@ -1262,8 +1260,7 @@
          <p class="text-blue-600 font-semibold text-sm sm:text-base">Packt Publishing</p>
         </div><span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Aug 2013 - May 2014</span>
        </div>
-       <p class="text-gray-600 mb-4 text-sm sm:text-base"style="text-align: justify;"
-       >Validated code accuracy across 20+ programming books, identifying and reporting 150+ bugs and errors, ensuring technical correctness and enhancing the overall quality of published material for readers.</p>
+       <p class="text-gray-600 mb-4 text-sm sm:text-base"style="text-align: justify;">Validated code accuracy across 20+ programming books, identifying and reporting 150+ bugs and errors, ensuring technical correctness and enhancing the overall quality of published material for readers.</p>
        <div class="grid sm:grid-cols-2 gap-3 sm:gap-4">
         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-bug text-red-500 mr-2"></i> <span class="text-black font-semibold text-xs sm:text-sm">150+ Bugs Found</span>
         </div>
@@ -1277,17 +1274,15 @@
   </section>
   
   <!-- Projects Section -->
-  
   <section id="projects" class="py-16 sm:py-20 bg-gray-50">
    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12 sm:mb-16 scroll-animate">
      <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Featured Projects</h2>
-     <div class="w-20 h-1 bg-blue-600 mx-auto">     
+     <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
     </div>
-   </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
      
-    <!-- Project 1: Blinkit BI Analysis -->
+     <!-- Project 1: Blinkit BI Analysis -->
      <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100">
       <div class="bg-gradient-to-br from-blue-600 to-indigo-700 h-40 sm:h-48 flex items-center justify-center relative"><i class="fas fa-chart-bar text-white text-3xl sm:text-4xl z-10"></i>
        <div class="absolute inset-0 bg-black opacity-20"></div>
@@ -1313,7 +1308,42 @@
       </div>
      </div>
      
-     <!-- Project 2: Social Media Tourism -->
+     
+     <!-- Project 2: Supply Chain Analytics Dashboard -->
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100">
+      <div class="bg-gradient-to-br from-cyan-600 to-teal-700 h-40 sm:h-48 flex items-center justify-center relative">
+       <i class="fas fa-truck text-white text-3xl sm:text-4xl z-10"></i>
+       <div class="absolute inset-0 bg-black opacity-20"></div>
+      </div>
+      <div class="p-4 sm:p-6">
+       <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Supply Chain Analytics Dashboard</h3>
+       <p class="text-gray-600 mb-4 text-sm sm:text-base">Analyzed 180K+ global orders to uncover delivery delays, logistics inefficiencies, and revenue patterns using a KPI-driven Power BI dashboard.</p>
+       <div class="mb-4">
+        <div class="flex items-center text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full mb-3 w-fit">
+         <i class="fas fa-globe mr-2 text-sm"></i>
+         <span class="font-semibold text-sm">Logistics & Operations</span>
+        </div>
+       </div>
+       <div class="space-y-3 mb-4">
+        <div>
+         <h4 class="font-semibold text-gray-800 mb-2 text-sm">Technologies:</h4>
+         <div class="flex flex-wrap gap-2">
+          <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Power BI</span>
+          <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">DAX</span>
+          <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Python</span>
+          <span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Star Schema</span>
+         </div>
+        </div>
+       </div>
+       <a href="https://poojanair5919.github.io/Portfolio/projects/supply_chain_analysis/supply_chain_analysis.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-cyan-600 text-white px-4 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 hover:scale-105 text-sm font-semibold w-full justify-center">
+        <i class="fas fa-arrow-right mr-2"></i> View Project
+       </a>
+      </div>
+     </div>
+
+     
+
+     <!-- Project 3: Social Media Tourism -->
      <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100">
       <div class="bg-gradient-to-br from-purple-600 to-pink-500 h-40 sm:h-48 flex items-center justify-center relative"><i class="fas fa-share-alt text-white text-3xl sm:text-4xl z-10"></i>
        <div class="absolute inset-0 bg-black opacity-20"></div>
@@ -1334,27 +1364,7 @@
        </div><a href="https://medium.com/@poojanair5919/how-i-used-k-means-boosting-models-to-optimize-airline-ads-by-device-type-908fe89d83d9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-pink-600 text-white px-4 py-2 rounded-lg hover:bg-pink-700 transition-all duration-300 hover:scale-105 text-sm font-semibold w-full justify-center"> <i class="fas fa-external-link-alt mr-2"></i> Read Full Article </a>
       </div>
      </div>
-     <!-- Project 3: Real Estate Analysis -->
-     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100">
-      <div class="bg-gradient-to-br from-green-500 to-teal-600 h-40 sm:h-48 flex items-center justify-center relative"><i class="fas fa-home text-white text-3xl sm:text-4xl z-10"></i>
-       <div class="absolute inset-0 bg-black opacity-20"></div> 
-      </div> 
-      <div class="p-4 sm:p-6">
-       <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Real Estate Pricing Analysis</h3>
-       <p class="text-gray-600 mb-4 text-sm sm:text-base">Built comprehensive pricing models using Tableau visualization and market psychology insights</p>
-       <div class="mb-4">
-        <div class="flex items-center text-blue-600 bg-blue-50 px-3 py-1 rounded-full mb-3 w-fit"><i class="fas fa-chart-line mr-2 text-sm"></i> <span class="font-semibold text-sm">+15% Accuracy</span>
-        </div>
-       </div>
-       <div class="space-y-3 mb-4">
-        <div>
-         <h4 class="font-semibold text-gray-800 mb-2 text-sm">Technologies:</h4>
-         <div class="flex flex-wrap gap-2"><span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Tableau</span> <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Python</span> <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">SQL</span>
-         </div>
-        </div>
-       </div><a href="https://medium.com/@poojanair5919/what-90s-boston-condo-sales-reveal-about-market-psychology-a-data-story-part-1-160028027f3d" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-all duration-300 hover:scale-105 text-sm font-semibold w-full justify-center"> <i class="fas fa-external-link-alt mr-2"></i> Read Full Article </a>
-      </div>
-     </div>
+
     </div>
     
    <div class="text-center mt-12">
@@ -1363,10 +1373,10 @@ class="inline-flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg te
 View All Projects
 </a>
 </div>
+  </div>
   </section>
   
   <!-- Education Section -->
-  
   <section class="py-12 sm:py-16 bg-white">
    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-8 sm:mb-12 scroll-animate">
@@ -1406,55 +1416,41 @@ View All Projects
     <div class="max-w-4xl mx-auto">
      <div class="space-y-6 scroll-animate">
       
-      
       <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-purple-600">
   <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
 
     <!-- LEFT CONTENT -->
     <div class="flex-1">
       <div class="flex items-start mb-2">
-
-        <!-- Accent Icon (non-clickable, Excel-style) -->
         <div class="mr-3 flex-shrink-0 mt-1">
           <i class="fas fa-certificate text-purple-500 text-lg sm:text-xl"></i>
         </div>
-
         <div class="flex-1">
           <h4 class="font-bold text-base sm:text-lg text-gray-800 leading-tight">
             Microsoft Certified: Fabric Data Engineer Associate
           </h4>
         </div>
       </div>
-
       <p class="text-purple-600 text-sm sm:text-base mb-2">Microsoft</p>
-
       <div class="space-y-1 text-xs sm:text-sm">
         <p class="text-gray-600">
           <span class="font-semibold">Credential ID:</span>
           <a href="https://learn.microsoft.com/api/credentials/share/en-us/PoojaNair-4383/9076CE231C4D164A?sharingId=6C7903AD2F3359C"
-             target="_blank"
-             rel="noopener noreferrer"
+             target="_blank" rel="noopener noreferrer"
              class="text-purple-600 hover:text-purple-700 underline hover:no-underline transition-all">
             9076CE231C4D164A
           </a>
         </p>
-        <p class="text-gray-600">
-          <span class="font-semibold">Certification Number:</span> B09131-435DB9
-        </p>
-        <p class="text-gray-600">
-          <span class="font-semibold">Earned:</span> January 14, 2026
-        </p>
-        <p class="text-gray-600">
-          <span class="font-semibold">Expires:</span> January 15, 2027
-        </p>
+        <p class="text-gray-600"><span class="font-semibold">Certification Number:</span> B09131-435DB9</p>
+        <p class="text-gray-600"><span class="font-semibold">Earned:</span> January 14, 2026</p>
+        <p class="text-gray-600"><span class="font-semibold">Expires:</span> January 15, 2027</p>
       </div>
     </div>
 
     <!-- RIGHT BADGE (DESKTOP ONLY) -->
     <div class="hidden sm:flex justify-center sm:justify-end">
       <a href="https://learn.microsoft.com/api/credentials/share/en-us/PoojaNair-4383/9076CE231C4D164A?sharingId=6C7903AD2F3359C"
-         target="_blank"
-         rel="noopener noreferrer"
+         target="_blank" rel="noopener noreferrer"
          class="inline-block hover:scale-110 transition-transform duration-300">
         <img src="Microsoft Certified Badge.png"
              alt="Microsoft Certified: Fabric Data Engineer Associate"
@@ -1462,58 +1458,40 @@ View All Projects
              onerror="this.style.display='none';">
       </a>
     </div>
-
   </div>
 </div>
 
       <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-teal-600">
   <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-    
-    <!-- LEFT CONTENT -->
     <div class="flex-1">
       <div class="flex items-start mb-2">
-        
-        <!-- Accent Icon (non-clickable, Excel-style) -->
         <div class="mr-3 flex-shrink-0 mt-1">
           <i class="fas fa-certificate text-teal-500 text-lg sm:text-xl"></i>
         </div>
-
         <div class="flex-1">
           <h4 class="font-bold text-base sm:text-lg text-gray-800 leading-tight">
             Microsoft Certified: Fabric Analytics Engineer Associate
           </h4>
         </div>
       </div>
-
       <p class="text-teal-600 text-sm sm:text-base mb-2">Microsoft</p>
-
       <div class="space-y-1 text-xs sm:text-sm">
         <p class="text-gray-600">
           <span class="font-semibold">Credential ID:</span>
           <a href="https://learn.microsoft.com/api/credentials/share/en-us/PoojaNair-4383/528786885A435390?sharingId=6C7903AD2F3359C"
-             target="_blank"
-             rel="noopener noreferrer"
+             target="_blank" rel="noopener noreferrer"
              class="text-teal-600 hover:text-teal-700 underline hover:no-underline transition-all">
             528786885A435390
           </a>
         </p>
-        <p class="text-gray-600">
-          <span class="font-semibold">Certification Number:</span> A331FC-9F824C
-        </p>
-        <p class="text-gray-600">
-          <span class="font-semibold">Earned:</span> December 30, 2025
-        </p>
-        <p class="text-gray-600">
-          <span class="font-semibold">Expires:</span> December 31, 2026
-        </p>
+        <p class="text-gray-600"><span class="font-semibold">Certification Number:</span> A331FC-9F824C</p>
+        <p class="text-gray-600"><span class="font-semibold">Earned:</span> December 30, 2025</p>
+        <p class="text-gray-600"><span class="font-semibold">Expires:</span> December 31, 2026</p>
       </div>
     </div>
-
-    <!-- RIGHT BADGE (DESKTOP ONLY) -->
     <div class="hidden sm:flex justify-center sm:justify-end">
       <a href="https://learn.microsoft.com/api/credentials/share/en-us/PoojaNair-4383/528786885A435390?sharingId=6C7903AD2F3359C"
-         target="_blank"
-         rel="noopener noreferrer"
+         target="_blank" rel="noopener noreferrer"
          class="inline-block hover:scale-110 transition-transform duration-300">
         <img src="Microsoft Certified Badge.png"
              alt="Microsoft Certified: Fabric Analytics Engineer Associate"
@@ -1521,10 +1499,8 @@ View All Projects
              onerror="this.style.display='none';">
       </a>
     </div>
-
   </div>
 </div>
-
 
       <div class="bg-white p-4 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-blue-600">
        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
@@ -1532,15 +1508,13 @@ View All Projects
          <div class="flex items-start mb-2">
           <div class="mr-3 flex-shrink-0">
             <i class="fas fa-certificate text-blue-500 text-lg sm:text-xl"></i>
-        </div>  
-            
-           
+          </div>
           <div class="flex-1">
            <h4 class="font-bold text-base sm:text-lg text-gray-800 leading-tight">Microsoft Certified: Power BI Data Analyst Associate</h4>
           </div>
          </div>
-         <p class="text-blue-600 text-sm sm:text-base mb-2 ml-0 sm:ml-0">Microsoft</p>
-         <div class="space-y-1 text-xs sm:text-sm ml-0 sm:ml-0">
+         <p class="text-blue-600 text-sm sm:text-base mb-2">Microsoft</p>
+         <div class="space-y-1 text-xs sm:text-sm">
           <p class="text-gray-600"><span class="font-semibold">Credential ID:</span> <a href="https://learn.microsoft.com/api/credentials/share/en-gb/PoojaNair-4383/553F8B00109EDD8A?sharingId=6C7903AD2F3359C" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-700 underline hover:no-underline transition-all"> 553F8B00109EDD8A </a></p>
           <p class="text-gray-600"><span class="font-semibold">Certification Number:</span> 574X1B-004912</p>
           <p class="text-gray-600"><span class="font-semibold">Earned:</span> November 14, 2025</p>
@@ -1607,23 +1581,21 @@ View All Projects
      </div>
     </div>
    </div>
-  </section><!-- Contact Section -->
+  </section>
+
+  <!-- Contact Section -->
   <section id="contact" class="py-16 sm:py-20 bg-white">
    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12 sm:mb-16 scroll-animate">
      <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Let's Connect &amp; Collaborate</h2>
      <p class="text-lg sm:text-xl text-gray-600 mb-6">Ready to turn data into actionable insights? Let's discuss your next project!</p>
      <div class="w-20 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto"></div>
-    </div><!-- Contact Cards Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16"><!-- Phone Card -->
-     <div class="scroll-animate bg-white contact-card p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100">
-      <div class="text-center">
-       <div class="bg-gradient-to-br from-blue-500 to-blue-600 w-12 sm:w-16 h-12 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg"><i class="fas fa-phone text-white text-lg sm:text-2xl"></i>
-       </div>
-       <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Call Me</h3>
-       <p class="text-gray-600 mb-4 text-sm sm:text-base">Let's discuss your data challenges</p><a href="tel:+918104288688" class="text-blue-600 font-semibold text-base sm:text-lg hover:text-blue-700 transition-colors">+91-8104288688</a>
-      </div>
-     </div><!-- Email Card -->
+    </div>
+
+    <!-- Contact Cards Grid — 2 cards only (phone removed) -->
+    <div class="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16 max-w-2xl mx-auto">
+
+     <!-- Email Card -->
      <div class="scroll-animate bg-white contact-card p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100">
       <div class="text-center">
        <div class="bg-gradient-to-br from-green-500 to-green-600 w-12 sm:w-16 h-12 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg"><i class="fas fa-envelope text-white text-lg sm:text-2xl"></i>
@@ -1631,24 +1603,32 @@ View All Projects
        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Email Me</h3>
        <p class="text-gray-600 mb-4 text-sm sm:text-base">Drop me a line anytime</p><a href="mailto:poojanair5919@gmail.com" class="text-green-600 font-semibold hover:text-green-700 transition-colors break-all text-sm sm:text-base">poojanair5919@gmail.com</a>
       </div>
-     </div><!-- Location Card -->
-     <div class="scroll-animate bg-white contact-card p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100 sm:col-span-2 lg:col-span-1">
+     </div>
+
+     <!-- Location Card -->
+     <div class="scroll-animate bg-white contact-card p-6 sm:p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 border border-gray-100">
       <div class="text-center">
        <div class="bg-gradient-to-br from-purple-500 to-purple-600 w-12 sm:w-16 h-12 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg"><i class="fas fa-map-marker-alt text-white text-lg sm:text-2xl"></i>
        </div>
        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Location</h3>
        <p class="text-gray-600 mb-4 text-sm sm:text-base">Available to work in</p>
-       <p class="text-purple-600 font-semibold text-sm sm:text-base">Bangalore, Hyderabad, or remotely</p>
+       <p class="text-purple-600 font-semibold text-sm sm:text-base">PAN India</p>
       </div>
      </div>
-    </div><!-- Social Media Section -->
+
+    </div>
+
+    <!-- Social Media Section -->
     <div class="scroll-animate">
      <div class="bg-white contact-main-card rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 border border-gray-100">
       <div class="text-center mb-8 sm:mb-12">
        <h3 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">Follow My Data Journey</h3>
        <p class="text-base sm:text-lg text-gray-600">Connect with me across platforms to see my latest work and insights</p>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"><!-- LinkedIn --> <a href="https://www.linkedin.com/in/pooja-nair" target="_blank" class="group social-card bg-gradient-to-br from-blue-900 to-blue-800 p-4 sm:p-6 rounded-2xl hover:from-blue-800 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-blue-700">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+
+       <!-- LinkedIn -->
+       <a href="https://www.linkedin.com/in/pooja-nair" target="_blank" class="group social-card bg-gradient-to-br from-blue-900 to-blue-800 p-4 sm:p-6 rounded-2xl hover:from-blue-800 hover:to-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-blue-700">
         <div class="flex items-center mb-4">
          <div class="bg-blue-600 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300"><i class="fab fa-linkedin text-white text-lg sm:text-xl"></i>
          </div>
@@ -1656,7 +1636,12 @@ View All Projects
           <h4 class="font-bold text-white text-sm sm:text-base">LinkedIn</h4>
           <p class="text-blue-300 text-xs sm:text-sm">Professional Network</p>
          </div>
-        </div><p class="text-gray-300 text-xs sm:text-sm">Connect for career opportunities and professional insights</p></a> <!-- GitHub --> <a href="https://github.com/PoojaNair5919" target="_blank" class="group social-card bg-gradient-to-br from-gray-900 to-gray-800 p-4 sm:p-6 rounded-2xl hover:from-gray-800 hover:to-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-gray-700">
+        </div>
+        <p class="text-gray-300 text-xs sm:text-sm">Connect for career opportunities and professional insights</p>
+       </a>
+
+       <!-- GitHub -->
+       <a href="https://github.com/PoojaNair5919" target="_blank" class="group social-card bg-gradient-to-br from-gray-900 to-gray-800 p-4 sm:p-6 rounded-2xl hover:from-gray-800 hover:to-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-gray-700">
         <div class="flex items-center mb-4">
          <div class="bg-gray-700 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300"><i class="fab fa-github text-white text-lg sm:text-xl"></i>
          </div>
@@ -1664,7 +1649,12 @@ View All Projects
           <h4 class="font-bold text-white text-sm sm:text-base">GitHub</h4>
           <p class="text-gray-300 text-xs sm:text-sm">Code Repository</p>
          </div>
-        </div><p class="text-gray-300 text-xs sm:text-sm">Explore my data science projects and code samples</p></a> <!-- Tableau --> <a href="https://public.tableau.com/app/profile/pooja.nair3441/vizzes" target="_blank" class="group social-card bg-gradient-to-br from-orange-900 to-orange-800 p-4 sm:p-6 rounded-2xl hover:from-orange-800 hover:to-orange-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-orange-700">
+        </div>
+        <p class="text-gray-300 text-xs sm:text-sm">Explore my data science projects and code samples</p>
+       </a>
+
+       <!-- Tableau -->
+       <a href="https://public.tableau.com/app/profile/pooja.nair3441/vizzes" target="_blank" class="group social-card bg-gradient-to-br from-orange-900 to-orange-800 p-4 sm:p-6 rounded-2xl hover:from-orange-800 hover:to-orange-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-orange-700">
         <div class="flex items-center mb-4">
          <div class="bg-orange-600 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300"><i class="bi bi-bar-chart text-white text-lg sm:text-xl"></i>
          </div>
@@ -1672,7 +1662,12 @@ View All Projects
           <h4 class="font-bold text-white text-sm sm:text-base">Tableau</h4>
           <p class="text-orange-300 text-xs sm:text-sm">Data Visualizations</p>
          </div>
-        </div><p class="text-gray-300 text-xs sm:text-sm">Interactive dashboards and data storytelling</p></a> <!-- Medium --> <a href="https://medium.com/@poojanair5919" target="_blank" class="group social-card bg-gradient-to-br from-green-900 to-green-800 p-4 sm:p-6 rounded-2xl hover:from-green-800 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-green-700">
+        </div>
+        <p class="text-gray-300 text-xs sm:text-sm">Interactive dashboards and data storytelling</p>
+       </a>
+
+       <!-- Medium -->
+       <a href="https://medium.com/@poojanair5919" target="_blank" class="group social-card bg-gradient-to-br from-green-900 to-green-800 p-4 sm:p-6 rounded-2xl hover:from-green-800 hover:to-green-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-green-700">
         <div class="flex items-center mb-4">
          <div class="bg-green-600 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300"><i class="bi bi-medium text-white text-lg sm:text-xl"></i>
          </div>
@@ -1680,7 +1675,12 @@ View All Projects
           <h4 class="font-bold text-white text-sm sm:text-base">Medium</h4>
           <p class="text-green-300 text-xs sm:text-sm">Data Stories</p>
          </div>
-        </div><p class="text-gray-300 text-xs sm:text-sm">Read my latest articles on data analysis and insights</p></a> <!-- Great Learning --> <a href="https://www.mygreatlearning.com/eportfolio/pooja-nair" target="_blank" class="group social-card bg-gradient-to-br from-purple-900 to-purple-800 p-4 sm:p-6 rounded-2xl hover:from-purple-800 hover:to-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-purple-700">
+        </div>
+        <p class="text-gray-300 text-xs sm:text-sm">Read my latest articles on data analysis and insights</p>
+       </a>
+
+       <!-- Great Learning -->
+       <a href="https://www.mygreatlearning.com/eportfolio/pooja-nair" target="_blank" class="group social-card bg-gradient-to-br from-purple-900 to-purple-800 p-4 sm:p-6 rounded-2xl hover:from-purple-800 hover:to-purple-700 transition-all duration-300 hover:scale-105 hover:shadow-lg border border-purple-700">
         <div class="flex items-center mb-4">
          <div class="bg-purple-600 p-2 sm:p-3 rounded-xl mr-3 sm:mr-4 group-hover:scale-110 transition-transform duration-300"><i class="fas fa-graduation-cap text-white text-lg sm:text-xl"></i>
          </div>
@@ -1688,20 +1688,28 @@ View All Projects
           <h4 class="font-bold text-white text-sm sm:text-base">Great Learning</h4>
           <p class="text-purple-300 text-xs sm:text-sm">Portfolio</p>
          </div>
-        </div><p class="text-gray-300 text-xs sm:text-sm">View my certifications and learning journey</p></a> <!-- CTA Card -->
+        </div>
+        <p class="text-gray-300 text-xs sm:text-sm">View my certifications and learning journey</p>
+       </a>
+
+       <!-- CTA Card -->
        <div class="group cta-card bg-gradient-to-br from-indigo-900 to-indigo-800 p-4 sm:p-6 rounded-2xl border-2 border-dashed border-indigo-600 hover:border-indigo-500 transition-all duration-300 hover:scale-105">
         <div class="text-center">
          <div class="bg-indigo-600 p-2 sm:p-3 rounded-xl mx-auto mb-4 w-fit group-hover:scale-110 transition-transform duration-300"><i class="fas fa-handshake text-white text-lg sm:text-xl"></i>
          </div>
          <h4 class="font-bold text-white mb-2 text-sm sm:text-base">Let's Collaborate!</h4>
-         <p class="text-gray-300 text-xs sm:text-sm mb-4">Have a data project in mind?</p><button onclick="window.location.href='mailto:poojanair5919@gmail.com'" class="bg-indigo-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors text-xs sm:text-sm font-semibold"> Get In Touch </button>
+         <p class="text-gray-300 text-xs sm:text-sm mb-4">Have a data project in mind?</p>
+         <button onclick="window.location.href='mailto:poojanair5919@gmail.com'" class="bg-indigo-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors text-xs sm:text-sm font-semibold"> Get In Touch </button>
         </div>
        </div>
+
       </div>
      </div>
     </div>
    </div>
-  </section><!-- Footer -->
+  </section>
+
+  <!-- Footer -->
   <footer class="bg-gray-800 text-white py-8 sm:py-12">
    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center">
@@ -1709,6 +1717,7 @@ View All Projects
     </div>
    </div>
   </footer>
+
   <script>
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
@@ -1757,7 +1766,6 @@ View All Projects
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                     
-                    // Animate progress bars
                     if (entry.target.querySelector('.progress-fill')) {
                         const progressBars = entry.target.querySelectorAll('.progress-fill');
                         progressBars.forEach(bar => {
@@ -1768,7 +1776,6 @@ View All Projects
                         });
                     }
                     
-                    // Animate counters
                     if (entry.target.querySelector('.stats-counter')) {
                         const counters = entry.target.querySelectorAll('.stats-counter');
                         counters.forEach(counter => {
@@ -1846,21 +1853,14 @@ View All Projects
 
         // Enhanced button functionality
         document.getElementById('download-resume')?.addEventListener('click', () => {
-            // Use the GitHub repository path for the resume
             const resumeUrl = './pooja_nair_analytics_engineer_resume.pdf';
-            
-            // Create download link
             const link = document.createElement('a');
             link.href = resumeUrl;
             link.download = 'pooja_nair_analytics_engineer_resume.pdf';
             link.target = '_blank';
-            
-            // Trigger download
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            
-            // Visual feedback
             const button = document.getElementById('download-resume');
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-check mr-2"></i>Downloading...';
@@ -1878,7 +1878,6 @@ View All Projects
             const nameElement = document.querySelector('.name-animation');
             const text = nameElement.textContent;
             nameElement.innerHTML = '';
-            
             text.split('').forEach((char, index) => {
                 const span = document.createElement('span');
                 span.textContent = char === ' ' ? '\u00A0' : char;
@@ -1887,15 +1886,12 @@ View All Projects
             });
         }
 
-
-
         // Parallax effect for floating elements (disabled on mobile for performance)
         if (window.innerWidth > 768) {
             window.addEventListener('scroll', () => {
                 const scrolled = window.pageYOffset;
                 const parallax = document.querySelectorAll('.floating-element');
                 const speed = 0.5;
-
                 parallax.forEach(element => {
                     const yPos = -(scrolled * speed);
                     element.style.transform = `translateY(${yPos}px)`;
@@ -1918,12 +1914,10 @@ View All Projects
 
         // Initialize enhanced animations on load
         window.addEventListener('load', () => {
-            // Animate name after a short delay
             setTimeout(() => {
                 animateName();
             }, 1000);
             
-            // Staggered animation for initial elements
             document.querySelectorAll('.scroll-animate').forEach((el, index) => {
                 setTimeout(() => {
                     if (el.getBoundingClientRect().top < window.innerHeight) {
@@ -1932,7 +1926,6 @@ View All Projects
                 }, index * 100);
             });
             
-            // Initialize progress bars
             setTimeout(() => {
                 document.querySelectorAll('.progress-fill').forEach(bar => {
                     const width = bar.getAttribute('data-width');
@@ -1950,8 +1943,6 @@ View All Projects
                     modal.classList.remove('show');
                     document.body.style.overflow = 'auto';
                 });
-                
-                // Close mobile menu on escape
                 if (!mobileMenu.classList.contains('hidden')) {
                     mobileMenu.classList.add('hidden');
                     mobileMenuIcon.className = 'fas fa-bars text-gray-600';
@@ -1978,12 +1969,10 @@ View All Projects
 
         // Touch-friendly improvements for mobile
         if ('ontouchstart' in window) {
-            // Add touch feedback for buttons
             document.querySelectorAll('button, .project-card, .skill-card').forEach(element => {
                 element.addEventListener('touchstart', function() {
                     this.style.transform = 'scale(0.98)';
                 });
-                
                 element.addEventListener('touchend', function() {
                     setTimeout(() => {
                         this.style.transform = '';
@@ -1992,19 +1981,5 @@ View All Projects
             });
         }
     </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9c04295160e00b19',t:'MTc2ODgwMjk0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
