@@ -3,386 +3,1041 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Projects | Pooja Nair</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Projects - Pooja Nair</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' }
-  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    body { box-sizing: border-box; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-    @keyframes blob {
-      0%, 100% { transform: translate(0, 0) scale(1); }
-      33% { transform: translate(30px, -50px) scale(1.1); }
-      66% { transform: translate(-20px, 20px) scale(0.9); }
-    }
+        * {
+            font-family: 'Inter', sans-serif;
+        }
 
-    @keyframes fade-in {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
 
-    .animate-blob { animation: blob 7s infinite; }
-    .animation-delay-2000 { animation-delay: 2s; }
-    .animation-delay-4000 { animation-delay: 4s; }
+        .data-pattern {
+            background-image:
+                radial-gradient(circle at 25px 25px, rgba(255,255,255,0.1) 2px, transparent 0),
+                radial-gradient(circle at 75px 75px, rgba(255,255,255,0.1) 2px, transparent 0);
+            background-size: 100px 100px;
+        }
 
-    .animate-fade-in {
-      animation: fade-in 0.8s ease-out forwards;
-      opacity: 0;
-    }
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
 
-    .animation-delay-200 { animation-delay: 0.2s; }
+        .scroll-animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* Card scroll-in animation */
-    .project-card {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+        .skill-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .project-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
 
-    .project-card.hidden {
-      display: none;
-    }
+        .skill-card:hover::before {
+            left: 100%;
+        }
 
-    .project-card:nth-child(1) { transition-delay: 0.05s; }
-    .project-card:nth-child(2) { transition-delay: 0.15s; }
-    .project-card:nth-child(3) { transition-delay: 0.25s; }
-    .project-card:nth-child(4) { transition-delay: 0.35s; }
-    .project-card:nth-child(5) { transition-delay: 0.45s; }
-    .project-card:nth-child(6) { transition-delay: 0.55s; }
+        .skill-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
 
-    /* Filter buttons */
-    .filter-btn {
-      padding: 0.5rem 1.25rem;
-      border-radius: 9999px;
-      font-weight: 600;
-      font-size: 0.875rem;
-      transition: all 0.3s ease;
-      background: white;
-      color: #64748b;
-      border: 2px solid #e2e8f0;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
+        @media (max-width: 768px) {
+            .skill-card:hover {
+                transform: translateY(-4px) scale(1.01);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            }
+        }
 
-    .filter-btn:hover {
-      border-color: #6366f1;
-      color: #4f46e5;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
-    }
+        .project-card {
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .filter-btn.active {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-      color: white;
-      border-color: transparent;
-      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
-      transform: translateY(-1px);
-    }
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
 
-    .dark .filter-btn {
-      background: #1e293b;
-      color: #94a3b8;
-      border-color: #334155;
-    }
+        .project-card:hover::after {
+            opacity: 1;
+        }
 
-    .dark .filter-btn:hover {
-      border-color: #6366f1;
-      color: #e0e7ff;
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
-    }
+        .project-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        }
 
-    .dark .filter-btn.active {
-      background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-      color: white;
-      border-color: transparent;
-      box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-    }
-  </style>
+        @media (max-width: 768px) {
+            .project-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 4px #667eea;
+            z-index: 2;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 2rem;
+            width: 2px;
+            height: calc(100% - 1rem);
+            background: linear-gradient(to bottom, #667eea, rgba(102,126,234,0.3));
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                width: 12px;
+                height: 12px;
+                left: 0;
+            }
+
+            .timeline-item::after {
+                left: 5px;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            transform: scale(0.7) rotate(5deg);
+            opacity: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                padding: 1.5rem;
+                border-radius: 1rem;
+                max-height: 90vh;
+            }
+        }
+
+        .modal.show .modal-content {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
+
+        .dark-mode {
+            background-color: #000000;
+            color: white;
+        }
+
+        .dark-mode .bg-white {
+            background-color: #0f0f0f !important;
+        }
+
+        .dark-mode .bg-gray-50 {
+            background-color: #0a0a0a !important;
+        }
+
+        .dark-mode .text-gray-800 {
+            color: #e5e5e5 !important;
+        }
+
+        .dark-mode .text-gray-600 {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-mode .text-gray-700 {
+            color: #c0c0c0 !important;
+        }
+
+        .dark-mode .border-gray-200 {
+            border-color: #404040 !important;
+        }
+
+        .dark-mode .border-gray-300 {
+            border-color: #404040 !important;
+        }
+
+        .dark-mode .skill-card {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%) !important;
+            border: 1px solid #222;
+        }
+
+        .dark-mode .project-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+
+        .dark-mode .modal-content {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+
+        .dark-mode input, .dark-mode textarea {
+            background-color: #1a1a1a !important;
+            border-color: #333333 !important;
+            color: #e5e5e5 !important;
+        }
+
+        .dark-mode input::placeholder, .dark-mode textarea::placeholder {
+            color: #666666 !important;
+        }
+
+        .dark-mode input:focus, .dark-mode textarea:focus {
+            border-color: #4f46e5 !important;
+            background-color: #1a1a1a !important;
+        }
+
+        .dark-mode .dark-mode-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+
+        .dark-mode .contact-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+
+        .dark-mode .contact-main-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+
+        .dark-mode .social-card {
+            background-color: #0a0a0a !important;
+            border: 1px solid #222222;
+        }
+
+        .dark-mode .social-card:hover {
+            background-color: #1a1a1a !important;
+        }
+
+        .dark-mode .cta-card {
+            background-color: #0a0a0a !important;
+            border: 2px dashed #333333 !important;
+        }
+
+        .dark-mode .cta-card:hover {
+            border-color: #444444 !important;
+        }
+
+        .dark-mode .award-card {
+            background: #0a0a0a !important;
+            border: 1px solid #222222 !important;
+        }
+
+        .dark-mode .award-title {
+            color: #e5e5e5 !important;
+        }
+
+        .dark-mode .award-company {
+            color: #b0b0b0 !important;
+        }
+
+        .dark-mode .award-description {
+            color: #c0c0c0 !important;
+        }
+
+        .navbar-blur {
+            backdrop-filter: blur(15px);
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .dark-mode .navbar-blur {
+            background-color: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .dark-mode #mobile-menu {
+            background-color: #0a0a0a !important;
+            border-color: #333333 !important;
+        }
+
+        .dark-mode #theme-toggle {
+            background-color: #4f46e5 !important;
+        }
+
+        .dark-mode .theme-toggle-circle {
+            transform: translateX(24px);
+            background-color: #1f2937 !important;
+        }
+
+        .dark-mode .theme-toggle-circle i {
+            color: #fbbf24 !important;
+        }
+
+        .dark-mode .theme-label {
+            color: #9ca3af !important;
+        }
+
+        .name-animation {
+            display: inline-block;
+        }
+
+        .name-animation span {
+            display: inline-block;
+            opacity: 0;
+            animation: letterFadeIn 0.6s ease forwards;
+        }
+
+        @keyframes letterFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) rotateX(90deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        .social-icon-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .social-tooltip {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon-container:hover .social-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+
+        .dark-mode .social-tooltip {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .social-tooltip {
+                display: none;
+            }
+        }
+
+        .project-details {
+            transition: all 0.4s ease;
+            overflow: hidden;
+        }
+
+        .project-details.hidden {
+            max-height: 0;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .project-details.show {
+            max-height: 1400px;
+            opacity: 1;
+            margin-top: 1rem;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        @media (max-width: 768px) {
+            .floating-element {
+                opacity: 0.05;
+                transform: scale(0.7);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(102,126,234,0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(102,126,234,0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(102,126,234,0);
+            }
+        }
+
+        .badge-halo {
+            position: relative;
+            display: inline-block;
+        }
+
+        .badge-halo::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: halo-pulse 2s ease-in-out infinite;
+        }
+
+        .badge-halo:hover::before {
+            animation: halo-pulse-fast 1s ease-in-out infinite;
+        }
+
+        @keyframes halo-pulse {
+            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+
+        @keyframes halo-pulse-fast {
+            0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+        }
+
+        .dark-mode .badge-halo::before {
+            display: none;
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) translateX(10px) rotate(5deg); }
+            50% { transform: translateY(-10px) translateX(-15px) rotate(-3deg); }
+            75% { transform: translateY(-25px) translateX(5px) rotate(2deg); }
+        }
+
+        @keyframes float-medium {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) translateX(-10px) rotate(-4deg); }
+            66% { transform: translateY(-30px) translateX(12px) rotate(6deg); }
+        }
+
+        @keyframes float-fast {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+            20% { transform: translateY(-10px) translateX(8px) rotate(3deg); }
+            40% { transform: translateY(-25px) translateX(-5px) rotate(-2deg); }
+            60% { transform: translateY(-15px) translateX(15px) rotate(4deg); }
+            80% { transform: translateY(-35px) translateX(-8px) rotate(-1deg); }
+        }
+
+        .animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+        .animate-float-medium { animation: float-medium 6s ease-in-out infinite; }
+        .animate-float-fast { animation: float-fast 4s ease-in-out infinite; }
+
+        /* ================= NEW: live status strip ================= */
+        .status-strip {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #059669;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            padding: 6px 14px;
+            border-radius: 20px;
+        }
+        .dark-mode .status-strip {
+            color: #34d399;
+            background: rgba(16, 185, 129, 0.12);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+        .status-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #10b981;
+            animation: dot-pulse 1.6s ease-in-out infinite;
+        }
+        @keyframes dot-pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+            50% { opacity: 0.65; box-shadow: 0 0 0 5px rgba(16,185,129,0); }
+        }
+
+        /* ================= NEW: filter chips ================= */
+        .filter-chip {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #e5e7eb;
+            color: #4b5563;
+            background: white;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .filter-chip:hover { border-color: #667eea; color: #667eea; }
+        .filter-chip.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-color: transparent; }
+        .dark-mode .filter-chip { background: #0a0a0a; border-color: #333; color: #b0b0b0; }
+        .dark-mode .filter-chip.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+
+        /* ================= NEW: status pills on cards ================= */
+        .pill-winner { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding: 4px 10px; border-radius: 20px; background: #fef3c7; color: #92400e; }
+        .dark-mode .pill-winner { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+        .pill-live { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding: 4px 10px; border-radius: 20px; background: #d1fae5; color: #065f46; }
+        .dark-mode .pill-live { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+
+        /* ================= NEW: live embed component ================= */
+        .embed-frame {
+            position: relative;
+            width: 100%;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+        }
+        .dark-mode .embed-frame { background: #050505; border-color: #222; }
+        .embed-ratio { position: relative; width: 100%; padding-top: 62.25%; }
+        .embed-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        .embed-placeholder {
+            position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 10px; color: #6b7280; font-size: 12.5px; text-align: center; padding: 16px;
+        }
+        .dark-mode .embed-placeholder { color: #9ca3af; }
+        .embed-spinner { width: 26px; height: 26px; border: 3px solid #d1d5db; border-top-color: #667eea; border-radius: 50%; animation: spin 0.8s linear infinite; }
+        .dark-mode .embed-spinner { border-color: #333; border-top-color: #764ba2; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .embed-launch-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 10px 20px;
+            border-radius: 24px; font-size: 13px; font-weight: 700; cursor: pointer;
+        }
+
+        /* ================= NEW: behind-the-report toggle ================= */
+        .behind-toggle { font-size: 12px; font-weight: 600; color: #667eea; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; }
+        .behind-toggle i { transition: transform 0.3s ease; font-size: 10px; }
+        .behind-toggle.open i { transform: rotate(180deg); }
+        .behind-note { font-size: 12.5px; color: #6b7280; margin-top: 8px; padding: 10px 12px; background: #f9fafb; border-radius: 0.5rem; border-left: 3px solid #667eea; }
+        .dark-mode .behind-note { color: #a0a0a0; background: #0f0f0f; }
+
+        /* ================= NEW: case study tabs ================= */
+        .cs-tabs { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+        .cs-tab-btn { font-size: 12px; font-weight: 700; padding: 6px 14px; border-radius: 20px; border: 1px solid #e5e7eb; background: white; color: #6b7280; cursor: pointer; }
+        .cs-tab-btn.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-color: transparent; }
+        .dark-mode .cs-tab-btn { background: #0a0a0a; border-color: #333; color: #b0b0b0; }
+        .cs-tab-panel { display: none; }
+        .cs-tab-panel.active { display: block; }
+        .cs-stat { background: #f3f4f6; border-radius: 0.5rem; padding: 10px 14px; }
+        .dark-mode .cs-stat { background: #0f0f0f; }
+        .cs-stat .v { font-size: 18px; font-weight: 800; color: #667eea; }
+        .cs-stat .l { font-size: 11px; color: #6b7280; }
+        .dark-mode .cs-stat .l { color: #9ca3af; }
+
+        /* Mobile-specific improvements */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.25rem !important; line-height: 1.2; margin-bottom: 0.75rem !important; }
+            .hero-subtitle { font-size: 1.125rem !important; line-height: 1.4; margin-bottom: 1rem !important; }
+            .hero-buttons { flex-direction: column; width: 100%; gap: 0.5rem; margin-bottom: 0.75rem !important; }
+            .hero-buttons button { width: 100%; justify-content: center; padding: 0.75rem 1rem; font-size: 0.875rem; }
+            .social-icons { justify-content: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+            .social-icon { padding: 0.625rem !important; }
+            .social-icon i { font-size: 1rem !important; }
+            .hero-image { width: 180px; height: 180px; margin-top: 0.5rem; }
+            .hero-image .inner-circle { width: 160px; height: 160px; }
+            .hero-image i { font-size: 3rem; }
+            .grid.md\\:grid-cols-2 { gap: 1rem; }
+            #home { padding-top: 4.5rem; padding-bottom: 2rem; }
+            .theme-label { display: none; }
+            #home .scroll-animate[style*="0.35s"] { margin-bottom: 0.75rem; }
+            .floating-element { opacity: 0.1 !important; }
+            .floating-element svg { transform: scale(0.6); }
+            #home .absolute.animate-float-slow, #home .absolute.animate-float-medium, #home .absolute.animate-float-fast { opacity: 0.1 !important; display: block !important; }
+            #home .absolute svg { transform: scale(0.6); }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .hero-title { font-size: 3.5rem !important; }
+            .hero-subtitle { font-size: 1.5rem !important; }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .skill-card:hover, .project-card:hover, .testimonial-card:hover { transform: none; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+            .social-icon:hover { transform: scale(1.05); }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
  </head>
- <body class="transition-colors duration-300 min-h-screen" style="font-family: 'Geist', sans-serif;">
-
-  <!-- Animated Background -->
-  <div class="fixed inset-0 -z-10 overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-cyan-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-800"></div>
-    <div class="absolute top-0 left-1/4 w-96 h-96 bg-blue-400 dark:bg-blue-700 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob"></div>
-    <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-400 dark:bg-cyan-700 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
-    <div class="absolute bottom-0 left-1/2 w-96 h-96 bg-teal-300 dark:bg-teal-700 rounded-full mix-blend-multiply filter blur-3xl opacity-20 dark:opacity-10 animate-blob animation-delay-4000"></div>
-  </div>
+ <body class="dark-mode transition-colors duration-300">
 
   <!-- Navigation -->
-  <nav class="relative z-10 max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-    <a href="index.html" class="group inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 text-blue-600 dark:text-blue-400 font-semibold rounded-lg border-2 border-blue-200 dark:border-blue-800 hover:bg-blue-600 dark:hover:bg-blue-600 hover:text-white dark:hover:text-white hover:border-blue-600 transition-all shadow-sm hover:shadow-lg">
-      <i class="fas fa-arrow-left text-sm group-hover:-translate-x-1 transition-transform"></i>
-      <span>Back Home</span>
-    </a>
-    <button id="darkModeToggle" class="relative w-12 h-12 rounded-full bg-gradient-to-br from-yellow-200 to-yellow-300 dark:from-indigo-600 dark:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group">
-      <i class="fas fa-sun dark:hidden text-2xl text-yellow-600 group-hover:scale-110 transition-transform"></i>
-      <i class="fas fa-moon hidden dark:inline text-2xl text-indigo-200 group-hover:scale-110 transition-transform"></i>
-    </button>
+  <nav class="fixed top-0 w-full z-50 navbar-blur transition-all duration-300">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+     <a href="index.html" class="font-bold text-lg sm:text-xl text-blue-600 pulse-animation">Pooja Nair</a>
+     <div class="hidden md:flex space-x-6 lg:space-x-8">
+      <a href="index.html#home" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Home</a>
+      <a href="projects.html" class="nav-link text-blue-600 font-semibold text-sm lg:text-base">Projects</a>
+      <a href="index.html#about" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">About</a>
+      <a href="index.html#skills" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Skills</a>
+      <a href="index.html#experience" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Experience</a>
+      <a href="index.html#contact" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Contact</a>
+     </div>
+     <div class="flex items-center space-x-3">
+      <div class="relative">
+       <button id="theme-toggle" class="flex items-center justify-center w-12 h-6 bg-gray-200 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+        <div class="absolute left-1 w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300 flex items-center justify-center theme-toggle-circle"><i class="fas fa-moon text-gray-600 text-xs"></i></div>
+       </button>
+       <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 whitespace-nowrap theme-label">Dark</span>
+      </div>
+      <button id="mobile-menu-toggle" class="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"><i class="fas fa-bars text-gray-600"></i></button>
+     </div>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
+     <div class="flex flex-col space-y-3 px-4">
+      <a href="index.html#home" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Home</a>
+      <a href="projects.html" class="mobile-nav-link text-blue-600 font-semibold py-2 border-b border-gray-100">Projects</a>
+      <a href="index.html#about" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">About</a>
+      <a href="index.html#skills" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Skills</a>
+      <a href="index.html#experience" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Experience</a>
+      <a href="index.html#contact" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2">Contact</a>
+     </div>
+    </div>
+   </div>
   </nav>
 
-  <!-- Hero Header -->
-  <section class="relative z-10 py-4 px-6 text-center">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-6xl md:text-7xl font-black mb-6 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-300 dark:via-indigo-300 dark:to-purple-300 bg-clip-text text-transparent animate-fade-in">My Projects</h1>
-      <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed animate-fade-in animation-delay-200">A collection of BI and analytics projects focused on data modeling, dashboard design, and turning data into actionable insights.</p>
+  <section class="pt-28 pb-10 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
+    <span class="status-strip mb-4"><span class="status-dot"></span>4 live dashboards &middot; 6 case studies &middot; 1 win</span>
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 mt-4">All Projects</h1>
+    <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base mb-8">Live competition dashboards open right on this page, and analytical case studies with the full story behind them.</p>
+    <div class="flex flex-wrap justify-center gap-2">
+     <button class="filter-chip active" data-filter="all">All</button>
+     <button class="filter-chip" data-filter="live">Live Dashboards</button>
+     <button class="filter-chip" data-filter="case">Case Studies</button>
+     <button class="filter-chip" data-filter="tableau">Tableau</button>
     </div>
+   </div>
   </section>
 
-  <!-- Filter Section -->
-  <section class="relative z-10 max-w-7xl mx-auto px-6 py-8">
-    <div class="mb-8">
-      <h2 class="text-sm uppercase tracking-widest font-bold text-gray-600 dark:text-gray-400 mb-4">Filter by Technology</h2>
-      <div class="flex flex-wrap gap-3">
-        <button class="filter-btn active" data-filter="all">
-          <i class="fas fa-th-large text-xs"></i> All Projects
-        </button>
-        <button class="filter-btn" data-filter="power-bi">
-          <i class="fas fa-chart-pie text-xs"></i> Power BI
-        </button>
-        <button class="filter-btn" data-filter="python">
-          <i class="fab fa-python text-xs"></i> Python
-        </button>
-        <button class="filter-btn" data-filter="tableau">
-          <i class="fas fa-chart-bar text-xs"></i> Tableau
-        </button>
-      </div>
-    </div>
-  </section>
+  <section class="py-12 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-xl font-bold text-gray-800 mb-6 scroll-animate"><i class="fas fa-satellite-dish text-green-500 mr-2"></i>Live Report Challenges</h2>
+    <div class="grid grid-cols-1 gap-8" data-group="live">
 
-  <!-- Projects Grid -->
-  <section class="relative z-10 max-w-7xl mx-auto px-6 pb-20">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- Blinkit BI Analysis -->
-      <div class="project-card group" data-category="power-bi">
-        <div class="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col">
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-600"></div>
-          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-50 dark:from-blue-900 dark:to-blue-800 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform z-10">
-            <i class="fas fa-chart-pie text-blue-600 dark:text-blue-300 text-xl"></i>
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 pr-14 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Blinkit BI Analysis</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">Built a Power BI semantic model to analyze sales performance, product concentration, and delivery delays.</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">Power BI</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">DAX</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full">Star Schema</span>
-            </div>
-            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-wrap gap-2">
-              <a href="projects/blinkit_analysis/blinkit.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 dark:bg-blue-500 text-white text-xs font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-all hover:shadow-md group/link">
-                View Project <i class="fas fa-arrow-right text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 dark:bg-blue-500 text-white text-xs font-semibold rounded-lg hover:bg-blue-700 transition-all hover:shadow-md group/link">
-                Article <i class="fas fa-external-link-alt text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 dark:bg-gray-700 text-white text-xs font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
-                <i class="fab fa-github text-xs"></i> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
+      <span class="pill-winner"><i class="fas fa-trophy mr-1"></i>Winner &middot; May 2026</span>
+      <h3 class="text-lg font-bold text-gray-800 mt-2">DataBuzz Power BI Challenge</h3>
+      <p class="text-gray-600 text-sm mt-1 mb-3">Accounting Firm Audit &amp; Compliance Report</p>
+      <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiYTkwNmJjM2UtY2I5MC00MjVjLWI5OWMtNTdhOWI4MGVjYTRmIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9" data-title="Accounting Firm Audit & Compliance Report">
+       <div class="embed-ratio"><div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div></div>
       </div>
+      <div class="behind-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('hidden');"><i class="fas fa-chevron-down"></i> Behind this report</div>
+      <div class="behind-note hidden">Built for a 48-hour community challenge. Focus was on compliance drill-down UX: bookmarks for audit stages, conditional-format risk flags, and a single unified tooltip page for reviewer context.</div>
+     </div>
 
-      <!-- Supply Chain Analytics Dashboard -->
-      <div class="project-card group" data-category="power-bi python">
-        <div class="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col">
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 to-blue-600"></div>
-          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-cyan-100 to-cyan-50 dark:from-cyan-900 dark:to-cyan-800 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform z-10">
-            <i class="fas fa-truck text-cyan-600 dark:text-cyan-300 text-xl"></i>
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 pr-14 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">Supply Chain Analytics Dashboard</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">Analyzed 180K+ global orders to uncover delivery delays, logistics inefficiencies, and revenue patterns using a KPI-driven Power BI dashboard.</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-gradient-to-r from-cyan-50 to-cyan-100 dark:from-cyan-900 dark:to-cyan-800 text-cyan-700 dark:text-cyan-300 text-xs font-semibold rounded-full">Power BI</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-cyan-50 to-cyan-100 dark:from-cyan-900 dark:to-cyan-800 text-cyan-700 dark:text-cyan-300 text-xs font-semibold rounded-full">DAX</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-cyan-50 to-cyan-100 dark:from-cyan-900 dark:to-cyan-800 text-cyan-700 dark:text-cyan-300 text-xs font-semibold rounded-full">Python</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-cyan-50 to-cyan-100 dark:from-cyan-900 dark:to-cyan-800 text-cyan-700 dark:text-cyan-300 text-xs font-semibold rounded-full">Star Schema</span>
-            </div>
-            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-wrap gap-2">
-              <a href="projects/supply_chain_analysis/supply_chain_analysis.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 dark:bg-cyan-500 text-white text-xs font-semibold rounded-lg hover:bg-cyan-700 dark:hover:bg-cyan-600 transition-all hover:shadow-md group/link">
-                View Project <i class="fas fa-arrow-right text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-cyan-600 dark:bg-cyan-500 text-white text-xs font-semibold rounded-lg hover:bg-cyan-700 transition-all hover:shadow-md group/link">
-                Article <i class="fas fa-external-link-alt text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 dark:bg-gray-700 text-white text-xs font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
-                <i class="fab fa-github text-xs"></i> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
+      <span class="pill-live"><i class="fas fa-circle mr-1" style="font-size:6px;"></i>Participant &middot; June 2026</span>
+      <h3 class="text-lg font-bold text-gray-800 mt-2">DataBuzz Power BI Challenge</h3>
+      <p class="text-gray-600 text-sm mt-1 mb-3">E-Commerce Conversion &amp; Sales Analytics</p>
+      <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiODk5MjZlNDktNzViMS00NWMwLWFiODEtZmU1YTA4OWQ4NjQ4IiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9" data-title="E-Commerce Conversion & Sales Analytics">
+       <div class="embed-ratio"><div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div></div>
       </div>
+      <div class="behind-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('hidden');"><i class="fas fa-chevron-down"></i> Behind this report</div>
+      <div class="behind-note hidden">Modeled a funnel from sessions to checkout with DAX time-intelligence measures, then built a single-page conversion story rather than a multi-tab dashboard, to match the challenge's "one-screen insight" brief.</div>
+     </div>
 
-      <!-- Social Media Tourism Capstone -->
-      <div class="project-card group" data-category="python">
-        <div class="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col">
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-500 to-emerald-600"></div>
-          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900 dark:to-green-800 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform z-10">
-            <i class="fas fa-brain text-green-600 dark:text-green-300 text-xl"></i>
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 pr-14 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Social Media Tourism Capstone</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">Predicted airline customer purchase intent using clustering and machine learning models to optimize ad targeting by device type.</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full">Python</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full">Scikit-learn</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 text-green-700 dark:text-green-300 text-xs font-semibold rounded-full">K-Means</span>
-            </div>
-            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-wrap gap-2">
-              <a href="https://medium.com/@poojanair5919/how-i-used-k-means-boosting-models-to-optimize-airline-ads-by-device-type-908fe89d83d9" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-600 dark:bg-green-500 text-white text-xs font-semibold rounded-lg hover:bg-green-700 transition-all hover:shadow-md group/link">
-                Article <i class="fas fa-external-link-alt text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="https://github.com/PoojaNair5919/Airline-Ad-Optimisation" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 dark:bg-gray-700 text-white text-xs font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
-                <i class="fab fa-github text-xs"></i> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
+      <span class="pill-live"><i class="fas fa-circle mr-1" style="font-size:6px;"></i>Participant</span>
+      <h3 class="text-lg font-bold text-gray-800 mt-2">Zoomcharts FP Analytics Challenge 38</h3>
+      <p class="text-gray-600 text-sm mt-1 mb-3">Emergency Operations &amp; Patient Flow Analytics</p>
+      <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiODRjNDQwNzctZmQ2Yi00YzY1LTkxODYtNzdhOWYzZGI1YTE5IiwidCI6IjQ2NTRiNmYxLTBlNDctNDU3OS1hOGExLTAyZmU5ZDk0M2M3YiIsImMiOjl9" data-title="Emergency Operations & Patient Flow Analytics">
+       <div class="embed-ratio"><div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div></div>
       </div>
+      <div class="behind-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('hidden');"><i class="fas fa-chevron-down"></i> Behind this report</div>
+      <div class="behind-note hidden">Used Zoomcharts custom visuals to make patient-flow bottlenecks scannable at a glance, favoring a flow-diagram visual over a standard bar chart for the department-to-department handoff view.</div>
+     </div>
 
-      <!-- Real Estate Pricing Analysis -->
-      <div class="project-card group" data-category="tableau">
-        <div class="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col">
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-pink-600"></div>
-          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900 dark:to-purple-800 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform z-10">
-            <i class="fas fa-home text-purple-600 dark:text-purple-300 text-xl"></i>
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 pr-14 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Real Estate Pricing Analysis</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">Analyzed 1990s Boston condo sales to uncover negotiation patterns, pricing behavior, and seasonal market trends.</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">Tableau</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">Excel</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 text-purple-700 dark:text-purple-300 text-xs font-semibold rounded-full">EDA</span>
-            </div>
-            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-wrap gap-2">
-              <a href="https://medium.com/@poojanair5919/what-90s-boston-condo-sales-reveal-about-market-psychology-a-data-story-part-1-160028027f3d" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-600 dark:bg-purple-500 text-white text-xs font-semibold rounded-lg hover:bg-purple-700 transition-all hover:shadow-md group/link">
-                Article <i class="fas fa-external-link-alt text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="https://github.com/PoojaNair5919/Boston-Real-Estate-Analysis" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 dark:bg-gray-700 text-white text-xs font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
-                <i class="fab fa-github text-xs"></i> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
+      <span class="pill-live"><i class="fas fa-circle mr-1" style="font-size:6px;"></i>Participant &middot; June 2026</span>
+      <h3 class="text-lg font-bold text-gray-800 mt-2">Zoomcharts 4U Reports Challenge</h3>
+      <p class="text-gray-600 text-sm mt-1 mb-3">Built with Zoomcharts custom visuals</p>
+      <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiZjhhYmI4MjgtYThiNS00MmYzLWExMDgtYTQ0M2UxMTZiMmVmIiwidCI6IjQ2NTRiNmYxLTBlNDctNDU3OS1hOGExLTAyZmU5ZDk0M2M3YiIsImMiOjl9" data-title="4U Reports Challenge">
+       <div class="embed-ratio"><div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div></div>
       </div>
-
-      <!-- Data Science Career Analysis -->
-      <div class="project-card group" data-category="tableau">
-        <div class="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col">
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 to-indigo-600"></div>
-          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-indigo-100 to-indigo-50 dark:from-indigo-900 dark:to-indigo-800 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform z-10">
-            <i class="fas fa-graduation-cap text-indigo-600 dark:text-indigo-300 text-xl"></i>
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 pr-14 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">Data Science Career Analysis</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">Explored global salary trends, hiring patterns, and work mode preferences in the data science job market.</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-full">Tableau</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-full">Excel</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-indigo-50 to-indigo-100 dark:from-indigo-900 dark:to-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-full">EDA</span>
-            </div>
-            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-wrap gap-2">
-              <a href="https://medium.com/@poojanair5919/data-science-careers-in-2025-hype-or-reality-aa9a325710d8" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 dark:bg-indigo-500 text-white text-xs font-semibold rounded-lg hover:bg-indigo-700 transition-all hover:shadow-md group/link">
-                Article <i class="fas fa-external-link-alt text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="https://github.com/PoojaNair5919/Data-Science-Jobs-Salary-Trends-Analysis" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 dark:bg-gray-700 text-white text-xs font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
-                <i class="fab fa-github text-xs"></i> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Spotify Songs Analysis -->
-      <div class="project-card group" data-category="tableau">
-        <div class="relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col">
-          <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-pink-500 to-rose-600"></div>
-          <div class="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-pink-100 to-pink-50 dark:from-pink-900 dark:to-pink-800 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform z-10">
-            <i class="fas fa-music text-pink-600 dark:text-pink-300 text-xl"></i>
-          </div>
-          <div class="p-6 flex flex-col flex-1">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 pr-14 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">Spotify Greatest Songs Analysis</h3>
-            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6">Analyzed over 900 iconic songs using Spotify API data to explore popularity trends, artist dominance, and music patterns.</p>
-            <div class="flex flex-wrap gap-2 mb-6">
-              <span class="px-3 py-1 bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 text-pink-700 dark:text-pink-300 text-xs font-semibold rounded-full">Python</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 text-pink-700 dark:text-pink-300 text-xs font-semibold rounded-full">Spotify API</span>
-              <span class="px-3 py-1 bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900 dark:to-pink-800 text-pink-700 dark:text-pink-300 text-xs font-semibold rounded-full">Tableau</span>
-            </div>
-            <div class="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-wrap gap-2">
-              <a href="https://medium.com/@poojanair5919/exploring-the-greatest-songs-of-all-time-on-spotify-53a41bab3823" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-pink-600 dark:bg-pink-500 text-white text-xs font-semibold rounded-lg hover:bg-pink-700 transition-all hover:shadow-md group/link">
-                Article <i class="fas fa-external-link-alt text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
-              </a>
-              <a href="https://github.com/PoojaNair5919/Spotify-s-Greatest-Songs-of-All-Time" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-800 dark:bg-gray-700 text-white text-xs font-semibold rounded-lg hover:bg-gray-900 transition-all hover:shadow-md">
-                <i class="fab fa-github text-xs"></i> GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="behind-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('hidden');"><i class="fas fa-chevron-down"></i> Behind this report</div>
+      <div class="behind-note hidden">A quick-turnaround entry exploring Zoomcharts' report templates &mdash; focused on speed of build without giving up on interactivity.</div>
+     </div>
 
     </div>
+   </div>
   </section>
+
+  <section class="py-12 bg-white">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-xl font-bold text-gray-800 mb-6 scroll-animate"><i class="fas fa-microscope text-blue-500 mr-2"></i>Analytical Case Studies</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" data-group="case">
+     
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case">
+      <div class="bg-gradient-to-br from-blue-600 to-indigo-700 h-32 flex items-center justify-center relative"><i class="fas fa-chart-bar text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
+      <div class="p-5 sm:p-6">
+       
+       <h3 class="text-lg font-bold text-gray-800 mb-2 mt-1">Blinkit BI Analysis</h3>
+       <p class="text-gray-600 mb-3 text-sm">Star-schema semantic model analyzing sales, product concentration, and delivery delays.</p>
+       <button class="cs-toggle inline-flex items-center text-blue-600 font-semibold text-sm hover:underline" onclick="toggleCaseStudy(this)"><i class="fas fa-chevron-down mr-2 text-xs"></i>Open case study</button>
+       <div class="project-details hidden">
+        <div class="cs-tabs">
+         <button class="cs-tab-btn active" data-tab="snap">Snapshot</button>
+         <button class="cs-tab-btn" data-tab="find">Findings</button>
+        </div>
+        <div class="cs-tab-panel active" data-panel="snap">
+         <div class="grid grid-cols-2 gap-3 mb-3"><div class="cs-stat"><div class="v">38%</div><div class="l">revenue from top 10 products</div></div><div class="cs-stat"><div class="v">30%</div><div class="l">orders linked to delays</div></div></div>
+         <div class="flex flex-wrap gap-2 mb-3"><span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Power BI</span><span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">DAX</span><span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Star Schema</span></div>
+        </div>
+        <div class="cs-tab-panel" data-panel="find">
+         <p class="text-gray-600 text-sm mb-3">Pareto analysis showed the top 10 products drive disproportionate revenue; delivery delays traced back to order frequency rather than order value, redirecting the fix from &ldquo;bigger orders&rdquo; to &ldquo;faster fulfillment for frequent SKUs.&rdquo;</p>
+        </div>
+        <div class="flex gap-4 mt-2 flex-wrap"><a href="projects/blinkit_analysis/blinkit.html" class="text-blue-600 text-sm font-semibold hover:underline"><i class="fas fa-external-link-alt mr-1"></i>Full case study</a><a href="https://medium.com/@poojanair5919/30-of-orders-are-delayed-why-isnt-revenue-falling-b2c29bbebcda" target="_blank" class="text-gray-500 text-sm font-semibold hover:underline"><i class="fab fa-medium mr-1"></i>Article</a><a href="https://github.com/PoojaNair5919/blinkit-delivery-delay-analysis" target="_blank" class="text-gray-500 text-sm font-semibold hover:underline"><i class="fab fa-github mr-1"></i>GitHub</a></div>
+       </div>
+      </div>
+     </div>
+
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case">
+      <div class="bg-gradient-to-br from-cyan-600 to-teal-700 h-32 flex items-center justify-center relative"><i class="fas fa-truck text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
+      <div class="p-5 sm:p-6">
+       
+       <h3 class="text-lg font-bold text-gray-800 mb-2 mt-1">Supply Chain Analytics</h3>
+       <p class="text-gray-600 mb-3 text-sm">180K+ global orders analyzed for delivery delays and logistics inefficiencies.</p>
+       <button class="cs-toggle inline-flex items-center text-blue-600 font-semibold text-sm hover:underline" onclick="toggleCaseStudy(this)"><i class="fas fa-chevron-down mr-2 text-xs"></i>Open case study</button>
+       <div class="project-details hidden">
+        <div class="cs-tabs">
+         <button class="cs-tab-btn active" data-tab="snap">Snapshot</button>
+         <button class="cs-tab-btn" data-tab="find">Findings</button>
+        </div>
+        <div class="cs-tab-panel active" data-panel="snap">
+         <div class="grid grid-cols-2 gap-3 mb-3"><div class="cs-stat"><div class="v">180K+</div><div class="l">orders analyzed</div></div><div class="cs-stat"><div class="v">KPI</div><div class="l">driven dashboard</div></div></div>
+         <div class="flex flex-wrap gap-2 mb-3"><span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Power BI</span><span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">DAX</span><span class="bg-teal-100 text-teal-800 px-2 py-1 rounded text-xs">Python</span></div>
+        </div>
+        <div class="cs-tab-panel" data-panel="find">
+         <p class="text-gray-600 text-sm mb-3">Identified specific logistics corridors responsible for a disproportionate share of delays, separating carrier-side issues from warehouse dispatch bottlenecks.</p>
+        </div>
+        <div class="flex gap-4 mt-2 flex-wrap"><a href="projects/supply_chain_analysis/supply_chain_analysis.html" class="text-blue-600 text-sm font-semibold hover:underline"><i class="fas fa-external-link-alt mr-1"></i>Full case study</a><a href="https://medium.com/@poojanair5919/what-180-000-orders-reveal-about-supply-chain-performance-1a20a1832446" target="_blank" class="text-gray-500 text-sm font-semibold hover:underline"><i class="fab fa-medium mr-1"></i>Article</a><a href="https://github.com/PoojaNair5919/supply-chain-analytics/tree/main" target="_blank" class="text-gray-500 text-sm font-semibold hover:underline"><i class="fab fa-github mr-1"></i>GitHub</a></div>
+       </div>
+      </div>
+     </div>
+
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case">
+      <div class="bg-gradient-to-br from-purple-600 to-pink-500 h-32 flex items-center justify-center relative"><i class="fas fa-share-alt text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
+      <div class="p-5 sm:p-6">
+       
+       <h3 class="text-lg font-bold text-gray-800 mb-2 mt-1">Social Media Tourism Capstone</h3>
+       <p class="text-gray-600 mb-3 text-sm">Predicted airline customer purchase intent to optimize ad targeting by device type.</p>
+       <button class="cs-toggle inline-flex items-center text-blue-600 font-semibold text-sm hover:underline" onclick="toggleCaseStudy(this)"><i class="fas fa-chevron-down mr-2 text-xs"></i>Open case study</button>
+       <div class="project-details hidden">
+        <div class="cs-tabs">
+         <button class="cs-tab-btn active" data-tab="snap">Snapshot</button>
+         <button class="cs-tab-btn" data-tab="find">Findings</button>
+        </div>
+        <div class="cs-tab-panel active" data-panel="snap">
+         <div class="grid grid-cols-2 gap-3 mb-3"><div class="cs-stat"><div class="v">K-Means</div><div class="l">clustering approach</div></div><div class="cs-stat"><div class="v">+20%</div><div class="l">est. ROI boost</div></div></div>
+         <div class="flex flex-wrap gap-2 mb-3"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Python</span><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Scikit-learn</span></div>
+        </div>
+        <div class="cs-tab-panel" data-panel="find">
+         <p class="text-gray-600 text-sm mb-3">Clustering revealed distinct device-based intent segments, allowing ad spend to shift toward the highest-converting device/segment pairs instead of a flat budget split.</p>
+        </div>
+        <div class="flex gap-4 mt-2 flex-wrap"><a href="https://medium.com/@poojanair5919/how-i-used-k-means-boosting-models-to-optimize-airline-ads-by-device-type-908fe89d83d9" target="_blank" class="text-blue-600 text-sm font-semibold hover:underline"><i class="fas fa-external-link-alt mr-1"></i>Read article</a><a href="https://github.com/PoojaNair5919/Airline-Ad-Optimisation" target="_blank" class="text-gray-500 text-sm font-semibold hover:underline"><i class="fab fa-github mr-1"></i>GitHub</a></div>
+       </div>
+      </div>
+     </div>
+
+    </div>
+   </div>
+  </section>
+
+  <section class="py-12 bg-gray-50">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="text-xl font-bold text-gray-800 mb-6 scroll-animate"><i class="bi bi-bar-chart text-orange-500 mr-2"></i>Tableau Explorations</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" data-group="tableau">
+     
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="tableau">
+      <div class="bg-gradient-to-br from-amber-600 to-orange-700 h-32 flex items-center justify-center relative"><i class="fas fa-building text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
+      <div class="p-5 sm:p-6">
+       <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-full">TABLEAU</span>
+       <h3 class="text-lg font-bold text-gray-800 mb-2 mt-1">Real Estate Pricing Analysis</h3>
+       <p class="text-gray-600 mb-3 text-sm">1990s Boston condo sales analyzed for negotiation patterns and seasonal pricing trends.</p>
+       <button class="cs-toggle inline-flex items-center text-blue-600 font-semibold text-sm hover:underline" onclick="toggleCaseStudy(this)"><i class="fas fa-chevron-down mr-2 text-xs"></i>Open case study</button>
+       <div class="project-details hidden">
+        <div class="cs-tabs">
+         <button class="cs-tab-btn active" data-tab="snap">Snapshot</button>
+         <button class="cs-tab-btn" data-tab="find">Findings</button>
+        </div>
+        <div class="cs-tab-panel active" data-panel="snap">
+         <div class="grid grid-cols-2 gap-3 mb-3"><div class="cs-stat"><div class="v">EDA</div><div class="l">negotiation patterns</div></div><div class="cs-stat"><div class="v">Seasonal</div><div class="l">pricing trends</div></div></div>
+         <div class="flex flex-wrap gap-2 mb-3"><span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Tableau</span><span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Excel</span></div>
+        </div>
+        <div class="cs-tab-panel" data-panel="find">
+         <p class="text-gray-600 text-sm mb-3">Buyers who negotiated hardest weren't always getting the best deal &mdash; seasonal listing timing had a bigger effect on final price than negotiation intensity.</p>
+        </div>
+        <div class="flex gap-4 mt-2 flex-wrap"><a href="https://medium.com/@poojanair5919/what-90s-boston-condo-sales-reveal-about-market-psychology-a-data-story-part-1-160028027f3d" target="_blank" class="text-blue-600 text-sm font-semibold hover:underline"><i class="fas fa-external-link-alt mr-1"></i>Read article</a><a href="https://github.com/PoojaNair5919/Boston-Real-Estate-Analysis" target="_blank" class="text-gray-500 text-sm font-semibold hover:underline"><i class="fab fa-github mr-1"></i>GitHub</a></div>
+       </div>
+      </div>
+     </div>
+
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="tableau">
+      <div class="bg-gradient-to-br from-indigo-600 to-blue-700 h-32 flex items-center justify-center relative"><i class="fas fa-briefcase text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
+      <div class="p-5 sm:p-6">
+       <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-full">TABLEAU</span>
+       <h3 class="text-lg font-bold text-gray-800 mb-2 mt-1">Data Science Career Analysis</h3>
+       <p class="text-gray-600 mb-3 text-sm">Global salary trends, hiring patterns, and work mode preferences in data science.</p>
+       <button class="cs-toggle inline-flex items-center text-blue-600 font-semibold text-sm hover:underline" onclick="toggleCaseStudy(this)"><i class="fas fa-chevron-down mr-2 text-xs"></i>Open case study</button>
+       <div class="project-details hidden">
+        <div class="cs-tabs">
+         <button class="cs-tab-btn active" data-tab="snap">Snapshot</button>
+         <button class="cs-tab-btn" data-tab="find">Findings</button>
+        </div>
+        <div class="cs-tab-panel active" data-panel="snap">
+         <div class="grid grid-cols-2 gap-3 mb-3"><div class="cs-stat"><div class="v">Global</div><div class="l">salary trends</div></div><div class="cs-stat"><div class="v">Remote</div><div class="l">vs onsite patterns</div></div></div>
+         <div class="flex flex-wrap gap-2 mb-3"><span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Tableau</span><span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Excel</span></div>
+        </div>
+        <div class="cs-tab-panel" data-panel="find">
+         <p class="text-gray-600 text-sm mb-3">Remote roles didn't command a pay premium globally &mdash; the salary gap was more strongly explained by seniority level than by work mode.</p>
+        </div>
+        <div class="flex gap-4 mt-2 flex-wrap"><a href="https://medium.com/@poojanair5919/data-science-careers-in-2025-hype-or-reality-aa9a325710d8" target="_blank" class="text-blue-600 text-sm font-semibold hover:underline"><i class="fas fa-external-link-alt mr-1"></i>Read article</a><a href="https://github.com/PoojaNair5919/Data-Science-Jobs-Salary-Trends-Analysis" target="_blank" class="text-gray-500 text-sm font-semibold hover:underline"><i class="fab fa-github mr-1"></i>GitHub</a></div>
+       </div>
+      </div>
+     </div>
+
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="tableau">
+      <div class="bg-gradient-to-br from-green-600 to-emerald-700 h-32 flex items-center justify-center relative"><i class="fas fa-music text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
+      <div class="p-5 sm:p-6">
+       <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-full">TABLEAU</span>
+       <h3 class="text-lg font-bold text-gray-800 mb-2 mt-1">Spotify Greatest Songs Analysis</h3>
+       <p class="text-gray-600 mb-3 text-sm">900+ iconic songs analyzed via Spotify API for popularity trends and artist dominance.</p>
+       <button class="cs-toggle inline-flex items-center text-blue-600 font-semibold text-sm hover:underline" onclick="toggleCaseStudy(this)"><i class="fas fa-chevron-down mr-2 text-xs"></i>Open case study</button>
+       <div class="project-details hidden">
+        <div class="cs-tabs">
+         <button class="cs-tab-btn active" data-tab="snap">Snapshot</button>
+         <button class="cs-tab-btn" data-tab="find">Findings</button>
+        </div>
+        <div class="cs-tab-panel active" data-panel="snap">
+         <div class="grid grid-cols-2 gap-3 mb-3"><div class="cs-stat"><div class="v">900+</div><div class="l">songs analyzed</div></div><div class="cs-stat"><div class="v">API</div><div class="l">Spotify data</div></div></div>
+         <div class="flex flex-wrap gap-2 mb-3"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">Python</span><span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs">Tableau</span></div>
+        </div>
+        <div class="cs-tab-panel" data-panel="find">
+         <p class="text-gray-600 text-sm mb-3">A small number of artists accounted for a disproportionate share of &ldquo;greatest songs&rdquo; list appearances, suggesting canon lists skew toward repeat-artist bias over raw popularity.</p>
+        </div>
+        <div class="flex gap-4 mt-2 flex-wrap"><a href="https://medium.com/@poojanair5919/exploring-the-greatest-songs-of-all-time-on-spotify-53a41bab3823" target="_blank" class="text-blue-600 text-sm font-semibold hover:underline"><i class="fas fa-external-link-alt mr-1"></i>Read article</a><a href="https://github.com/PoojaNair5919/Spotify-s-Greatest-Songs-of-All-Time" target="_blank" class="text-gray-500 text-sm font-semibold hover:underline"><i class="fab fa-github mr-1"></i>GitHub</a></div>
+       </div>
+      </div>
+     </div>
+
+    </div>
+   </div>
+  </section>
+
+  <footer class="bg-gray-800 text-white py-8 sm:py-12">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <p class="text-gray-400 text-sm sm:text-base mb-3">Turning information into insight, and insight into action.</p>
+    <a href="index.html" class="text-blue-400 text-sm hover:underline">&larr; Back to Home</a>
+   </div>
+  </footer>
 
   <script>
-    // Dark Mode Toggle
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const htmlElement = document.documentElement;
-
-    if (localStorage.getItem('darkMode') === 'true') {
-      htmlElement.classList.add('dark');
-    }
-
-    darkModeToggle.addEventListener('click', () => {
-      htmlElement.classList.toggle('dark');
-      localStorage.setItem('darkMode', htmlElement.classList.contains('dark'));
-    });
-
-    // Filter Functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
-        const filterValue = button.getAttribute('data-filter');
-        projectCards.forEach(card => {
-          const categories = card.getAttribute('data-category').split(' ');
-          if (filterValue === 'all' || categories.includes(filterValue)) {
-            card.classList.remove('hidden');
-            card.classList.remove('visible');
-            setTimeout(() => card.classList.add('visible'), 50);
-          } else {
-            card.classList.add('hidden');
-          }
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = mobileMenuToggle.querySelector('i');
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuIcon.className = mobileMenu.classList.contains('hidden') ? 'fas fa-bars text-gray-600' : 'fas fa-times text-gray-600';
         });
-      });
-    });
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuIcon.className = 'fas fa-bars text-gray-600';
+            });
+        });
 
-    // Scroll-in animation
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.scroll-animate').forEach((el, index) => {
+                setTimeout(() => { if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }, index * 60);
+            });
+        });
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        const themeLabel = document.querySelector('.theme-label');
+        function applyTheme(mode) {
+            if (mode === 'light') {
+                body.classList.remove('dark-mode');
+                icon.className = 'fas fa-moon text-gray-600 text-xs';
+                themeLabel.textContent = 'Light';
+            } else {
+                body.classList.add('dark-mode');
+                icon.className = 'fas fa-sun text-yellow-400 text-xs';
+                themeLabel.textContent = 'Dark';
+            }
         }
-      });
-    }, { threshold: 0.1 });
+        themeToggle.addEventListener('click', () => {
+            const goingLight = body.classList.contains('dark-mode');
+            applyTheme(goingLight ? 'light' : 'dark');
+            localStorage.setItem('theme', goingLight ? 'light' : 'dark');
+        });
+        applyTheme(localStorage.getItem('theme') === 'light' ? 'light' : 'dark');
 
-    projectCards.forEach(card => observer.observe(card));
+        function loadEmbed(frame) {
+            const placeholder = frame.querySelector('.embed-placeholder');
+            if (!placeholder) return;
+            const src = frame.getAttribute('data-src');
+            const title = frame.getAttribute('data-title') || 'Live dashboard';
+            const iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.title = title;
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.setAttribute('loading', 'lazy');
+            placeholder.remove();
+            frame.querySelector('.embed-ratio').appendChild(iframe);
+        }
+        function wireEmbed(frame) {
+            if (frame.querySelector('iframe')) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        loadEmbed(entry.target);
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '200px' });
+            io.observe(frame);
+        }
+        document.querySelectorAll('.embed-frame').forEach(wireEmbed);
+
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                const f = chip.getAttribute('data-filter');
+                document.querySelectorAll('[data-group]').forEach(group => {
+                    const type = group.getAttribute('data-group');
+                    group.closest('section').style.display = (f === 'all' || f === type) ? '' : 'none';
+                });
+            });
+        });
+
+        function toggleCaseStudy(btn) {
+            const details = btn.nextElementSibling;
+            const isHidden = details.classList.contains('hidden');
+            details.classList.toggle('hidden');
+            details.classList.toggle('show');
+            btn.innerHTML = isHidden
+                ? '<i class="fas fa-chevron-down mr-2 text-xs" style="transform:rotate(180deg)"></i>Close case study'
+                : '<i class="fas fa-chevron-down mr-2 text-xs"></i>Open case study';
+        }
+        document.querySelectorAll('.cs-tab-btn').forEach(tabBtn => {
+            tabBtn.addEventListener('click', () => {
+                const wrapper = tabBtn.closest('.project-details');
+                const tab = tabBtn.getAttribute('data-tab');
+                wrapper.querySelectorAll('.cs-tab-btn').forEach(b => b.classList.remove('active'));
+                tabBtn.classList.add('active');
+                wrapper.querySelectorAll('.cs-tab-panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === tab));
+            });
+        });
   </script>
-
  </body>
 </html>
