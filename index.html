@@ -664,6 +664,20 @@
         .floating-view-all:hover { padding-left: 22px; }
         .floating-view-all i { font-size: 11px; }
         @media (max-width: 1180px) { .floating-view-all { display: none; } }
+
+        /* ================= NEW: floating back-to-top button ================= */
+        .floating-top {
+            position: fixed; right: 0; top: 50%; transform: translateY(-50%) translateX(100%);
+            z-index: 45; display: flex; align-items: center; justify-content: center;
+            width: 50px; height: 50px; border: none; cursor: pointer;
+            border-radius: 30px 0 0 30px; background: linear-gradient(135deg, #764ba2, #667eea); color: #fff;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25); font-size: 16px;
+            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.35s ease;
+            opacity: 0;
+        }
+        .floating-top.visible { transform: translateY(-50%) translateX(0); opacity: 1; }
+        .floating-top:hover { transform: translateY(-50%) translateX(-5px); }
+        @media (max-width: 1180px) { .floating-top { display: none; } }
         @media (max-width: 768px) {
             .hero-title { font-size: 2.25rem !important; line-height: 1.2; margin-bottom: 0.75rem !important; }
             .hero-subtitle { font-size: 1.125rem !important; line-height: 1.4; margin-bottom: 1rem !important; }
@@ -810,6 +824,7 @@
   </nav>
 
   <a href="projects.html" id="floating-view-all" class="floating-view-all"><i class="fas fa-th-large"></i>View All Projects</a>
+  <button id="back-to-top" class="floating-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
   <div class="qs-banner"><i class="fas fa-bolt mr-1"></i>Quick-scan mode: role fit, top projects, résumé, contact only.<button id="qs-exit">Show full site</button></div>
 
@@ -1549,6 +1564,23 @@
             window.addEventListener('resize', update);
             window.addEventListener('load', update);
             update();
+        })();
+        // ===== NEW: floating back-to-top button, appears after the first screen of scrolling =====
+        (function () {
+            const btn = document.getElementById('back-to-top');
+            if (!btn) return;
+            let ticking = false;
+            function update() {
+                btn.classList.toggle('visible', window.scrollY > window.innerHeight * 0.9);
+                ticking = false;
+            }
+            window.addEventListener('scroll', () => {
+                if (!ticking) { requestAnimationFrame(update); ticking = true; }
+            });
+            window.addEventListener('resize', update);
+            window.addEventListener('load', update);
+            update();
+            btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         })();
     </script>
  </body>
