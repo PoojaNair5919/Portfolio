@@ -663,7 +663,6 @@
         .floating-view-all.visible { transform: translateY(-50%) translateX(0); opacity: 1; }
         .floating-view-all:hover { padding-left: 22px; }
         .floating-view-all i { font-size: 11px; }
-        @media (max-width: 1180px) { .floating-view-all { display: none; } }
 
         /* ================= NEW: floating back-to-top button ================= */
         .floating-top {
@@ -677,7 +676,27 @@
         }
         .floating-top.visible { transform: translateY(-50%) translateX(0); opacity: 1; }
         .floating-top:hover { transform: translateY(-50%) translateX(-5px); }
-        @media (max-width: 1180px) { .floating-top { display: none; } }
+
+        /* On tablet/mobile there's no side margin to anchor an edge-tab to, so both
+           switch to small round FABs stacked bottom-right instead of being hidden. */
+        @media (max-width: 1180px) {
+            .floating-view-all {
+                left: auto; right: 14px; top: auto; bottom: 78px;
+                transform: translateY(24px); opacity: 0;
+                width: 46px; height: 46px; border-radius: 50%; padding: 0; gap: 0; justify-content: center;
+            }
+            .floating-view-all.visible { transform: translateY(0); opacity: 1; }
+            .floating-view-all:hover { padding-left: 0; }
+            .floating-view-all .fv-label { display: none; }
+            .floating-view-all i { font-size: 16px; }
+
+            .floating-top {
+                right: 14px; left: auto; top: auto; bottom: 20px;
+                transform: translateY(24px); opacity: 0;
+                width: 46px; height: 46px; border-radius: 50%;
+            }
+            .floating-top.visible { transform: translateY(0); opacity: 1; }
+        }
         @media (max-width: 768px) {
             .hero-title { font-size: 2.25rem !important; line-height: 1.2; margin-bottom: 0.75rem !important; }
             .hero-subtitle { font-size: 1.125rem !important; line-height: 1.4; margin-bottom: 1rem !important; }
@@ -823,7 +842,7 @@
    </div>
   </nav>
 
-  <a href="projects.html" id="floating-view-all" class="floating-view-all"><i class="fas fa-th-large"></i>View All Projects</a>
+  <a href="projects.html" id="floating-view-all" class="floating-view-all" aria-label="View all projects"><i class="fas fa-th-large"></i><span class="fv-label">View All Projects</span></a>
   <button id="back-to-top" class="floating-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
   <div class="qs-banner"><i class="fas fa-bolt mr-1"></i>Quick-scan mode: role fit, top projects, résumé, contact only.<button id="qs-exit">Show full site</button></div>
@@ -1471,117 +1490,4 @@
             if (!placeholder) return;
             const src = frame.getAttribute('data-src');
             const title = frame.getAttribute('data-title') || 'Live dashboard';
-            const ratioBox = frame.querySelector('.embed-ratio');
-            const iframe = document.createElement('iframe');
-            iframe.src = src;
-            iframe.title = title;
-            iframe.setAttribute('allowfullscreen', 'true');
-            iframe.setAttribute('loading', 'lazy');
-            placeholder.remove();
-            ratioBox.appendChild(iframe);
-
-            const fsBtn = document.createElement('button');
-            fsBtn.className = 'embed-fullscreen-btn';
-            fsBtn.setAttribute('aria-label', 'View fullscreen');
-            fsBtn.innerHTML = '<i class="fas fa-expand"></i>';
-            fsBtn.addEventListener('click', () => {
-                if (ratioBox.requestFullscreen) ratioBox.requestFullscreen();
-                else if (ratioBox.webkitRequestFullscreen) ratioBox.webkitRequestFullscreen();
-            });
-            ratioBox.appendChild(fsBtn);
-        }
-        function wireEmbed(frame) {
-            if (frame.querySelector('iframe')) return;
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        loadEmbed(entry.target);
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, { rootMargin: '200px' });
-            io.observe(frame);
-        }
-        document.querySelectorAll('.embed-frame').forEach(wireEmbed);
-
-        // ===== NEW: show more live dashboards =====
-        document.getElementById('show-more-live')?.addEventListener('click', function () {
-            const more = document.getElementById('more-live');
-            more.classList.toggle('hidden');
-            this.style.display = 'none';
-            more.querySelectorAll('.embed-frame').forEach(wireEmbed);
-        });
-
-        // ===== NEW: case study accordion + tabs =====
-        function toggleCaseStudy(btn) {
-            const details = btn.nextElementSibling;
-            const icon = btn.querySelector('i');
-            const isHidden = details.classList.contains('hidden');
-            details.classList.toggle('hidden');
-            details.classList.toggle('show');
-            icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
-            btn.innerHTML = isHidden
-                ? '<i class="fas fa-chevron-down mr-2 text-xs" style="transform:rotate(180deg)"></i>Close case study'
-                : '<i class="fas fa-chevron-down mr-2 text-xs"></i>Open case study';
-        }
-        document.querySelectorAll('.cs-tab-btn').forEach(tabBtn => {
-            tabBtn.addEventListener('click', () => {
-                const wrapper = tabBtn.closest('.project-details');
-                const tab = tabBtn.getAttribute('data-tab');
-                wrapper.querySelectorAll('.cs-tab-btn').forEach(b => b.classList.remove('active'));
-                tabBtn.classList.add('active');
-                wrapper.querySelectorAll('.cs-tab-panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === tab));
-            });
-        });
-
-        // ===== NEW: Recruiter quick-scan mode =====
-        const qsToggle = document.getElementById('quickscan-toggle');
-        const qsExit = document.getElementById('qs-exit');
-        function setQuickScan(on) {
-            document.body.classList.toggle('quick-scan', on);
-            qsToggle.classList.toggle('on', on);
-            qsToggle.innerHTML = on ? '<i class="fas fa-times"></i>Exit quick-scan' : '<i class="fas fa-bolt"></i>Recruiter quick-scan';
-        }
-        qsToggle?.addEventListener('click', () => setQuickScan(!document.body.classList.contains('quick-scan')));
-        qsExit?.addEventListener('click', () => setQuickScan(false));
-        // ===== NEW: floating "View All Projects" tab, visible only across Live Dashboards + Case Studies =====
-        (function () {
-            const tab = document.getElementById('floating-view-all');
-            const startEl = document.getElementById('projects');
-            const endEl = document.getElementById('case-studies');
-            if (!tab || !startEl || !endEl) return;
-            let ticking = false;
-            function update() {
-                const startY = startEl.getBoundingClientRect().top + window.scrollY - 120;
-                const endY = endEl.getBoundingClientRect().top + window.scrollY + endEl.offsetHeight - 200;
-                const pos = window.scrollY;
-                tab.classList.toggle('visible', pos >= startY && pos <= endY);
-                ticking = false;
-            }
-            window.addEventListener('scroll', () => {
-                if (!ticking) { requestAnimationFrame(update); ticking = true; }
-            });
-            window.addEventListener('resize', update);
-            window.addEventListener('load', update);
-            update();
-        })();
-        // ===== NEW: floating back-to-top button, appears after the first screen of scrolling =====
-        (function () {
-            const btn = document.getElementById('back-to-top');
-            if (!btn) return;
-            let ticking = false;
-            function update() {
-                btn.classList.toggle('visible', window.scrollY > window.innerHeight * 0.9);
-                ticking = false;
-            }
-            window.addEventListener('scroll', () => {
-                if (!ticking) { requestAnimationFrame(update); ticking = true; }
-            });
-            window.addEventListener('resize', update);
-            window.addEventListener('load', update);
-            update();
-            btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        })();
-    </script>
- </body>
-</html>
+            const r
