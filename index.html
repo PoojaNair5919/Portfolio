@@ -623,13 +623,7 @@
         .dark-mode .cs-stat .l { color: #9ca3af; }
 
         /* ================= NEW: skills radar ================= */
-        .radar-wrap { display: flex; justify-content: center; margin-bottom: 2.5rem; }
-        .radar-poly { opacity: 0; transform: scale(0.6); transform-origin: center; transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.16,1,0.3,1); }
-        .scroll-animate.visible .radar-poly { opacity: 1; transform: scale(1); }
-        .radar-dot { opacity: 0; transition: opacity 0.6s ease 0.8s; }
-        .scroll-animate.visible .radar-dot { opacity: 1; }
-        .radar-label { font-size: 11px; fill: #6b7280; font-weight: 600; }
-        .dark-mode .radar-label { fill: #9ca3af; }
+        /* skills radar chart removed per feedback — redundant with skill cards below */
 
         /* ================= NEW: data playground widget ================= */
         /* (removed) */
@@ -891,7 +885,7 @@
         <p class="text-gray-600 text-sm mt-1">Accounting Firm Audit &amp; Compliance Report</p>
        </div>
       </div>
-      <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiYTkwNmJjM2UtY2I5MC00MjVjLWI5OWMtNTdhOWI4MGVjYTRmIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9" data-title="Accounting Firm Audit & Compliance Report">
+      <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiYTkwNmJjM2UtY2I5MC00MjVjLWI5OWMtNTdhOWI4MGVjYTRmIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9&pageName=06545377fd16bac94a78" data-title="Accounting Firm Audit & Compliance Report">
        <div class="embed-ratio">
         <div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div>
        </div>
@@ -1087,38 +1081,6 @@
      <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Skills &amp; Technologies</h2>
      <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
     </div>
-    <div class="radar-wrap scroll-animate">
-     <svg width="440" height="380" viewbox="0 0 440 380">
-      <!-- background rings -->
-      <polygon points="220,80 315,135 315,245 220,300 125,245 125,135" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
-      <polygon points="220,117 273,153 273,227 220,263 167,227 167,153" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
-      <polygon points="220,153 242,172 242,208 220,227 198,208 198,172" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
-      <!-- axes -->
-      <line x1="220" y1="190" x2="220" y2="80" stroke="#e5e7eb"></line>
-      <line x1="220" y1="190" x2="315" y2="135" stroke="#e5e7eb"></line>
-      <line x1="220" y1="190" x2="315" y2="245" stroke="#e5e7eb"></line>
-      <line x1="220" y1="190" x2="220" y2="300" stroke="#e5e7eb"></line>
-      <line x1="220" y1="190" x2="125" y2="245" stroke="#e5e7eb"></line>
-      <line x1="220" y1="190" x2="125" y2="135" stroke="#e5e7eb"></line>
-
-      <!-- skill polygon: Core BI 90, Visualization 85, Decision Support 88, Programming 70, Data/SQL 80, Analytics Eng. 75 -->
-      <polygon class="radar-poly" points="220,91 291,143 294,238 220,267 134,234 139,149" fill="rgba(102,126,234,0.35)" stroke="#667eea" stroke-width="2.5"></polygon>
-
-      <circle class="radar-dot" cx="220" cy="91" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="291" cy="143" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="294" cy="238" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="220" cy="267" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="134" cy="234" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="139" cy="149" r="4" fill="#764ba2"></circle>
-
-      <text x="220" y="55" text-anchor="middle" class="radar-label">Core BI</text>
-      <text x="325" y="131" text-anchor="start" class="radar-label">Visualization</text>
-      <text x="325" y="249" text-anchor="start" class="radar-label">Decision Support</text>
-      <text x="220" y="335" text-anchor="middle" class="radar-label">Programming</text>
-      <text x="115" y="249" text-anchor="end" class="radar-label">Data/SQL</text>
-      <text x="115" y="131" text-anchor="end" class="radar-label">Analytics Eng.</text>
-     </svg>
-    </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
      <div class="skill-card bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl scroll-animate border-2 border-transparent hover:border-blue-200">
@@ -1165,27 +1127,35 @@
     <div class="max-w-4xl mx-auto">
      <div class="space-y-8 sm:space-y-12">
       <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
-       <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
-        <div><h3 class="text-xl sm:text-2xl font-bold text-gray-800">Category Associate</h3><p class="text-blue-600 font-semibold text-sm sm:text-base">Flipkart Pvt. Ltd.</p></div>
-        <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Jul 2024 - May 2025</span>
+       <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-5">
+        <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Flipkart Pvt. Ltd.</h3>
+        <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Dec 2019 - May 2025</span>
        </div>
-       <p class="text-gray-600 mb-4 text-sm sm:text-base" style="text-align: justify;">Managed daily category performance reporting for the lifestyle division, ensuring accurate and timely data availability for business teams. Coordinated flash deal planning using historical sales data and category inputs. Acted as a bridge between category managers, operations executives, and stakeholders to streamline reporting and execution workflows. Supported tracking of key business metrics including revenue, conversion, and category-level performance.</p>
-       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-        <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-arrow-up text-green-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">200+ Product Categories Supported</span></div>
-        <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-chart-line text-blue-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Revenue & Conversion Metrics Tracked</span></div>
-        <div class="flex items-center bg-gray-200 p-3 rounded-lg sm:col-span-2 lg:col-span-1"><i class="fas fa-users text-purple-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Daily Reporting & Stakeholder Coordination</span></div>
+
+       <div class="border-l-4 border-blue-200 pl-4 sm:pl-5 mb-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+         <p class="text-blue-600 font-semibold text-sm sm:text-base">Category Associate</p>
+         <span class="text-gray-400 text-xs sm:text-sm">Jul 2024 - May 2025</span>
+        </div>
+        <p class="text-gray-600 mb-4 text-sm sm:text-base" style="text-align: justify;">Managed daily category performance reporting for the lifestyle division, ensuring accurate and timely data availability for business teams. Coordinated flash deal planning using historical sales data and category inputs. Acted as a bridge between category managers, operations executives, and stakeholders to streamline reporting and execution workflows. Supported tracking of key business metrics including revenue, conversion, and category-level performance.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-arrow-up text-green-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">200+ Product Categories Supported</span></div>
+         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-chart-line text-blue-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Revenue & Conversion Metrics Tracked</span></div>
+         <div class="flex items-center bg-gray-200 p-3 rounded-lg sm:col-span-2 lg:col-span-1"><i class="fas fa-users text-purple-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Daily Reporting & Stakeholder Coordination</span></div>
+        </div>
        </div>
-      </div>
-      <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
-       <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
-        <div><h3 class="text-xl sm:text-2xl font-bold text-gray-800">Content Writer</h3><p class="text-blue-600 font-semibold text-sm sm:text-base">Flipkart Pvt. Ltd.</p></div>
-        <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Dec 2019 - Jun 2024</span>
-       </div>
-       <p class="text-gray-600 mb-4 text-sm sm:text-base" style="text-align: justify;">Created app UI copy, SEO articles, blogs, and multi-channel marketing copy (push, SMS, Facebook, WhatsApp) as part of the 2GUD Content Team. Led end-to-end thematic campaign pages from ideation to execution.</p>
-       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-        <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-pen-nib text-pink-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">SEO & UI Copywriting</span></div>
-        <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-bullhorn text-orange-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Multi-channel Campaigns</span></div>
-        <div class="flex items-center bg-gray-200 p-3 rounded-lg sm:col-span-2 lg:col-span-1"><i class="fas fa-trophy text-yellow-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Outstanding Performance Award</span></div>
+
+       <div class="border-l-4 border-blue-100 pl-4 sm:pl-5">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-2">
+         <p class="text-blue-600 font-semibold text-sm sm:text-base">Content Writer</p>
+         <span class="text-gray-400 text-xs sm:text-sm">Dec 2019 - Jun 2024</span>
+        </div>
+        <p class="text-gray-600 mb-4 text-sm sm:text-base" style="text-align: justify;">Created app UI copy, SEO articles, blogs, and multi-channel marketing copy (push, SMS, Facebook, WhatsApp) as part of the 2GUD Content Team. Led end-to-end thematic campaign pages from ideation to execution.</p>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-pen-nib text-pink-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">SEO & UI Copywriting</span></div>
+         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-bullhorn text-orange-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Multi-channel Campaigns</span></div>
+         <div class="flex items-center bg-gray-200 p-3 rounded-lg sm:col-span-2 lg:col-span-1"><i class="fas fa-trophy text-yellow-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Outstanding Performance Award</span></div>
+        </div>
        </div>
       </div>
       <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
