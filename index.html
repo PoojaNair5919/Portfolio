@@ -640,6 +640,7 @@
         .quickscan-toggle:hover { background: rgba(102,126,234,0.15); }
         .quickscan-toggle.on { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-color: transparent; }
         body.quick-scan .qs-hide { display: none !important; }
+        body.quick-scan .floating-view-all { display: none !important; }
         body.quick-scan #projects { padding-top: 2rem; }
         .qs-banner {
             display: none; position: sticky; top: 64px; z-index: 40; background: linear-gradient(135deg, #667eea, #764ba2);
@@ -648,7 +649,21 @@
         body.quick-scan .qs-banner { display: block; }
         .qs-banner button { margin-left: 12px; text-decoration: underline; background: none; border: none; color: white; font-weight: 700; cursor: pointer; font-size: 13px; }
 
-        /* Mobile-specific improvements */
+        /* ================= NEW: floating View All Projects tab ================= */
+        .floating-view-all {
+            position: fixed; left: 0; top: 50%; transform: translateY(-50%) translateX(-100%);
+            z-index: 45; display: flex; align-items: center; gap: 9px;
+            background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; text-decoration: none;
+            font-size: 12.5px; font-weight: 700; letter-spacing: 0.01em;
+            padding: 14px 20px 14px 16px; border-radius: 0 30px 30px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), opacity 0.35s ease;
+            opacity: 0;
+        }
+        .floating-view-all.visible { transform: translateY(-50%) translateX(0); opacity: 1; }
+        .floating-view-all:hover { padding-left: 22px; }
+        .floating-view-all i { font-size: 11px; }
+        @media (max-width: 1180px) { .floating-view-all { display: none; } }
         @media (max-width: 768px) {
             .hero-title { font-size: 2.25rem !important; line-height: 1.2; margin-bottom: 0.75rem !important; }
             .hero-subtitle { font-size: 1.125rem !important; line-height: 1.4; margin-bottom: 1rem !important; }
@@ -793,6 +808,8 @@
     </div>
    </div>
   </nav>
+
+  <a href="projects.html" id="floating-view-all" class="floating-view-all"><i class="fas fa-th-large"></i>View All Projects</a>
 
   <div class="qs-banner"><i class="fas fa-bolt mr-1"></i>Quick-scan mode: role fit, top projects, résumé, contact only.<button id="qs-exit">Show full site</button></div>
 
@@ -1512,6 +1529,27 @@
         }
         qsToggle?.addEventListener('click', () => setQuickScan(!document.body.classList.contains('quick-scan')));
         qsExit?.addEventListener('click', () => setQuickScan(false));
+        // ===== NEW: floating "View All Projects" tab, visible only across Live Dashboards + Case Studies =====
+        (function () {
+            const tab = document.getElementById('floating-view-all');
+            const startEl = document.getElementById('projects');
+            const endEl = document.getElementById('case-studies');
+            if (!tab || !startEl || !endEl) return;
+            let ticking = false;
+            function update() {
+                const startY = startEl.getBoundingClientRect().top + window.scrollY - 120;
+                const endY = endEl.getBoundingClientRect().top + window.scrollY + endEl.offsetHeight - 200;
+                const pos = window.scrollY;
+                tab.classList.toggle('visible', pos >= startY && pos <= endY);
+                ticking = false;
+            }
+            window.addEventListener('scroll', () => {
+                if (!ticking) { requestAnimationFrame(update); ticking = true; }
+            });
+            window.addEventListener('resize', update);
+            window.addEventListener('load', update);
+            update();
+        })();
     </script>
  </body>
 </html>
