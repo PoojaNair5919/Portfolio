@@ -559,22 +559,7 @@
             50% { opacity: 0.65; box-shadow: 0 0 0 5px rgba(16,185,129,0); }
         }
 
-        /* ================= NEW: filter chips ================= */
-        .filter-chip {
-            font-size: 13px;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1px solid #e5e7eb;
-            color: #4b5563;
-            background: white;
-            cursor: pointer;
-            transition: all 0.25s ease;
-        }
-        .filter-chip:hover { border-color: #667eea; color: #667eea; }
-        .filter-chip.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-color: transparent; }
-        .dark-mode .filter-chip { background: #0a0a0a; border-color: #333; color: #b0b0b0; }
-        .dark-mode .filter-chip.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        /* filter-chip styles now live only in projects.html */
 
         /* ================= NEW: status pills on cards ================= */
         .pill-winner { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding: 4px 10px; border-radius: 20px; background: #fef3c7; color: #92400e; }
@@ -596,7 +581,7 @@
         .embed-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
         .embed-placeholder {
             position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 10px; color: #6b7280; font-size: 12.5px; text-align: center; padding: 16px; cursor: pointer;
+            gap: 10px; color: #6b7280; font-size: 12.5px; text-align: center; padding: 16px;
         }
         .dark-mode .embed-placeholder { color: #9ca3af; }
         .embed-spinner { width: 26px; height: 26px; border: 3px solid #d1d5db; border-top-color: #667eea; border-radius: 50%; animation: spin 0.8s linear infinite; }
@@ -637,17 +622,7 @@
         .dark-mode .radar-label { fill: #9ca3af; }
 
         /* ================= NEW: data playground widget ================= */
-        .playground-card { background: white; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid #f0f0f0; }
-        .dark-mode .playground-card { background: #0a0a0a; border-color: #222; }
-        .pg-btn { font-size: 12.5px; font-weight: 700; padding: 8px 16px; border-radius: 20px; border: 1px solid #e5e7eb; background: #f9fafb; color: #4b5563; cursor: pointer; transition: all 0.2s ease; }
-        .pg-btn.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; border-color: transparent; }
-        .dark-mode .pg-btn { background: #111; border-color: #333; color: #b0b0b0; }
-        .pg-bar-track { height: 34px; background: #f3f4f6; border-radius: 8px; overflow: hidden; position: relative; }
-        .dark-mode .pg-bar-track { background: #111; }
-        .pg-bar-fill { height: 100%; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 8px; transition: width 0.8s cubic-bezier(0.16,1,0.3,1); display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; }
-        .pg-bar-fill span { color: white; font-size: 12px; font-weight: 700; white-space: nowrap; }
-        .pg-row-label { font-size: 12.5px; color: #4b5563; font-weight: 600; margin-bottom: 4px; }
-        .dark-mode .pg-row-label { color: #c0c0c0; }
+        /* (removed) */
 
         /* ================= NEW: GitHub graph ================= */
         .gh-graph-wrap { background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #f0f0f0; box-shadow: 0 10px 25px rgba(0,0,0,0.06); overflow-x: auto; }
@@ -886,23 +861,18 @@
    </div>
   </section>
 
-  <!-- ============ PROJECTS (moved to front) ============ -->
+  <!-- ============ LIVE DASHBOARDS ============ -->
   <section id="projects" class="py-16 sm:py-20 bg-gray-50">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-8 sm:mb-12 scroll-animate">
-     <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4">Featured Work</h2>
+     <span class="pill-live" style="font-size:12px; padding:6px 14px;"><i class="fas fa-satellite-dish mr-1"></i>Live</span>
+     <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 mt-3">Live Dashboards</h2>
      <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
-     <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Live competition dashboards you can explore right here, and analytical case studies with the full story behind them.</p>
-    </div>
-
-    <div class="flex flex-wrap justify-center gap-2 mb-10 scroll-animate">
-     <button class="filter-chip active" data-filter="all">All</button>
-     <button class="filter-chip" data-filter="live">Live Dashboards</button>
-     <button class="filter-chip" data-filter="case">Case Studies</button>
+     <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Competition and challenge reports, embedded live. These load automatically as you scroll &mdash; no click required.</p>
     </div>
 
     <!-- Live challenge cards -->
-    <div class="grid sm:grid-cols-2 gap-6 sm:gap-8 mb-8" data-group="live">
+    <div class="grid grid-cols-1 gap-8 mb-8" data-group="live">
 
      <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
       <div class="flex items-start justify-between gap-3 mb-3">
@@ -914,7 +884,7 @@
       </div>
       <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiYTkwNmJjM2UtY2I5MC00MjVjLWI5OWMtNTdhOWI4MGVjYTRmIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9" data-title="Accounting Firm Audit & Compliance Report">
        <div class="embed-ratio">
-        <div class="embed-placeholder"><i class="fas fa-play-circle text-3xl text-blue-500"></i><span>Tap to load the live report</span></div>
+        <div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div>
        </div>
       </div>
       <div class="behind-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('hidden');"><i class="fas fa-chevron-down"></i> Behind this report</div>
@@ -931,7 +901,7 @@
       </div>
       <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiODk5MjZlNDktNzViMS00NWMwLWFiODEtZmU1YTA4OWQ4NjQ4IiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9" data-title="E-Commerce Conversion & Sales Analytics">
        <div class="embed-ratio">
-        <div class="embed-placeholder"><i class="fas fa-play-circle text-3xl text-blue-500"></i><span>Tap to load the live report</span></div>
+        <div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div>
        </div>
       </div>
       <div class="behind-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('hidden');"><i class="fas fa-chevron-down"></i> Behind this report</div>
@@ -940,16 +910,16 @@
 
     </div>
 
-    <div class="text-center mb-12" data-group="live">
+    <div class="text-center mb-4" data-group="live">
      <button id="show-more-live" class="text-blue-600 font-semibold text-sm hover:underline"><i class="fas fa-plus-circle mr-1"></i>Show 2 more live dashboards (Zoomcharts)</button>
-     <div id="more-live" class="hidden grid sm:grid-cols-2 gap-6 sm:gap-8 mt-6 text-left">
+     <div id="more-live" class="hidden grid grid-cols-1 gap-8 mt-6 text-left">
 
       <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6">
        <span class="pill-live"><i class="fas fa-circle mr-1" style="font-size:6px;"></i>Participant</span>
        <h3 class="text-lg font-bold text-gray-800 mt-2">Zoomcharts FP Analytics Challenge 38</h3>
        <p class="text-gray-600 text-sm mt-1 mb-3">Emergency Operations &amp; Patient Flow Analytics</p>
        <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiODRjNDQwNzctZmQ2Yi00YzY1LTkxODYtNzdhOWYzZGI1YTE5IiwidCI6IjQ2NTRiNmYxLTBlNDctNDU3OS1hOGExLTAyZmU5ZDk0M2M3YiIsImMiOjl9" data-title="Emergency Operations & Patient Flow Analytics">
-        <div class="embed-ratio"><div class="embed-placeholder"><i class="fas fa-play-circle text-3xl text-blue-500"></i><span>Tap to load the live report</span></div></div>
+        <div class="embed-ratio"><div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div></div>
        </div>
       </div>
 
@@ -958,15 +928,27 @@
        <h3 class="text-lg font-bold text-gray-800 mt-2">Zoomcharts 4U Reports Challenge</h3>
        <p class="text-gray-600 text-sm mt-1 mb-3">Built with Zoomcharts custom visuals</p>
        <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiZjhhYmI4MjgtYThiNS00MmYzLWExMDgtYTQ0M2UxMTZiMmVmIiwidCI6IjQ2NTRiNmYxLTBlNDctNDU3OS1hOGExLTAyZmU5ZDk0M2M3YiIsImMiOjl9" data-title="4U Reports Challenge">
-        <div class="embed-ratio"><div class="embed-placeholder"><i class="fas fa-play-circle text-3xl text-blue-500"></i><span>Tap to load the live report</span></div></div>
+        <div class="embed-ratio"><div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div></div>
        </div>
       </div>
 
      </div>
     </div>
+   </div>
+  </section>
+
+  <!-- ============ CASE STUDIES ============ -->
+  <section class="py-16 sm:py-20 bg-white qs-hide">
+   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8 sm:mb-12 scroll-animate">
+     <span class="pill-winner" style="background:#e0e7ff; color:#4338ca; font-size:12px; padding:6px 14px;"><i class="fas fa-microscope mr-1"></i>Case Studies</span>
+     <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 mt-3">Analytical Case Studies</h2>
+     <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
+     <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Projects with a story behind them &mdash; the problem, the approach, and what the data actually showed.</p>
+    </div>
 
     <!-- Case study cards -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 qs-hide" data-group="case">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" data-group="case">
 
      <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case">
       <div class="bg-gradient-to-br from-blue-600 to-indigo-700 h-32 flex items-center justify-center relative"><i class="fas fa-chart-bar text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
@@ -1059,26 +1041,6 @@
 
     <div class="text-center mt-12">
      <a href="projects.html" class="inline-flex items-center bg-purple-600 text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-purple-700 transition-all duration-300">View All Projects</a>
-    </div>
-   </div>
-  </section>
-
-  <!-- Data Playground -->
-  <section class="py-16 sm:py-20 bg-white qs-hide">
-   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-10 scroll-animate">
-     <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4"><i class="fas fa-flask mr-2"></i>Data Playground</h2>
-     <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
-     <p class="text-gray-600 max-w-xl mx-auto text-sm sm:text-base">Real category-level data from the Blinkit analysis &mdash; pick a metric and watch it redraw. Built with plain SQL aggregation, no BI tool needed.</p>
-    </div>
-    <div class="playground-card scroll-animate">
-     <div class="flex flex-wrap gap-2 justify-center mb-6">
-      <button class="pg-btn active" data-metric="revenue">Revenue Share</button>
-      <button class="pg-btn" data-metric="delay">Delivery Delay %</button>
-      <button class="pg-btn" data-metric="orders">Order Volume</button>
-     </div>
-     <div id="pg-chart" class="space-y-3"></div>
-     <p id="pg-caption" class="text-gray-500 text-xs mt-4 text-center"></p>
     </div>
    </div>
   </section>
@@ -1490,21 +1452,31 @@
             });
         });
 
-        // ===== NEW: live embed click-to-load =====
-        function wireEmbed(frame) {
+        // ===== NEW: live embed auto-load on scroll (no click required) =====
+        function loadEmbed(frame) {
             const placeholder = frame.querySelector('.embed-placeholder');
             if (!placeholder) return;
-            placeholder.addEventListener('click', function handler() {
-                const src = frame.getAttribute('data-src');
-                const title = frame.getAttribute('data-title') || 'Live dashboard';
-                const iframe = document.createElement('iframe');
-                iframe.src = src;
-                iframe.title = title;
-                iframe.setAttribute('allowfullscreen', 'true');
-                iframe.setAttribute('loading', 'lazy');
-                placeholder.remove();
-                frame.querySelector('.embed-ratio').appendChild(iframe);
-            }, { once: true });
+            const src = frame.getAttribute('data-src');
+            const title = frame.getAttribute('data-title') || 'Live dashboard';
+            const iframe = document.createElement('iframe');
+            iframe.src = src;
+            iframe.title = title;
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.setAttribute('loading', 'lazy');
+            placeholder.remove();
+            frame.querySelector('.embed-ratio').appendChild(iframe);
+        }
+        function wireEmbed(frame) {
+            if (frame.querySelector('iframe')) return;
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        loadEmbed(entry.target);
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '200px' });
+            io.observe(frame);
         }
         document.querySelectorAll('.embed-frame').forEach(wireEmbed);
 
@@ -1514,19 +1486,6 @@
             more.classList.toggle('hidden');
             this.style.display = 'none';
             more.querySelectorAll('.embed-frame').forEach(wireEmbed);
-        });
-
-        // ===== NEW: filter chips =====
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.addEventListener('click', () => {
-                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                const f = chip.getAttribute('data-filter');
-                document.querySelectorAll('[data-group]').forEach(group => {
-                    const type = group.getAttribute('data-group');
-                    group.style.display = (f === 'all' || f === type) ? '' : 'none';
-                });
-            });
         });
 
         // ===== NEW: case study accordion + tabs =====
@@ -1550,47 +1509,6 @@
                 wrapper.querySelectorAll('.cs-tab-panel').forEach(p => p.classList.toggle('active', p.getAttribute('data-panel') === tab));
             });
         });
-
-        // ===== NEW: Data Playground widget =====
-        const pgData = {
-            revenue: { caption: 'Share of total revenue by category (top 10 SKUs drive ~38% of it)', rows: [
-                { label: 'Fruits & Vegetables', value: 28 }, { label: 'Dairy & Breakfast', value: 22 },
-                { label: 'Snacks & Munchies', value: 19 }, { label: 'Beverages', value: 14 },
-                { label: 'Personal Care', value: 10 }, { label: 'Household', value: 7 }
-            ]},
-            delay: { caption: 'Share of orders delayed, by category (~30% of all orders overall)', rows: [
-                { label: 'Household', value: 41 }, { label: 'Personal Care', value: 35 },
-                { label: 'Beverages', value: 29 }, { label: 'Snacks & Munchies', value: 24 },
-                { label: 'Dairy & Breakfast', value: 18 }, { label: 'Fruits & Vegetables', value: 12 }
-            ]},
-            orders: { caption: 'Order volume by category, indexed to the highest-volume category', rows: [
-                { label: 'Fruits & Vegetables', value: 100 }, { label: 'Snacks & Munchies', value: 86 },
-                { label: 'Dairy & Breakfast', value: 78 }, { label: 'Beverages', value: 61 },
-                { label: 'Personal Care', value: 44 }, { label: 'Household', value: 33 }
-            ]}
-        };
-        function renderPlayground(metric) {
-            const set = pgData[metric];
-            const chart = document.getElementById('pg-chart');
-            const max = Math.max(...set.rows.map(r => r.value));
-            chart.innerHTML = set.rows.map(r => `
-                <div>
-                  <div class="pg-row-label">${r.label}</div>
-                  <div class="pg-bar-track"><div class="pg-bar-fill" style="width:0%" data-target="${(r.value / max * 100).toFixed(0)}"><span>${r.value}${metric === 'orders' ? '' : '%'}</span></div></div>
-                </div>`).join('');
-            document.getElementById('pg-caption').textContent = set.caption;
-            requestAnimationFrame(() => {
-                chart.querySelectorAll('.pg-bar-fill').forEach(el => { el.style.width = el.getAttribute('data-target') + '%'; });
-            });
-        }
-        document.querySelectorAll('.pg-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.pg-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                renderPlayground(btn.getAttribute('data-metric'));
-            });
-        });
-        if (document.getElementById('pg-chart')) renderPlayground('revenue');
 
         // ===== NEW: Recruiter quick-scan mode =====
         const qsToggle = document.getElementById('quickscan-toggle');
