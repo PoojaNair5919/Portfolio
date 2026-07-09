@@ -587,6 +587,16 @@
         .embed-spinner { width: 26px; height: 26px; border: 3px solid #d1d5db; border-top-color: #667eea; border-radius: 50%; animation: spin 0.8s linear infinite; }
         .dark-mode .embed-spinner { border-color: #333; border-top-color: #764ba2; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        .embed-fullscreen-btn {
+            position: absolute; top: 10px; right: 10px; z-index: 5; background: rgba(0,0,0,0.6); color: #fff;
+            border: none; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; font-size: 14px; transition: background 0.2s ease;
+        }
+        .embed-fullscreen-btn:hover { background: rgba(0,0,0,0.8); }
+        .embed-ratio:fullscreen { padding-top: 0; height: 100vh; background: #000; }
+        .embed-ratio:-webkit-full-screen { padding-top: 0; height: 100vh; background: #000; }
+        .embed-ratio:fullscreen iframe, .embed-ratio:-webkit-full-screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .embed-ratio:fullscreen .embed-fullscreen-btn, .embed-ratio:-webkit-full-screen .embed-fullscreen-btn { top: 16px; right: 16px; }
         .embed-launch-btn {
             background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 10px 20px;
             border-radius: 24px; font-size: 13px; font-weight: 700; cursor: pointer;
@@ -625,10 +635,7 @@
         /* (removed) */
 
         /* ================= NEW: GitHub graph ================= */
-        .gh-graph-wrap { background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #f0f0f0; box-shadow: 0 10px 25px rgba(0,0,0,0.06); overflow-x: auto; }
-        .dark-mode .gh-graph-wrap { background: #0a0a0a; border-color: #222; }
-        .gh-graph-wrap img { filter: none; min-width: 640px; }
-        .dark-mode .gh-graph-wrap img { filter: invert(0.92) hue-rotate(180deg) brightness(1.1); }
+        /* GitHub graph section removed per feedback */
 
         /* ================= NEW: recruiter quick-scan mode ================= */
         .quickscan-toggle {
@@ -762,7 +769,8 @@
      <div class="font-bold text-lg sm:text-xl text-blue-600 pulse-animation">Pooja Nair</div>
      <div class="hidden md:flex space-x-6 lg:space-x-8">
       <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Home</a>
-      <a href="#projects" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base font-semibold">Projects</a>
+      <a href="#projects" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base font-semibold">Live Dashboards</a>
+      <a href="#case-studies" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base font-semibold">Case Studies</a>
       <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">About</a>
       <a href="#skills" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Skills</a>
       <a href="#experience" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Experience</a>
@@ -781,7 +789,8 @@
     <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
      <div class="flex flex-col space-y-3 px-4">
       <a href="#home" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Home</a>
-      <a href="#projects" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Projects</a>
+      <a href="#projects" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Live Dashboards</a>
+      <a href="#case-studies" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Case Studies</a>
       <a href="#about" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">About</a>
       <a href="#skills" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Skills</a>
       <a href="#experience" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Experience</a>
@@ -863,12 +872,12 @@
 
   <!-- ============ LIVE DASHBOARDS ============ -->
   <section id="projects" class="py-16 sm:py-20 bg-gray-50">
-   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-8 sm:mb-12 scroll-animate">
      <span class="pill-live" style="font-size:12px; padding:6px 14px;"><i class="fas fa-satellite-dish mr-1"></i>Live</span>
      <h2 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 mt-3">Live Dashboards</h2>
      <div class="w-20 h-1 bg-blue-600 mx-auto mb-4"></div>
-     <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Competition and challenge reports, embedded live. These load automatically as you scroll &mdash; no click required.</p>
+     <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Competition and challenge reports, embedded live and ready to explore.</p>
     </div>
 
     <!-- Live challenge cards -->
@@ -938,7 +947,7 @@
   </section>
 
   <!-- ============ CASE STUDIES ============ -->
-  <section class="py-16 sm:py-20 bg-white qs-hide">
+  <section id="case-studies" class="py-16 sm:py-20 bg-white qs-hide">
    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-8 sm:mb-12 scroll-animate">
      <span class="pill-winner" style="background:#e0e7ff; color:#4338ca; font-size:12px; padding:6px 14px;"><i class="fas fa-microscope mr-1"></i>Case Studies</span>
@@ -1079,35 +1088,35 @@
      <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
     </div>
     <div class="radar-wrap scroll-animate">
-     <svg width="320" height="300" viewbox="0 0 320 300">
+     <svg width="440" height="380" viewbox="0 0 440 380">
       <!-- background rings -->
-      <polygon points="160,30 269,90 269,210 160,270 51,210 51,90" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
-      <polygon points="160,70 226,110 226,190 160,230 94,190 94,110" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
-      <polygon points="160,110 182,130 182,170 160,190 138,170 138,130" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
+      <polygon points="220,80 315,135 315,245 220,300 125,245 125,135" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
+      <polygon points="220,117 273,153 273,227 220,263 167,227 167,153" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
+      <polygon points="220,153 242,172 242,208 220,227 198,208 198,172" fill="none" stroke="#e5e7eb" stroke-width="1" class="radar-ring"></polygon>
       <!-- axes -->
-      <line x1="160" y1="150" x2="160" y2="30" stroke="#e5e7eb"></line>
-      <line x1="160" y1="150" x2="269" y2="90" stroke="#e5e7eb"></line>
-      <line x1="160" y1="150" x2="269" y2="210" stroke="#e5e7eb"></line>
-      <line x1="160" y1="150" x2="160" y2="270" stroke="#e5e7eb"></line>
-      <line x1="160" y1="150" x2="51" y2="210" stroke="#e5e7eb"></line>
-      <line x1="160" y1="150" x2="51" y2="90" stroke="#e5e7eb"></line>
+      <line x1="220" y1="190" x2="220" y2="80" stroke="#e5e7eb"></line>
+      <line x1="220" y1="190" x2="315" y2="135" stroke="#e5e7eb"></line>
+      <line x1="220" y1="190" x2="315" y2="245" stroke="#e5e7eb"></line>
+      <line x1="220" y1="190" x2="220" y2="300" stroke="#e5e7eb"></line>
+      <line x1="220" y1="190" x2="125" y2="245" stroke="#e5e7eb"></line>
+      <line x1="220" y1="190" x2="125" y2="135" stroke="#e5e7eb"></line>
 
-      <!-- skill polygon: BI/PowerBI 90, Engineering 75, SQL 80, Programming 70, Visualization 85, Decision Support 88 -->
-      <polygon class="radar-poly" points="160,42 250,102 233,197 165,258 74,193 66,102" fill="rgba(102,126,234,0.35)" stroke="#667eea" stroke-width="2.5"></polygon>
+      <!-- skill polygon: Core BI 90, Visualization 85, Decision Support 88, Programming 70, Data/SQL 80, Analytics Eng. 75 -->
+      <polygon class="radar-poly" points="220,91 291,143 294,238 220,267 134,234 139,149" fill="rgba(102,126,234,0.35)" stroke="#667eea" stroke-width="2.5"></polygon>
 
-      <circle class="radar-dot" cx="160" cy="42" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="250" cy="102" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="233" cy="197" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="165" cy="258" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="74" cy="193" r="4" fill="#764ba2"></circle>
-      <circle class="radar-dot" cx="66" cy="102" r="4" fill="#764ba2"></circle>
+      <circle class="radar-dot" cx="220" cy="91" r="4" fill="#764ba2"></circle>
+      <circle class="radar-dot" cx="291" cy="143" r="4" fill="#764ba2"></circle>
+      <circle class="radar-dot" cx="294" cy="238" r="4" fill="#764ba2"></circle>
+      <circle class="radar-dot" cx="220" cy="267" r="4" fill="#764ba2"></circle>
+      <circle class="radar-dot" cx="134" cy="234" r="4" fill="#764ba2"></circle>
+      <circle class="radar-dot" cx="139" cy="149" r="4" fill="#764ba2"></circle>
 
-      <text x="160" y="18" text-anchor="middle" class="radar-label">Core BI</text>
-      <text x="284" y="86" text-anchor="start" class="radar-label">Visualization</text>
-      <text x="284" y="215" text-anchor="start" class="radar-label">Decision Support</text>
-      <text x="160" y="292" text-anchor="middle" class="radar-label">Programming</text>
-      <text x="36" y="215" text-anchor="end" class="radar-label">Data/SQL</text>
-      <text x="36" y="86" text-anchor="end" class="radar-label">Analytics Eng.</text>
+      <text x="220" y="55" text-anchor="middle" class="radar-label">Core BI</text>
+      <text x="325" y="131" text-anchor="start" class="radar-label">Visualization</text>
+      <text x="325" y="249" text-anchor="start" class="radar-label">Decision Support</text>
+      <text x="220" y="335" text-anchor="middle" class="radar-label">Programming</text>
+      <text x="115" y="249" text-anchor="end" class="radar-label">Data/SQL</text>
+      <text x="115" y="131" text-anchor="end" class="radar-label">Analytics Eng.</text>
      </svg>
     </div>
 
@@ -1157,14 +1166,26 @@
      <div class="space-y-8 sm:space-y-12">
       <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
-        <div><h3 class="text-xl sm:text-2xl font-bold text-gray-800">Senior Executive</h3><p class="text-blue-600 font-semibold text-sm sm:text-base">Flipkart Pvt. Ltd.</p></div>
-        <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Dec 2019 - May 2025</span>
+        <div><h3 class="text-xl sm:text-2xl font-bold text-gray-800">Category Associate</h3><p class="text-blue-600 font-semibold text-sm sm:text-base">Flipkart Pvt. Ltd.</p></div>
+        <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Jul 2024 - May 2025</span>
        </div>
        <p class="text-gray-600 mb-4 text-sm sm:text-base" style="text-align: justify;">Managed daily category performance reporting for the lifestyle division, ensuring accurate and timely data availability for business teams. Coordinated flash deal planning using historical sales data and category inputs. Acted as a bridge between category managers, operations executives, and stakeholders to streamline reporting and execution workflows. Supported tracking of key business metrics including revenue, conversion, and category-level performance.</p>
        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-arrow-up text-green-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">200+ Product Categories Supported</span></div>
         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-chart-line text-blue-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Revenue & Conversion Metrics Tracked</span></div>
         <div class="flex items-center bg-gray-200 p-3 rounded-lg sm:col-span-2 lg:col-span-1"><i class="fas fa-users text-purple-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Daily Reporting & Stakeholder Coordination</span></div>
+       </div>
+      </div>
+      <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
+       <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
+        <div><h3 class="text-xl sm:text-2xl font-bold text-gray-800">Content Writer</h3><p class="text-blue-600 font-semibold text-sm sm:text-base">Flipkart Pvt. Ltd.</p></div>
+        <span class="text-gray-500 font-medium bg-blue-50 px-3 py-1 rounded-full text-xs sm:text-sm mt-2 lg:mt-0">Dec 2019 - Jun 2024</span>
+       </div>
+       <p class="text-gray-600 mb-4 text-sm sm:text-base" style="text-align: justify;">Created app UI copy, SEO articles, blogs, and multi-channel marketing copy (push, SMS, Facebook, WhatsApp) as part of the 2GUD Content Team. Led end-to-end thematic campaign pages from ideation to execution.</p>
+       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+        <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-pen-nib text-pink-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">SEO & UI Copywriting</span></div>
+        <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-bullhorn text-orange-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Multi-channel Campaigns</span></div>
+        <div class="flex items-center bg-gray-200 p-3 rounded-lg sm:col-span-2 lg:col-span-1"><i class="fas fa-trophy text-yellow-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">Outstanding Performance Award</span></div>
        </div>
       </div>
       <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
@@ -1177,6 +1198,7 @@
         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-book text-orange-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">60+ Publications</span></div>
         <div class="flex items-center bg-gray-200 p-3 rounded-lg"><i class="fas fa-check text-green-500 mr-2"></i><span class="text-black font-semibold text-xs sm:text-sm">+25% Accuracy</span></div>
        </div>
+
       </div>
       <div class="timeline-item bg-white p-6 sm:p-8 rounded-xl shadow-lg scroll-animate hover:shadow-xl transition-all duration-300 dark-mode-card">
        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4">
@@ -1190,20 +1212,6 @@
        </div>
       </div>
      </div>
-    </div>
-   </div>
-  </section>
-
-  <!-- GitHub Activity -->
-  <section class="py-12 sm:py-16 bg-gray-50 qs-hide">
-   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-8 scroll-animate">
-     <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-3"><i class="fab fa-github mr-2"></i>Currently Shipping</h2>
-     <div class="w-16 h-1 bg-blue-600 mx-auto"></div>
-    </div>
-    <div class="gh-graph-wrap scroll-animate text-center">
-     <img src="https://ghchart.rshah.org/667eea/PoojaNair5919" alt="Pooja Nair GitHub contribution graph" class="mx-auto" onerror="this.parentElement.innerHTML='<p class=&quot;text-gray-500 text-sm&quot;>GitHub activity graph unavailable right now &mdash; <a href=&quot;https://github.com/PoojaNair5919&quot; target=&quot;_blank&quot; class=&quot;text-blue-600 underline&quot;>view on GitHub</a></p>';">
-     <p class="text-gray-500 text-xs mt-3">Live contribution graph, pulled directly from GitHub</p>
     </div>
    </div>
   </section>
@@ -1458,13 +1466,24 @@
             if (!placeholder) return;
             const src = frame.getAttribute('data-src');
             const title = frame.getAttribute('data-title') || 'Live dashboard';
+            const ratioBox = frame.querySelector('.embed-ratio');
             const iframe = document.createElement('iframe');
             iframe.src = src;
             iframe.title = title;
             iframe.setAttribute('allowfullscreen', 'true');
             iframe.setAttribute('loading', 'lazy');
             placeholder.remove();
-            frame.querySelector('.embed-ratio').appendChild(iframe);
+            ratioBox.appendChild(iframe);
+
+            const fsBtn = document.createElement('button');
+            fsBtn.className = 'embed-fullscreen-btn';
+            fsBtn.setAttribute('aria-label', 'View fullscreen');
+            fsBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            fsBtn.addEventListener('click', () => {
+                if (ratioBox.requestFullscreen) ratioBox.requestFullscreen();
+                else if (ratioBox.webkitRequestFullscreen) ratioBox.webkitRequestFullscreen();
+            });
+            ratioBox.appendChild(fsBtn);
         }
         function wireEmbed(frame) {
             if (frame.querySelector('iframe')) return;
