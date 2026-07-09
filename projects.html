@@ -601,6 +601,16 @@
         .embed-spinner { width: 26px; height: 26px; border: 3px solid #d1d5db; border-top-color: #667eea; border-radius: 50%; animation: spin 0.8s linear infinite; }
         .dark-mode .embed-spinner { border-color: #333; border-top-color: #764ba2; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        .embed-fullscreen-btn {
+            position: absolute; top: 10px; right: 10px; z-index: 5; background: rgba(0,0,0,0.6); color: #fff;
+            border: none; width: 34px; height: 34px; border-radius: 8px; cursor: pointer; display: flex;
+            align-items: center; justify-content: center; font-size: 14px; transition: background 0.2s ease;
+        }
+        .embed-fullscreen-btn:hover { background: rgba(0,0,0,0.8); }
+        .embed-ratio:fullscreen { padding-top: 0; height: 100vh; background: #000; }
+        .embed-ratio:-webkit-full-screen { padding-top: 0; height: 100vh; background: #000; }
+        .embed-ratio:fullscreen iframe, .embed-ratio:-webkit-full-screen iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .embed-ratio:fullscreen .embed-fullscreen-btn, .embed-ratio:-webkit-full-screen .embed-fullscreen-btn { top: 16px; right: 16px; }
         .embed-launch-btn {
             background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 10px 20px;
             border-radius: 24px; font-size: 13px; font-weight: 700; cursor: pointer;
@@ -669,7 +679,8 @@
      <a href="index.html" class="font-bold text-lg sm:text-xl text-blue-600 pulse-animation">Pooja Nair</a>
      <div class="hidden md:flex space-x-6 lg:space-x-8">
       <a href="index.html#home" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Home</a>
-      <a href="projects.html" class="nav-link text-blue-600 font-semibold text-sm lg:text-base">Projects</a>
+      <a href="projects.html#live-dashboards" class="nav-link text-blue-600 font-semibold text-sm lg:text-base">Live Dashboards</a>
+      <a href="projects.html#case-studies" class="nav-link text-blue-600 font-semibold text-sm lg:text-base">Case Studies</a>
       <a href="index.html#about" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">About</a>
       <a href="index.html#skills" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Skills</a>
       <a href="index.html#experience" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Experience</a>
@@ -688,7 +699,8 @@
     <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
      <div class="flex flex-col space-y-3 px-4">
       <a href="index.html#home" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Home</a>
-      <a href="projects.html" class="mobile-nav-link text-blue-600 font-semibold py-2 border-b border-gray-100">Projects</a>
+      <a href="projects.html#live-dashboards" class="mobile-nav-link text-blue-600 font-semibold py-2 border-b border-gray-100">Live Dashboards</a>
+      <a href="projects.html#case-studies" class="mobile-nav-link text-blue-600 font-semibold py-2 border-b border-gray-100">Case Studies</a>
       <a href="index.html#about" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">About</a>
       <a href="index.html#skills" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Skills</a>
       <a href="index.html#experience" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Experience</a>
@@ -712,7 +724,7 @@
    </div>
   </section>
 
-  <section class="py-12 bg-gray-50">
+  <section id="live-dashboards" class="py-12 bg-gray-50">
    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-xl font-bold text-gray-800 mb-6 scroll-animate"><i class="fas fa-satellite-dish text-green-500 mr-2"></i>Live Report Challenges</h2>
     <div class="grid grid-cols-1 gap-8" data-group="live">
@@ -765,7 +777,7 @@
    </div>
   </section>
 
-  <section class="py-12 bg-white">
+  <section id="case-studies" class="py-12 bg-white">
    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <h2 class="text-xl font-bold text-gray-800 mb-6 scroll-animate"><i class="fas fa-microscope text-blue-500 mr-2"></i>Analytical Case Studies</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" data-group="case">
@@ -986,13 +998,24 @@
             if (!placeholder) return;
             const src = frame.getAttribute('data-src');
             const title = frame.getAttribute('data-title') || 'Live dashboard';
+            const ratioBox = frame.querySelector('.embed-ratio');
             const iframe = document.createElement('iframe');
             iframe.src = src;
             iframe.title = title;
             iframe.setAttribute('allowfullscreen', 'true');
             iframe.setAttribute('loading', 'lazy');
             placeholder.remove();
-            frame.querySelector('.embed-ratio').appendChild(iframe);
+            ratioBox.appendChild(iframe);
+
+            const fsBtn = document.createElement('button');
+            fsBtn.className = 'embed-fullscreen-btn';
+            fsBtn.setAttribute('aria-label', 'View fullscreen');
+            fsBtn.innerHTML = '<i class="fas fa-expand"></i>';
+            fsBtn.addEventListener('click', () => {
+                if (ratioBox.requestFullscreen) ratioBox.requestFullscreen();
+                else if (ratioBox.webkitRequestFullscreen) ratioBox.webkitRequestFullscreen();
+            });
+            ratioBox.appendChild(fsBtn);
         }
         function wireEmbed(frame) {
             if (frame.querySelector('iframe')) return;
