@@ -719,6 +719,7 @@
      <button class="filter-chip active" data-filter="all">All</button>
      <button class="filter-chip" data-filter="live">Live Dashboards</button>
      <button class="filter-chip" data-filter="case">Case Studies</button>
+     <button class="filter-chip" data-filter="powerbi">Power BI</button>
      <button class="filter-chip" data-filter="tableau">Tableau</button>
     </div>
    </div>
@@ -729,18 +730,18 @@
     <h2 class="text-xl font-bold text-gray-800 mb-6 scroll-animate"><i class="fas fa-satellite-dish text-green-500 mr-2"></i>Live Report Challenges</h2>
     <div class="grid grid-cols-1 gap-8" data-group="live">
 
-     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live powerbi">
       <span class="pill-winner"><i class="fas fa-trophy mr-1"></i>Winner &middot; May 2026</span>
       <h3 class="text-lg font-bold text-gray-800 mt-2">DataBuzz Power BI Challenge</h3>
       <p class="text-gray-600 text-sm mt-1 mb-3">Accounting Firm Audit &amp; Compliance Report</p>
-      <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiYTkwNmJjM2UtY2I5MC00MjVjLWI5OWMtNTdhOWI4MGVjYTRmIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9" data-title="Accounting Firm Audit & Compliance Report">
+      <div class="embed-frame" data-src="https://app.powerbi.com/view?r=eyJrIjoiYTkwNmJjM2UtY2I5MC00MjVjLWI5OWMtNTdhOWI4MGVjYTRmIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9&pageName=06545377fd16bac94a78" data-title="Accounting Firm Audit & Compliance Report">
        <div class="embed-ratio"><div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div></div>
       </div>
       <div class="behind-toggle" onclick="this.classList.toggle('open'); this.nextElementSibling.classList.toggle('hidden');"><i class="fas fa-chevron-down"></i> Behind this report</div>
       <div class="behind-note hidden">Built for a 48-hour community challenge. Focus was on compliance drill-down UX: bookmarks for audit stages, conditional-format risk flags, and a single unified tooltip page for reviewer context.</div>
      </div>
 
-     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live powerbi">
       <span class="pill-live"><i class="fas fa-circle mr-1" style="font-size:6px;"></i>Participant &middot; June 2026</span>
       <h3 class="text-lg font-bold text-gray-800 mt-2">DataBuzz Power BI Challenge</h3>
       <p class="text-gray-600 text-sm mt-1 mb-3">E-Commerce Conversion &amp; Sales Analytics</p>
@@ -751,7 +752,7 @@
       <div class="behind-note hidden">Modeled a funnel from sessions to checkout with DAX time-intelligence measures, then built a single-page conversion story rather than a multi-tab dashboard, to match the challenge's "one-screen insight" brief.</div>
      </div>
 
-     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live powerbi">
       <span class="pill-live"><i class="fas fa-circle mr-1" style="font-size:6px;"></i>Participant</span>
       <h3 class="text-lg font-bold text-gray-800 mt-2">Zoomcharts FP Analytics Challenge 38</h3>
       <p class="text-gray-600 text-sm mt-1 mb-3">Emergency Operations &amp; Patient Flow Analytics</p>
@@ -762,7 +763,7 @@
       <div class="behind-note hidden">Used Zoomcharts custom visuals to make patient-flow bottlenecks scannable at a glance, favoring a flow-diagram visual over a standard bar chart for the department-to-department handoff view.</div>
      </div>
 
-     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live">
+     <div class="bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card p-5 sm:p-6" data-tech="live powerbi">
       <span class="pill-live"><i class="fas fa-circle mr-1" style="font-size:6px;"></i>Participant &middot; June 2026</span>
       <h3 class="text-lg font-bold text-gray-800 mt-2">Zoomcharts 4U Reports Challenge</h3>
       <p class="text-gray-600 text-sm mt-1 mb-3">Built with Zoomcharts custom visuals</p>
@@ -782,7 +783,7 @@
     <h2 class="text-xl font-bold text-gray-800 mb-6 scroll-animate"><i class="fas fa-microscope text-blue-500 mr-2"></i>Analytical Case Studies</h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" data-group="case">
      
-     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case">
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case powerbi">
       <div class="bg-gradient-to-br from-blue-600 to-indigo-700 h-32 flex items-center justify-center relative"><i class="fas fa-chart-bar text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
       <div class="p-5 sm:p-6">
        
@@ -806,7 +807,7 @@
       </div>
      </div>
 
-     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case">
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case powerbi">
       <div class="bg-gradient-to-br from-cyan-600 to-teal-700 h-32 flex items-center justify-center relative"><i class="fas fa-truck text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
       <div class="p-5 sm:p-6">
        
@@ -830,7 +831,7 @@
       </div>
      </div>
 
-     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case">
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case python">
       <div class="bg-gradient-to-br from-purple-600 to-pink-500 h-32 flex items-center justify-center relative"><i class="fas fa-share-alt text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
       <div class="p-5 sm:p-6">
        
@@ -854,16 +855,7 @@
       </div>
      </div>
 
-    </div>
-   </div>
-  </section>
-
-  <section class="py-12 bg-gray-50">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="text-xl font-bold text-gray-800 mb-6 scroll-animate"><i class="bi bi-bar-chart text-orange-500 mr-2"></i>Tableau Explorations</h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" data-group="tableau">
-     
-     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="tableau">
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case tableau">
       <div class="bg-gradient-to-br from-amber-600 to-orange-700 h-32 flex items-center justify-center relative"><i class="fas fa-building text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
       <div class="p-5 sm:p-6">
        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-full">TABLEAU</span>
@@ -887,7 +879,7 @@
       </div>
      </div>
 
-     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="tableau">
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case tableau">
       <div class="bg-gradient-to-br from-indigo-600 to-blue-700 h-32 flex items-center justify-center relative"><i class="fas fa-briefcase text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
       <div class="p-5 sm:p-6">
        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-full">TABLEAU</span>
@@ -911,7 +903,7 @@
       </div>
      </div>
 
-     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="tableau">
+     <div class="project-card bg-white rounded-xl shadow-lg overflow-hidden scroll-animate hover:shadow-xl transition-all duration-300 border border-gray-100 dark-mode-card" data-tech="case tableau python">
       <div class="bg-gradient-to-br from-green-600 to-emerald-700 h-32 flex items-center justify-center relative"><i class="fas fa-music text-white text-3xl z-10"></i><div class="absolute inset-0 bg-black opacity-20"></div></div>
       <div class="p-5 sm:p-6">
        <span class="bg-orange-100 text-orange-800 text-xs font-bold px-2 py-1 rounded-full">TABLEAU</span>
@@ -1036,10 +1028,22 @@
                 document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
                 chip.classList.add('active');
                 const f = chip.getAttribute('data-filter');
-                document.querySelectorAll('[data-group]').forEach(group => {
-                    const type = group.getAttribute('data-group');
-                    group.closest('section').style.display = (f === 'all' || f === type) ? '' : 'none';
+
+                document.querySelectorAll('[data-tech]').forEach(card => {
+                    const techs = (card.getAttribute('data-tech') || '').split(/\s+/);
+                    card.style.display = (f === 'all' || techs.includes(f)) ? '' : 'none';
                 });
+
+                // Hide a section entirely if none of its cards match the current filter
+                document.querySelectorAll('#live-dashboards, #case-studies').forEach(section => {
+                    const cards = section.querySelectorAll('[data-tech]');
+                    const anyVisible = Array.from(cards).some(c => c.style.display !== 'none');
+                    section.style.display = anyVisible ? '' : 'none';
+                });
+
+                // "Show more live dashboards" toggle shouldn't reappear once a filter has run
+                const moreBtn = document.getElementById('show-more-live');
+                if (moreBtn && f !== 'all' && f !== 'live' && f !== 'powerbi') moreBtn.style.display = 'none';
             });
         });
 
