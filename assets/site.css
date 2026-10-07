@@ -777,3 +777,11 @@
 .recog-card { text-align: center; border-radius: .9rem; padding: 1rem; border: 1px solid #e5e7eb; background: #fff; }
 .dark-mode .recog-card { background: #0a0a0a !important; border-color: #222; }
 .recog-card .big { font-size: 1.6rem; font-weight: 800; color: #667eea; }
+
+/* ================= v3: SQL block ================= */
+.sql-block { margin-top: .9rem; border: 1px solid #e5e7eb; border-radius: .6rem; overflow: hidden; }
+.dark-mode .sql-block { border-color: #262626; }
+.sql-block summary { cursor: pointer; font-size: 12.5px; font-weight: 600; color: #667eea; padding: 10px 14px; list-style: none; }
+.sql-block summary::-webkit-details-marker { display: none; }
+.sql-block pre { margin: 0; padding: 14px; overflow-x: auto; max-height: 360px; background: #0f172a; color: #e2e8f0; font-size: 12px; line-height: 1.55; }
+.sql-block code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }

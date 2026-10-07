@@ -161,6 +161,12 @@
       var note = document.getElementById('v-note');
       note.textContent = r.note || '';
       note.style.display = r.note ? '' : 'none';
+      var sqlBox = document.getElementById('v-sql');
+      if (sqlBox) {
+        sqlBox.style.display = r.sql ? '' : 'none';
+        sqlBox.open = false;
+        document.getElementById('v-sql-code').textContent = r.sql || '';
+      }
       showPlaceholder(frame);
       mountEmbed(frame, r.url, r.title);
       document.querySelectorAll('.thumb').forEach(function (t) {
