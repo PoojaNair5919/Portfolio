@@ -16,9 +16,9 @@ projects/             Full case study pages (paths unchanged, so article links k
 assets/
   site.css            Shared styles
   site.js             Shared behaviour (nav, theme, embeds, viewer, filters)
-  img/                profile.jpg, preview.jpg (share card), microsoft-certified-badge.png
   img/reports/        Optional report thumbnails, named after the report id (see below)
-pooja_nair_analytics_engineer_resume.pdf   Resume (kept at the root so existing links still work)
+profile.jpg, preview.jpg (share card), Microsoft Certified Badge.png   Images (root, unchanged)
+pooja_nair_analytics_engineer_resume.pdf   Resume (root, so existing links keep working)
 ```
 
 ## Add a new challenge report
