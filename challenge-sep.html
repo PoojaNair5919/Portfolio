@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>UK Insurance Claims | Pooja Nair</title>
+ <meta name="description" content="Results pending · September 2026. DataBuzz Power BI Challenge. Live, interactive Power BI report by Pooja Nair.">
+ <link rel="canonical" href="https://poojanair5919.github.io/Portfolio/challenge-sep.html">
+ <meta property="og:type" content="website">
+ <meta property="og:site_name" content="Pooja Nair">
+ <meta property="og:title" content="UK Insurance Claims | Pooja Nair">
+ <meta property="og:description" content="Results pending · September 2026. DataBuzz Power BI Challenge. Live, interactive Power BI report by Pooja Nair.">
+ <meta property="og:url" content="https://poojanair5919.github.io/Portfolio/challenge-sep.html">
+ <meta property="og:image" content="https://poojanair5919.github.io/Portfolio/assets/img/report/sep.jpg">
+ <meta name="twitter:card" content="summary_large_image">
+ <link rel="icon" href="profile.jpg">
+ <script src="https://cdn.tailwindcss.com"></script>
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+ 
+ <link rel="stylesheet" href="assets/site.css">
+ <style>@view-transition { navigation: auto; }</style>
+</head>
+<body class="dark-mode transition-colors duration-300">
+
+ <nav class="fixed top-0 w-full z-50 navbar-blur transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+   <div class="flex justify-between items-center h-16">
+    <a href="index.html" class="font-bold text-lg sm:text-xl text-blue-600 pulse-animation">Pooja Nair</a>
+    <div class="hidden md:flex space-x-6 lg:space-x-8">
+     <a href="index.html" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Home</a> <a href="challenges.html" class="nav-link active-page text-sm lg:text-base">Challenges</a> <a href="case-studies.html" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Case Studies</a> <a href="about.html" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">About</a> <a href="about.html#contact" class="nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 hover:scale-110 text-sm lg:text-base">Contact</a>
+    </div>
+    <div class="flex items-center space-x-3">
+     <div class="relative">
+      <button id="theme-toggle" aria-label="Toggle theme" class="flex items-center justify-center w-12 h-6 bg-gray-200 rounded-full transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+       <div class="absolute left-1 w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-300 flex items-center justify-center theme-toggle-circle"><i class="fas fa-moon text-gray-600 text-xs"></i></div>
+      </button>
+      <span class="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-xs text-gray-500 whitespace-nowrap theme-label">Dark</span>
+     </div>
+     <button id="mobile-menu-toggle" aria-label="Open menu" class="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"><i class="fas fa-bars text-gray-600"></i></button>
+    </div>
+   </div>
+   <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-gray-200 py-4">
+    <div class="flex flex-col space-y-3 px-4">
+     <a href="index.html" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Home</a> <a href="challenges.html" class="mobile-nav-link text-blue-600 font-semibold py-2 border-b border-gray-100">Challenges</a> <a href="case-studies.html" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Case Studies</a> <a href="about.html" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">About</a> <a href="about.html#contact" class="mobile-nav-link text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 border-b border-gray-100">Contact</a>
+    </div>
+   </div>
+  </div>
+ </nav>
+ <button id="back-to-top" class="floating-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+ <section class="page-hero bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center scroll-animate">
+   <span class="status-strip mb-4"><span class="status-dot"></span>7 live reports &middot; 1st place &amp; 3 runner-up finishes, DataBuzz</span>
+   <h1 class="text-3xl sm:text-4xl font-bold text-gray-800 mb-3 mt-4">Challenges</h1>
+   <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Community Power BI competition reports, open and fully interactive. Pick a report below to explore it live.</p>
+  </div>
+ </section>
+
+ <section class="pb-6 pt-6 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+   <div class="viewer-card" id="viewer">
+    <div class="viewer-head">
+     <div>
+      <span id="v-pill" class="pill-winner"></span>
+      <p id="v-series" class="text-xs font-semibold text-gray-500 mt-2 uppercase tracking-wide"></p>
+      <h2 id="v-title" class="text-lg sm:text-xl font-bold text-gray-800 mt-1"></h2>
+      <p id="v-sub" class="text-gray-600 text-sm mt-1"></p>
+     </div>
+     <div class="viewer-actions flex gap-2 flex-wrap">
+      <a id="v-open" href="#" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i>Open in new tab</a>
+      <button id="v-copy" type="button"><i class="fas fa-link"></i>Copy link</button>
+     </div>
+    </div>
+    <div class="embed-frame" id="v-frame"><div class="embed-ratio"><div class="embed-placeholder"><div class="embed-spinner"></div><span>Loading live report&hellip;</span></div></div></div>
+    <div class="chip-row" id="v-chips"></div>
+    <p class="viewer-note" id="v-note"></p>
+    <details class="sql-block" id="v-sql" style="display:none"><summary><i class="fas fa-database mr-1"></i>View the SQL behind this report</summary><pre><code id="v-sql-code"></code></pre></details>
+   </div>
+  </div>
+ </section>
+
+ <section class="pb-16 pt-2 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+   <p class="series-label">DataBuzz Power BI Challenge</p>
+   <div class="thumb-rail">
+    <button class="thumb" data-id="may" aria-pressed="false" aria-label="Audit &amp; Compliance, Winner">
+     <div class="thumb-art" style="background:linear-gradient(135deg,#b45309,#d97706)">
+      <img class="thumb-img" src="assets/img/report/may.jpg" alt="" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top">
+      <i class="fas fa-trophy" style="position:relative"></i><span class="t-month" style="position:absolute">May 2026</span>
+     </div>
+     <div class="thumb-body"><div class="thumb-title">Audit &amp; Compliance</div><span class="pill-winner">Winner</span></div>
+    </button>
+<button class="thumb" data-id="jun" aria-pressed="false" aria-label="E-Commerce Conversion, Runner-up">
+     <div class="thumb-art" style="background:linear-gradient(135deg,#4338ca,#6366f1)">
+      <img class="thumb-img" src="assets/img/report/jun.jpg" alt="" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top">
+      <i class="fas fa-cart-shopping" style="position:relative"></i><span class="t-month" style="position:absolute">Jun 2026</span>
+     </div>
+     <div class="thumb-body"><div class="thumb-title">E-Commerce Conversion</div><span class="pill-runnerup">Runner-up</span></div>
+    </button>
+<button class="thumb" data-id="jul" aria-pressed="false" aria-label="UK Real Estate, Runner-up">
+     <div class="thumb-art" style="background:linear-gradient(135deg,#5b2a4e,#8a5a7a)">
+      <img class="thumb-img" src="assets/img/report/jul.jpg" alt="" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top">
+      <i class="fas fa-house" style="position:relative"></i><span class="t-month" style="position:absolute">Jul 2026</span>
+     </div>
+     <div class="thumb-body"><div class="thumb-title">UK Real Estate</div><span class="pill-runnerup">Runner-up</span></div>
+    </button>
+<button class="thumb" data-id="aug" aria-pressed="false" aria-label="UK Transport, Runner-up">
+     <div class="thumb-art" style="background:linear-gradient(135deg,#0f6e56,#14b8a6)">
+      <img class="thumb-img" src="assets/img/report/aug.jpg" alt="" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top">
+      <i class="fas fa-train-subway" style="position:relative"></i><span class="t-month" style="position:absolute">Aug 2026</span>
+     </div>
+     <div class="thumb-body"><div class="thumb-title">UK Transport</div><span class="pill-runnerup">Runner-up</span></div>
+    </button>
+<button class="thumb" data-id="sep" aria-pressed="false" aria-label="UK Insurance Claims, Results pending">
+     <div class="thumb-art" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)">
+      <img class="thumb-img" src="assets/img/report/sep.jpg" alt="" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top">
+      <i class="fas fa-shield-halved" style="position:relative"></i><span class="t-month" style="position:absolute">Sep 2026</span>
+     </div>
+     <div class="thumb-body"><div class="thumb-title">UK Insurance Claims</div><span class="pill-pending">Results pending</span></div>
+    </button>
+   </div>
+   <p class="series-label">ZoomCharts</p>
+   <div class="thumb-rail">
+    <button class="thumb" data-id="fp38" aria-pressed="false" aria-label="Code Blue, Participant">
+     <div class="thumb-art" style="background:linear-gradient(135deg,#9f1239,#e11d48)">
+      <img class="thumb-img" src="assets/img/report/fp38.jpg" alt="" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top">
+      <i class="fas fa-truck-medical" style="position:relative"></i><span class="t-month" style="position:absolute">FP20 · C38 · Jun 2026</span>
+     </div>
+     <div class="thumb-body"><div class="thumb-title">Code Blue</div><span class="pill-live">Participant</span></div>
+    </button>
+<button class="thumb" data-id="zc4u" aria-pressed="false" aria-label="Global Energy Ops, Participant">
+     <div class="thumb-art" style="background:linear-gradient(135deg,#334155,#64748b)">
+      <img class="thumb-img" src="assets/img/report/zc4u.jpg" alt="" loading="lazy" onerror="this.remove()" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top">
+      <i class="fas fa-bolt" style="position:relative"></i><span class="t-month" style="position:absolute">Jun 2026</span>
+     </div>
+     <div class="thumb-body"><div class="thumb-title">Global Energy Ops</div><span class="pill-live">Participant</span></div>
+    </button>
+   </div>
+  </div>
+ </section>
+
+ <footer class="bg-gray-800 text-white py-8 sm:py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+   <p class="text-gray-400 text-sm sm:text-base mb-4">Turning information into insight, and insight into action.</p>
+   <div class="flex justify-center gap-5 text-lg mb-4">
+    <a href="https://www.linkedin.com/in/pooja-nair" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn" data-tip="LinkedIn" class="foot-link text-gray-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/PoojaNair5919" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub" data-tip="GitHub" class="foot-link text-gray-300 hover:text-white"><i class="fab fa-github"></i></a>
+    <a href="https://medium.com/@poojanair5919" target="_blank" rel="noopener" aria-label="Medium articles" title="Medium articles" data-tip="Medium articles" class="foot-link text-gray-300 hover:text-white"><i class="bi bi-medium"></i></a>
+    <a href="https://public.tableau.com/app/profile/pooja.nair3441/vizzes" target="_blank" rel="noopener" aria-label="Tableau Public" title="Tableau Public" data-tip="Tableau Public" class="foot-link text-gray-300 hover:text-white"><i class="bi bi-bar-chart"></i></a>
+    <a href="mailto:poojanair5919@gmail.com" aria-label="Email me" title="Email me" data-tip="Email me" class="foot-link text-gray-300 hover:text-white"><i class="fas fa-envelope"></i></a>
+   </div>
+   <p class="text-gray-500 text-xs">&copy; Pooja Nair &middot; Bengaluru, India</p>
+  </div>
+ </footer>
+<script>window.REPORTS = {"may": {"series": "DataBuzz Power BI Challenge", "pill": "Winner · May 2026", "status": "winner", "title": "Accounting Firm Audit & Compliance Report", "sub": "1st place, DataBuzz May 2026", "url": "https://app.powerbi.com/view?r=eyJrIjoiYTkwNmJjM2UtY2I5MC00MjVjLWI5OWMtNTdhOWI4MGVjYTRmIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9&pageName=06545377fd16bac94a78", "chips": [], "note": "", "sql": ""}, "jun": {"series": "DataBuzz Power BI Challenge", "pill": "Runner-up · June 2026", "status": "runner", "title": "E-Commerce Conversion & Sales Analytics", "sub": "Runner-up, DataBuzz June 2026", "url": "https://app.powerbi.com/view?r=eyJrIjoiODk5MjZlNDktNzViMS00NWMwLWFiODEtZmU1YTA4OWQ4NjQ4IiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9", "chips": [], "note": "", "sql": ""}, "jul": {"series": "DataBuzz Power BI Challenge", "pill": "Runner-up · July 2026", "status": "runner", "title": "UK Real Estate Buyer & Realtor Analytics", "sub": "Sales and price trends, agent and property performance, investment and market health", "url": "https://app.powerbi.com/view?r=eyJrIjoiMmE5ZTY2ZTItN2FiMi00MzkzLThhMjYtZmRjYzdlMDRiOGEyIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9", "chips": ["DAX-driven bar colours", "Fixed seniority sort order", "Listing vs transaction date", "Disconnected metric selector", "Mortgage calculator", "Rolling 12-month vs prior year", "Regional z-score anomaly flags"], "note": "Answers all ten questions of the challenge brief across three pages: overview and trends, performance and property, and investment and market health.", "sql": ""}, "aug": {"series": "DataBuzz Power BI Challenge", "pill": "Runner-up · August 2026", "status": "runner", "title": "UK Transport & Smart Mobility", "sub": "Punctuality, delayed journeys and EV charging equity", "url": "https://app.powerbi.com/view?r=eyJrIjoiNGMzNWE0OWUtMDBmNy00NDgyLWExZTktYWU0NzZhYzY0YjQxIiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9", "chips": ["MySQL window-function views", "Top 100 cut in SQL", "Sort by Column weekdays", "Disconnected metric & weather selectors", "EV charging equity bands", "RANKX with ALLSELECTED", "Rolling 7-day delay momentum", "Z-score anomaly bands"], "note": "Answers all eight challenge questions plus bonus analytics. The top-100 and top-20-per-mode cuts happen in MySQL views, so only those rows load into Power BI, and a drill-through page opens the 100 most delayed journeys.", "sql": "-- Q1 -- top 100 most delayed journeys\nCREATE VIEW vw_top100_delayed_journeys AS\nSELECT\n    journey_id, route_id, journey_date, day_of_week,\n    scheduled_departure, actual_departure, delay_minutes,\n    passengers_boarded, weather_condition, delay_rank\nFROM (\n    SELECT fj.*,\n           ROW_NUMBER() OVER (ORDER BY delay_minutes DESC) AS delay_rank\n    FROM fact_journeys fj\n) ranked\nWHERE delay_rank <= 100;\n\n\n-- Q2 -- top 20 most delayed within each mode\nCREATE VIEW vw_top20_delayed_by_mode AS\nSELECT\n    journey_id, route_id, mode, journey_date, day_of_week,\n    scheduled_departure, actual_departure, delay_minutes,\n    passengers_boarded, weather_condition, mode_rank\nFROM (\n    SELECT fj.*, dr.mode,\n           ROW_NUMBER() OVER (PARTITION BY dr.mode ORDER BY fj.delay_minutes DESC) AS mode_rank\n    FROM fact_journeys fj\n    JOIN dim_routes dr ON fj.route_id = dr.route_id\n) ranked\nWHERE mode_rank <= 20;\n\n\n-- Verification -- Q1 view returns exactly 100 rows\nSELECT COUNT(*) FROM vw_top100_delayed_journeys;\nSELECT MIN(delay_minutes), MAX(delay_minutes) FROM vw_top100_delayed_journeys;\n\n\n-- Verification -- Q2 view returns <=20 rows per mode\nSELECT mode, COUNT(*) FROM vw_top20_delayed_by_mode GROUP BY mode;\n\n\n-- On-time threshold validation -- used to justify the 5-minute\n-- on-time cutoff applied throughout the Power BI report (matches\n-- UK short-distance rail PPM standard; 45.3% of journeys fall\n-- within 5 minutes, giving meaningful discrimination in the data)\nSELECT\n    SUM(CASE WHEN delay_minutes <= 2 THEN 1 ELSE 0 END) AS within_2min,\n    SUM(CASE WHEN delay_minutes <= 5 THEN 1 ELSE 0 END) AS within_5min,\n    SUM(CASE WHEN delay_minutes <= 10 THEN 1 ELSE 0 END) AS within_10min,\n    COUNT(*) AS total\nFROM fact_journeys;"}, "sep": {"series": "DataBuzz Power BI Challenge", "pill": "Results pending · September 2026", "status": "pending", "title": "UK Insurance Claims", "sub": "Regional risk, product profitability and settlement efficiency", "url": "https://app.powerbi.com/view?r=eyJrIjoiN2JhMDkzNWUtNTljYy00MTU0LTllY2YtMWQ1OTRkYjBlZmE0IiwidCI6IjYyMzg4ZWE4LTk5NjQtNDkzYy1iMzEwLTI1ZjllN2JiNmU4MyJ9", "chips": ["Star schema", "Field parameters", "UK shape map", "Bookmark popups", "Drill-through", "What-if simulator"], "note": "Three analysis pages (regional risk, product profitability, settlement efficiency) plus a hidden what-if simulator.", "sql": ""}, "fp38": {"series": "ZoomCharts FP20 Analytics Challenge 38", "pill": "Participant · June 2026", "status": "part", "title": "Code Blue: Emergency Operations & Patient Flow Analytics", "sub": "NHS and private hospital data across UK regions", "url": "https://app.powerbi.com/view?r=eyJrIjoiODRjNDQwNzctZmQ2Yi00YzY1LTkxODYtNzdhOWYzZGI1YTE5IiwidCI6IjQ2NTRiNmYxLTBlNDctNDU3OS1hOGExLTAyZmU5ZDk0M2M3YiIsImMiOjl9", "chips": ["ZoomCharts Drill Down visuals"], "note": "", "sql": ""}, "zc4u": {"series": "ZoomCharts 4U Reports Challenge", "pill": "Participant · June 2026", "status": "part", "title": "Global Energy Operations Dashboard | FY 2024–25", "sub": "20 global sites across 5 regions", "url": "https://app.powerbi.com/view?r=eyJrIjoiZjhhYmI4MjgtYThiNS00MmYzLWExMDgtYTQ0M2UxMTZiMmVmIiwidCI6IjQ2NTRiNmYxLTBlNDctNDU3OS1hOGExLTAyZmU5ZDk0M2M3YiIsImMiOjl9", "chips": ["ZoomCharts Drill Down PRO", "HTML welcome page", "DAX insight text", "Tooltip pages"], "note": "", "sql": ""}};
+window.DEFAULT_REPORT = "sep";</script>
+ <script src="assets/site.js"></script>
+</body>
+</html>
