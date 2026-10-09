@@ -175,7 +175,7 @@
         t.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
       if (push) {
-        try { history.replaceState(null, '', '#' + id); } catch (e) {}
+        try { history.replaceState(null, '', '?r=' + id); } catch (e) {}
       }
     };
 
@@ -188,7 +188,7 @@
 
     var copyBtn = document.getElementById('v-copy');
     copyBtn.addEventListener('click', function () {
-      var link = location.href.split('#')[0] + '#' + current;
+      var link = location.origin + location.pathname + '?r=' + current;
       var done = function () {
         var old = copyBtn.innerHTML;
         copyBtn.innerHTML = '<i class="fas fa-check"></i>Link copied';
@@ -206,8 +206,12 @@
       if (R[id] && id !== current) show(id, false);
     });
 
-    var start = location.hash.replace('#', '');
-    show(R[start] ? start : window.DEFAULT_REPORT, false);
+    // Deep link: ?r=jul (survives LinkedIn and other sites that drop #fragments) or #jul
+    var qid = '';
+    try { qid = new URLSearchParams(location.search).get('r') || ''; } catch (e) {}
+    var hid = location.hash.replace('#', '');
+    var start = R[qid] ? qid : (R[hid] ? hid : window.DEFAULT_REPORT);
+    show(start, false);
   }
 
   /* ---------- case studies: filters, expand, tabs ---------- */
