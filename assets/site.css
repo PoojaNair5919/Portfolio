@@ -207,3 +207,22 @@
 .skill-card:hover,.project-card:hover{transform:none;box-shadow:0 10px 25px rgba(0,0,0,.1)}
 .social-icon:hover{transform:scale(1.05)}
 }
+
+/* footer icon hover labels */
+.foot-link{position:relative;display:inline-flex;transition:transform .2s ease}
+.foot-link:hover,.foot-link:focus-visible{transform:translateY(-2px)}
+.foot-link::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);background:#fff;color:#111827;font-size:12px;font-weight:600;white-space:nowrap;padding:5px 10px;border-radius:6px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease;box-shadow:0 6px 16px rgba(0,0,0,.3)}
+.foot-link:hover::after,.foot-link:focus-visible::after{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(hover:none){.foot-link::after{display:none}}
+
+/* thumbnails: screenshot replaces the icon; month label sits on a dark fade */
+.thumb-art{overflow:hidden}
+.thumb-art::after{content:'';position:absolute;left:0;right:0;bottom:0;height:65%;background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,.78));z-index:1;pointer-events:none}
+.thumb-art .t-month{z-index:2;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.thumb-art .thumb-img{z-index:0}
+.thumb-art .thumb-img ~ i{display:none}
+
+/* thumbnails: let a real screenshot speak, keep the label readable */
+.thumb-art .t-month{z-index:2;text-shadow:0 1px 3px rgba(0,0,0,.85)}
+.thumb-art:has(.thumb-img)>i{display:none}
+.thumb-art:has(.thumb-img)::after{content:'';position:absolute;left:0;right:0;bottom:0;height:60%;background:linear-gradient(to top,rgba(0,0,0,.78),transparent);z-index:1;pointer-events:none}
