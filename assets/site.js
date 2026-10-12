@@ -139,8 +139,8 @@
   var viewer = document.getElementById('viewer');
   if (R && viewer) {
     var frame = document.getElementById('v-frame');
-    var pillClass = { winner: 'pill-winner', runner: 'pill-runnerup', part: 'pill-live', pending: 'pill-pending' };
-    var pillIcon = { winner: 'fa-trophy', runner: 'fa-medal', part: 'fa-circle', pending: 'fa-hourglass-half' };
+    var pillClass = { winner: 'pill-winner', top: 'pill-winner', runner: 'pill-runnerup', part: 'pill-live', pending: 'pill-pending' };
+    var pillIcon = { winner: 'fa-trophy', top: 'fa-star', runner: 'fa-medal', part: 'fa-circle', pending: 'fa-hourglass-half' };
     var current = null;
 
     var esc = function (s) { return String(s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); };
