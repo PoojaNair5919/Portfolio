@@ -128,34 +128,82 @@
  </section>
 
 <style>
-.aw-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.aw-row{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:12px;padding:12px 16px;border:1px solid #e5e7eb;border-left:4px solid #d1d5db;border-radius:12px;background:#fff;font-size:14px;color:#374151}
-.aw-month{font-weight:700;color:#111827}
-.aw-chal{color:#6b7280}
-.aw-res{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;padding:5px 12px;border-radius:999px;white-space:nowrap;background:#f3f4f6;color:#4b5563}
-.aw-win{border-left-color:#f59e0b}.aw-win .aw-res{background:#fef3c7;color:#92400e}
-.aw-run{border-left-color:#94a3b8}.aw-run .aw-res{background:#e2e8f0;color:#334155}
-.aw-top{border-left-color:#6366f1}.aw-top .aw-res{background:#e0e7ff;color:#3730a3}
-.aw-aw{border-left-color:#ec4899;background:linear-gradient(90deg,rgba(236,72,153,.08),transparent 60%)}.aw-aw .aw-res{background:#fce7f3;color:#9d174d}
-.aw-pen{border-left-style:dashed}
-.dark-mode .aw-row{background:#0a0a0a;border-color:#222;color:#d1d5db}
-.dark-mode .aw-row.aw-win{border-left-color:#f59e0b}.dark-mode .aw-row.aw-run{border-left-color:#94a3b8}.dark-mode .aw-row.aw-top{border-left-color:#6366f1}.dark-mode .aw-row.aw-aw{border-left-color:#ec4899}
-.dark-mode .aw-aw{background:linear-gradient(90deg,rgba(236,72,153,.12),#0a0a0a 60%)}
+.aw-wrap{position:relative}
+.aw-filters{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 1.6rem}
+.aw-chip{font:600 12.5px/1 inherit;padding:8px 14px;border-radius:999px;border:1px solid #e5e7eb;background:#fff;color:#4b5563;cursor:pointer;transition:all .25s ease}
+.aw-chip:hover{border-color:#667eea;color:#667eea;transform:translateY(-2px)}
+.aw-chip.on{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;border-color:transparent;box-shadow:0 8px 20px rgba(102,126,234,.35)}
+.aw-list{list-style:none;margin:0;padding:0 0 0 34px;position:relative}
+.aw-list::before{content:'';position:absolute;left:15px;top:6px;bottom:6px;width:3px;border-radius:3px;background:linear-gradient(to bottom,#f59e0b,#22d3ee,#6366f1,#ec4899,#94a3b8)}
+.aw-item{position:relative;margin-bottom:14px;opacity:0;transform:translateX(-24px);transition:opacity .55s ease var(--d),transform .55s ease var(--d),filter .3s ease}
+.aw-item.in{opacity:1;transform:none}
+.aw-item.dim{opacity:.28!important;filter:grayscale(.7)}
+.aw-node{position:absolute;left:-34px;top:50%;margin-top:-16px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;background:var(--g);box-shadow:0 0 0 4px #fff,0 6px 14px var(--s);transition:transform .3s ease}
+.aw-item:hover .aw-node{transform:scale(1.18) rotate(-8deg)}
+.aw-card{position:relative;overflow:hidden;display:grid;grid-template-columns:92px 1fr auto;align-items:center;gap:12px;padding:14px 18px;border-radius:14px;text-decoration:none;color:#374151;background:#fff;border:1px solid #e5e7eb;border-left:5px solid var(--c);box-shadow:0 2px 6px rgba(0,0,0,.04);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+.aw-card::before{content:'';position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,var(--t) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s ease;pointer-events:none}
+.aw-card:hover{transform:translateX(8px) translateY(-2px);box-shadow:0 14px 30px var(--s)}
+.aw-card:hover::before{transform:translateX(120%)}
+.aw-month{font-weight:800;color:#111827;font-size:15px}
+.aw-chal{color:#6b7280;font-size:14px}
+.aw-res{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;padding:6px 13px;border-radius:999px;white-space:nowrap;color:#fff;background:var(--g);box-shadow:0 4px 10px var(--s)}
+.aw-go{position:absolute;left:122px;bottom:4px;font-size:10px;font-weight:700;color:var(--c);opacity:0;transform:translateY(6px);transition:all .3s ease}
+.aw-card:hover .aw-go{opacity:1;transform:none}
+.aw-win{--c:#f59e0b;--g:linear-gradient(135deg,#fbbf24,#f97316);--s:rgba(245,158,11,.35);--t:rgba(251,191,36,.22)}
+.aw-run{--c:#06b6d4;--g:linear-gradient(135deg,#22d3ee,#3b82f6);--s:rgba(34,211,238,.32);--t:rgba(34,211,238,.2)}
+.aw-top{--c:#6366f1;--g:linear-gradient(135deg,#818cf8,#8b5cf6);--s:rgba(99,102,241,.35);--t:rgba(129,140,248,.22)}
+.aw-aw{--c:#ec4899;--g:linear-gradient(135deg,#ec4899,#8b5cf6);--s:rgba(236,72,153,.38);--t:rgba(236,72,153,.22)}
+.aw-pen{--c:#94a3b8;--g:linear-gradient(135deg,#94a3b8,#64748b);--s:rgba(100,116,139,.3);--t:rgba(148,163,184,.2)}
+.aw-pen .aw-card{border-left-style:dashed}
+.aw-aw .aw-card{background:linear-gradient(90deg,rgba(236,72,153,.09),#fff 65%)}
+.aw-aw .aw-node::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid #ec4899;animation:awPulse 2s ease-out infinite}
+@keyframes awPulse{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.7);opacity:0}}
+.dark-mode .aw-chip{background:#0a0a0a;border-color:#222;color:#d1d5db}
+.dark-mode .aw-chip.on{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff}
+.dark-mode .aw-card{background:#0a0a0a;border-color:#222;border-left-color:var(--c);color:#d1d5db}
+.dark-mode .aw-aw .aw-card{background:linear-gradient(90deg,rgba(236,72,153,.16),#0a0a0a 65%)}
 .dark-mode .aw-month{color:#f3f4f6}.dark-mode .aw-chal{color:#9ca3af}
-.dark-mode .aw-res{background:#1f2937;color:#d1d5db}
-.dark-mode .aw-win .aw-res{background:rgba(251,191,36,.16);color:#fcd34d}
-.dark-mode .aw-run .aw-res{background:rgba(148,163,184,.18);color:#e2e8f0}
-.dark-mode .aw-top .aw-res{background:rgba(129,140,248,.2);color:#c7d2fe}
-.dark-mode .aw-aw .aw-res{background:rgba(236,72,153,.2);color:#fbcfe8}
-@media(max-width:560px){.aw-row{grid-template-columns:1fr auto;row-gap:2px}.aw-month{grid-column:1}.aw-res{grid-row:1 / span 2;grid-column:2}.aw-chal{grid-column:1}}
+.dark-mode .aw-node{box-shadow:0 0 0 4px #111,0 6px 14px var(--s)}
+@media(max-width:560px){.aw-card{grid-template-columns:1fr auto;row-gap:2px;padding:12px 14px}.aw-month{grid-column:1}.aw-chal{grid-column:1}.aw-res{grid-row:1 / span 2;grid-column:2;font-size:11px;padding:5px 10px}.aw-go{display:none}.aw-list{padding-left:30px}.aw-node{left:-30px;width:26px;height:26px;margin-top:-13px;font-size:11px}.aw-list::before{left:12px}}
+@media(prefers-reduced-motion:reduce){.aw-item{opacity:1;transform:none;transition:none}.aw-card,.aw-card::before,.aw-node{transition:none}.aw-aw .aw-node::after{animation:none}}
 </style>
- <section class="py-12 bg-white">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 scroll-animate">
-   <h2 class="text-2xl font-bold text-gray-800 text-center mb-2">Awards and results, 2026</h2>
-   <p class="text-gray-600 text-sm text-center mb-6">The Creative Head Award is a special community award chosen by a guest judge, separate from the main placings.</p>
-   <ul class="aw-list"><li class="aw-row aw-win"><span class="aw-month">May</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-trophy"></i>1st place</span></li><li class="aw-row aw-run"><span class="aw-month">June</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-medal"></i>Runner-up</span></li><li class="aw-row aw-top"><span class="aw-month">July</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-star"></i>Top Performer</span></li><li class="aw-row aw-run"><span class="aw-month">August</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-medal"></i>Runner-up</span></li><li class="aw-row aw-win"><span class="aw-month">September</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-trophy"></i>Winner</span></li><li class="aw-row aw-aw"><span class="aw-month">October</span><span class="aw-chal">Onyx Data DataDNA</span><span class="aw-res"><i class="fas fa-palette"></i>Creative Head Award</span></li><li class="aw-row aw-pen"><span class="aw-month">October</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-hourglass-half"></i>Submitted, results 10 Nov</span></li></ul>
+<section class="py-12 bg-white">
+ <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 scroll-animate">
+  <h2 class="text-2xl font-bold text-gray-800 text-center mb-2">Awards and results, 2026</h2>
+  <p class="text-gray-600 text-sm text-center mb-5">The Creative Head Award is a special community award chosen by a guest judge, separate from the main placings. Tap any result to open the report.</p>
+  <div class="aw-filters" role="group" aria-label="Filter results">
+   <button type="button" class="aw-chip on" data-f="all">All</button>
+   <button type="button" class="aw-chip" data-f="win">Wins</button>
+   <button type="button" class="aw-chip" data-f="run top">Runner-up and Top Performer</button>
+   <button type="button" class="aw-chip" data-f="aw">Special award</button>
   </div>
- </section>
+  <div class="aw-wrap"><ul class="aw-list" id="aw-list"><li class="aw-item aw-win" data-kind="win" style="--d:0ms"><span class="aw-node"><i class="fas fa-trophy"></i></span><a class="aw-card" href="challenge-may.html"><span class="aw-month">May</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-trophy"></i>1st place</span><span class="aw-go">View report <i class="fas fa-arrow-right"></i></span></a></li><li class="aw-item aw-run" data-kind="run" style="--d:90ms"><span class="aw-node"><i class="fas fa-medal"></i></span><a class="aw-card" href="challenge-jun.html"><span class="aw-month">June</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-medal"></i>Runner-up</span><span class="aw-go">View report <i class="fas fa-arrow-right"></i></span></a></li><li class="aw-item aw-top" data-kind="top" style="--d:180ms"><span class="aw-node"><i class="fas fa-star"></i></span><a class="aw-card" href="challenge-jul.html"><span class="aw-month">July</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-star"></i>Top Performer</span><span class="aw-go">View report <i class="fas fa-arrow-right"></i></span></a></li><li class="aw-item aw-run" data-kind="run" style="--d:270ms"><span class="aw-node"><i class="fas fa-medal"></i></span><a class="aw-card" href="challenge-aug.html"><span class="aw-month">August</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-medal"></i>Runner-up</span><span class="aw-go">View report <i class="fas fa-arrow-right"></i></span></a></li><li class="aw-item aw-win" data-kind="win" style="--d:360ms"><span class="aw-node"><i class="fas fa-trophy"></i></span><a class="aw-card" href="challenge-sep.html"><span class="aw-month">September</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-trophy"></i>Winner</span><span class="aw-go">View report <i class="fas fa-arrow-right"></i></span></a></li><li class="aw-item aw-aw" data-kind="aw" style="--d:450ms"><span class="aw-node"><i class="fas fa-palette"></i></span><a class="aw-card" href="challenge-oct.html"><span class="aw-month">October</span><span class="aw-chal">Onyx Data DataDNA</span><span class="aw-res"><i class="fas fa-palette"></i>Creative Head Award</span><span class="aw-go">View report <i class="fas fa-arrow-right"></i></span></a></li><li class="aw-item aw-pen" data-kind="pen" style="--d:540ms"><span class="aw-node"><i class="fas fa-hourglass-half"></i></span><a class="aw-card" href="challenge-octdb.html"><span class="aw-month">October</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-hourglass-half"></i>Submitted, results 10 Nov</span><span class="aw-go">View report <i class="fas fa-arrow-right"></i></span></a></li></ul></div>
+ </div>
+</section>
+<script>
+(function () {
+  var items = document.querySelectorAll('#aw-list .aw-item');
+  if (!items.length) return;
+  var show = function (el) { el.classList.add('in'); };
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { show(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    items.forEach(function (el) { io.observe(el); });
+  } else { items.forEach(show); }
+  document.querySelectorAll('.aw-chip').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.aw-chip').forEach(function (x) { x.classList.toggle('on', x === b); });
+      var kinds = b.getAttribute('data-f').split(' ');
+      items.forEach(function (el) {
+        var k = el.getAttribute('data-kind');
+        el.classList.toggle('dim', kinds[0] !== 'all' && kinds.indexOf(k) < 0);
+      });
+    });
+  });
+})();
+</script>
+
 
  <section class="py-14 sm:py-16 bg-white">
   <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
