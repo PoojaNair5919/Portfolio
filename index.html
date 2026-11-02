@@ -127,11 +127,33 @@
   </div>
  </section>
 
+<style>
+.aw-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.aw-row{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:12px;padding:12px 16px;border:1px solid #e5e7eb;border-left:4px solid #d1d5db;border-radius:12px;background:#fff;font-size:14px;color:#374151}
+.aw-month{font-weight:700;color:#111827}
+.aw-chal{color:#6b7280}
+.aw-res{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;padding:5px 12px;border-radius:999px;white-space:nowrap;background:#f3f4f6;color:#4b5563}
+.aw-win{border-left-color:#f59e0b}.aw-win .aw-res{background:#fef3c7;color:#92400e}
+.aw-run{border-left-color:#94a3b8}.aw-run .aw-res{background:#e2e8f0;color:#334155}
+.aw-top{border-left-color:#6366f1}.aw-top .aw-res{background:#e0e7ff;color:#3730a3}
+.aw-aw{border-left-color:#ec4899;background:linear-gradient(90deg,rgba(236,72,153,.08),transparent 60%)}.aw-aw .aw-res{background:#fce7f3;color:#9d174d}
+.aw-pen{border-left-style:dashed}
+.dark-mode .aw-row{background:#0a0a0a;border-color:#222;color:#d1d5db}
+.dark-mode .aw-row.aw-win{border-left-color:#f59e0b}.dark-mode .aw-row.aw-run{border-left-color:#94a3b8}.dark-mode .aw-row.aw-top{border-left-color:#6366f1}.dark-mode .aw-row.aw-aw{border-left-color:#ec4899}
+.dark-mode .aw-aw{background:linear-gradient(90deg,rgba(236,72,153,.12),#0a0a0a 60%)}
+.dark-mode .aw-month{color:#f3f4f6}.dark-mode .aw-chal{color:#9ca3af}
+.dark-mode .aw-res{background:#1f2937;color:#d1d5db}
+.dark-mode .aw-win .aw-res{background:rgba(251,191,36,.16);color:#fcd34d}
+.dark-mode .aw-run .aw-res{background:rgba(148,163,184,.18);color:#e2e8f0}
+.dark-mode .aw-top .aw-res{background:rgba(129,140,248,.2);color:#c7d2fe}
+.dark-mode .aw-aw .aw-res{background:rgba(236,72,153,.2);color:#fbcfe8}
+@media(max-width:560px){.aw-row{grid-template-columns:1fr auto;row-gap:2px}.aw-month{grid-column:1}.aw-res{grid-row:1 / span 2;grid-column:2}.aw-chal{grid-column:1}}
+</style>
  <section class="py-12 bg-white">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 scroll-animate">
    <h2 class="text-2xl font-bold text-gray-800 text-center mb-2">Awards and results, 2026</h2>
-   <p class="text-gray-600 text-sm text-center mb-5">The Creative Head Award is a special community award chosen by a guest judge, separate from the main placings.</p>
-   <div class="awards-wrap"><table class="awards-table"><thead><tr><th>Month (2026)</th><th>Challenge</th><th>Result</th></tr></thead><tbody><tr><td>May</td><td>DataBuzz Power BI</td><td>1st place</td></tr><tr><td>June</td><td>DataBuzz Power BI</td><td>Runner-up</td></tr><tr><td>July</td><td>DataBuzz Power BI</td><td>Top Performer</td></tr><tr><td>August</td><td>DataBuzz Power BI</td><td>Runner-up</td></tr><tr><td>September</td><td>DataBuzz Power BI</td><td>Winner</td></tr><tr><td>October</td><td>Onyx Data DataDNA</td><td>Creative Head Award</td></tr><tr><td>October</td><td>DataBuzz Power BI</td><td>Submitted, results 10 Nov</td></tr></tbody></table></div>
+   <p class="text-gray-600 text-sm text-center mb-6">The Creative Head Award is a special community award chosen by a guest judge, separate from the main placings.</p>
+   <ul class="aw-list"><li class="aw-row aw-win"><span class="aw-month">May</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-trophy"></i>1st place</span></li><li class="aw-row aw-run"><span class="aw-month">June</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-medal"></i>Runner-up</span></li><li class="aw-row aw-top"><span class="aw-month">July</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-star"></i>Top Performer</span></li><li class="aw-row aw-run"><span class="aw-month">August</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-medal"></i>Runner-up</span></li><li class="aw-row aw-win"><span class="aw-month">September</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-trophy"></i>Winner</span></li><li class="aw-row aw-aw"><span class="aw-month">October</span><span class="aw-chal">Onyx Data DataDNA</span><span class="aw-res"><i class="fas fa-palette"></i>Creative Head Award</span></li><li class="aw-row aw-pen"><span class="aw-month">October</span><span class="aw-chal">DataBuzz Power BI</span><span class="aw-res"><i class="fas fa-hourglass-half"></i>Submitted, results 10 Nov</span></li></ul>
   </div>
  </section>
 
