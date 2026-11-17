@@ -93,7 +93,7 @@
   }
   if (window.Typed && document.querySelector('.typed')) {
     new Typed('.typed', {
-      strings: ['Analytics and BI Engineer', 'Analytics Engineer', 'Analytics Professional', 'Analytics Engineer in BI'],
+      strings: ['Power BI Developer', 'BI Analyst', 'Data Storyteller'],
       typeSpeed: 100, backSpeed: 50, backDelay: 2000, loop: true, showCursor: true, cursorChar: '|'
     });
   }
