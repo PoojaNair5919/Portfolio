@@ -117,25 +117,35 @@
 
  <section class="rs-band">
   <style>
-  .rs-band{padding:3rem 0;background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#4c1d95 100%);position:relative;overflow:hidden}
-  .rs-band::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,rgba(124,192,207,.18),transparent 40%),radial-gradient(circle at 85% 80%,rgba(220,139,178,.16),transparent 40%);pointer-events:none}
-  .rs-wrap{position:relative;max-width:64rem;margin:0 auto;padding:0 1rem}
+  .rs-band{padding:2.5rem 0}
+  .rs-wrap{max-width:64rem;margin:0 auto;padding:0 1rem}
   .rs-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
   @media(min-width:768px){.rs-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-  .rs-card{box-sizing:border-box;position:relative;overflow:hidden;text-align:center;padding:22px 12px 18px;border-radius:16px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(6px);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
-  .rs-card::before{content:'';position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--a),var(--b))}
-  .rs-card:hover{transform:translateY(-5px);border-color:var(--b);box-shadow:0 12px 28px rgba(0,0,0,.35),0 0 0 1px var(--b)}
-  .rs-ic{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;margin-bottom:8px;color:#fff;font-size:15px;background:linear-gradient(135deg,var(--a),var(--b));box-shadow:0 4px 12px rgba(0,0,0,.3)}
-  .rs-num{font-size:2.6rem;font-weight:800;line-height:1;background:linear-gradient(135deg,#fff,var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .rs-lbl{margin-top:8px;font-size:.8rem;font-weight:600;color:#f3f4f6}
-  .rs-sub{margin-top:2px;font-size:.72rem;color:#c7c9e6;white-space:nowrap}
+  .rs-card{--c:var(--l);box-sizing:border-box;position:relative;overflow:hidden;text-align:center;padding:24px 10px;border-radius:18px;background:#fff;border:1px solid color-mix(in srgb,var(--c) 40%,#fff);box-shadow:0 10px 24px -6px color-mix(in srgb,var(--c) 35%,transparent),0 3px 8px rgba(17,24,39,.08);transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+  .rs-card::after{content:'';position:absolute;width:130px;height:130px;border-radius:50%;left:50%;top:-65px;margin-left:-65px;background:radial-gradient(circle,var(--h),transparent 70%);opacity:.45;transition:opacity .35s ease,transform .35s ease}
+  .rs-card::before{content:'';position:absolute;top:0;bottom:0;width:60%;left:-80%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);z-index:1;pointer-events:none}
+  .rs-card:hover{transform:translateY(-6px);border-color:var(--c);box-shadow:0 18px 34px -8px color-mix(in srgb,var(--c) 55%,transparent),0 4px 10px rgba(17,24,39,.1)}
+  .rs-card:hover::after{opacity:.8;transform:scale(1.25)}
+  .rs-card:hover::before{left:130%;transition:left .8s ease}
+  .rs-num{position:relative;font-size:2.8rem;font-weight:800;line-height:1;color:var(--c);transition:transform .35s ease}
+  .rs-card:hover .rs-num{transform:scale(1.12)}
+  .rs-lbl{position:relative;margin-top:8px;font-size:.8rem;font-weight:600;color:#374151}
+  .rs-sub{position:relative;margin-top:2px;font-size:.72rem;color:#6b7280;white-space:nowrap}
+  .dark-mode .rs-card{--c:var(--d);background:#111;border-color:#262626;box-shadow:0 10px 24px -8px rgba(0,0,0,.7)}
+  .dark-mode .rs-card::after{opacity:.35}
+  .dark-mode .rs-card::before{background:linear-gradient(100deg,transparent,rgba(255,255,255,.12),transparent)}
+  .dark-mode .rs-card:hover{border-color:var(--c);box-shadow:0 0 0 1px var(--c),0 16px 32px -8px color-mix(in srgb,var(--c) 45%,transparent)}
+  .dark-mode .rs-card:hover::after{opacity:.6}
+  .dark-mode .rs-lbl{color:#e5e7eb}
+  .dark-mode .rs-sub{color:#9ca3af}
   @media(max-width:480px){.rs-card{padding-left:6px;padding-right:6px}.rs-sub{font-size:.66rem}}
+  @media(prefers-reduced-motion:reduce){.rs-card,.rs-card *{transition:none!important}.rs-card:hover{transform:none}}
   </style>
   <div class="rs-wrap"><div class="rs-grid">
-    <div class="rs-card scroll-animate" style="--a:#c9954a;--b:#e6b56a"><span class="rs-ic"><i class="fas fa-trophy"></i></span><div class="rs-num" data-n="2">2</div><div class="rs-lbl">DataBuzz wins</div><div class="rs-sub">May, Sep</div></div>
-    <div class="rs-card scroll-animate" style="--a:#5f9fae;--b:#7cc0cf"><span class="rs-ic"><i class="fas fa-medal"></i></span><div class="rs-num" data-n="4">4</div><div class="rs-lbl">Top performer &amp; runner-up</div><div class="rs-sub">Jul, Jun, Aug, Oct</div></div>
-    <div class="rs-card scroll-animate" style="--a:#7f86c9;--b:#a0a6e6"><span class="rs-ic"><i class="fas fa-chart-pie"></i></span><div class="rs-num" data-n="9">9</div><div class="rs-lbl">Live challenge reports</div><div class="rs-sub">incl. 1 Onyx award</div></div>
-    <div class="rs-card scroll-animate" style="--a:#b9688f;--b:#dc8bb2"><span class="rs-ic"><i class="fas fa-certificate"></i></span><div class="rs-num" data-n="3">3</div><div class="rs-lbl">Microsoft certifications</div><div class="rs-sub">PL-300 &middot; DP-600 &middot; DP-700</div></div>
+    <div class="rs-card scroll-animate" style="--l:#a8741f;--h:#f3d9a8;--d:#e6b56a"><div class="rs-num">2</div><div class="rs-lbl">DataBuzz wins</div><div class="rs-sub">May, Sep</div></div>
+    <div class="rs-card scroll-animate" style="--l:#2f7a8c;--h:#b5dde6;--d:#7cc0cf"><div class="rs-num">4</div><div class="rs-lbl">Top performer &amp; runner-up</div><div class="rs-sub">Jul, Jun, Aug, Oct</div></div>
+    <div class="rs-card scroll-animate" style="--l:#5560b5;--h:#c9cdf3;--d:#a0a6e6"><div class="rs-num">9</div><div class="rs-lbl">Live challenge reports</div><div class="rs-sub">incl. 1 Onyx award</div></div>
+    <div class="rs-card scroll-animate" style="--l:#a2447a;--h:#f0c5dc;--d:#dc8bb2"><div class="rs-num">3</div><div class="rs-lbl">Microsoft certifications</div><div class="rs-sub">PL-300 &middot; DP-600 &middot; DP-700</div></div>
   </div></div>
  </section>
 
